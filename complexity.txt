@@ -1,0 +1,9 @@
+
+Algorithm Complexity:
+TIME COMPLEXITY
+1.Time taken by program to execute is never called Time complexity
+2.Time complexity is a function that gives us relationship about the time as size of input grows. 
+3.Time always varies from machine to machine 
+4.Always look for worst case complexity.
+5.We always care about large size of data(input). 
+6.Lets analyise by graphs: f(t) = c,f(t) = t ,f(t) 
