@@ -7,3 +7,4 @@ TIME COMPLEXITY
 4.Always look for worst case complexity.
 5.We always care about large size of data(input). 
 6.Lets analyise by graphs: f(t) = c,f(t) = t ,f(t) 
+https://github.com/fasil-code/Data-Structures-and-Algorithms.wiki.git
