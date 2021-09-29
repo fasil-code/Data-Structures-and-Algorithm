@@ -103,7 +103,7 @@ zeroes respectively.
 FIRST OCCURENCE OF ANY NUMBER IN ANY ARRAY O(LOG(N))
 */
 	int count(int arr[], int N, int K) {
-	    int first =-1;
+	    int first =-1; // for storing  first occurence
 	   
 	    int i=0;
     int j=N-1;
@@ -111,7 +111,7 @@ FIRST OCCURENCE OF ANY NUMBER IN ANY ARRAY O(LOG(N))
     int mid=i+(j-i)/2;
     if(arr[mid]==K){
         first=mid;
-j=mid-1;
+   j=mid-1;
         
     }
     else if(arr[mid]>K){
@@ -149,7 +149,7 @@ int count(int arr[], int N, int K) {
 
 /*
 Given an array arr[] of n integers. Check whether it contains a triplet that sums up to zero. 
-
+O(N^2)
 Example 1:
 
 Input: n = 5, arr[] = {0, -1, 2, -3, 1}
@@ -159,9 +159,9 @@ with sum equal to 0.
 */
    bool findTriplets(int arr[], int n)
     { 
-         sort(arr,arr+n);
+         sort(arr,arr+n); //Sorting 
       for(int i=0;i<n-1;i++){
-          int j=i+1;
+          int j=i+1; 
           int k=n-1;
           while(j<k){
               int sum=arr[i]+arr[j]+arr[k];
@@ -183,7 +183,7 @@ with sum equal to 0.
 /*
 Given an array of size N consisting of only 0's and 1's. The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
 Find the count of all the 0's.
-
+O(log(n))
 Example 1:
 
 Input:
@@ -199,7 +199,7 @@ Explanation: There are 3 0's in the given array.
         
         int mid=(low+high)/2;
         if(arr[mid]==0){
-        ans= mid;
+        ans= mid;   
         high=mid-1;
         }
         else if(arr[mid]==1){
@@ -220,7 +220,7 @@ int countZeroes(int arr[], int n) {
 /*
 Given an array arr of n elements which is first increasing and then may be decreasing, find the maximum element in the array.
 Note: If the array is increasing then just print then last element will be the maximum value.
-
+O(log(N);
 MOUNTAIN ARRAY
 
 Example 1:
@@ -296,6 +296,7 @@ int majorityElement(int arr[], int n)
        return -1;
    }
 }
+
 
     // your code here	
 	
