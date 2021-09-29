@@ -1,5 +1,5 @@
 /*
-Binary search  Time complexity:O(N)  Space Complexity:O(1)
+Binary search : Time complexity:O(N)  Space Complexity:O(1)
 */
 int binarysearch(int arr[], int x, int n)
 {
@@ -7,21 +7,21 @@ int binarysearch(int arr[], int x, int n)
     int high = n - 1;
     while (low <= high)
     {
-        int mid = low + (high - low) / 2;
+        int mid = low + (high - low) / 2; //Finding mid
         if (arr[mid] == x)
         {
-            return mid;
+            return mid;      // Value found 
         }
         else if (arr[mid] < x)
         {
-            low = mid + 1;
+            low = mid + 1;     //Searching in right half
         }
         else
         {
-            high = mid - 1;
+            high = mid - 1;    //Searching in left half 
         }
     }
-    return -1;
+    return -1;         //No match 
 }
 
 
