@@ -327,7 +327,46 @@ int first=-1; //store ans;
     }
     return first;
     //Your code here
-}	
+}
+
+/**
+Given an array of distinct elements which was initially sorted. This array is rotated at some unknown point.
+The task is to find the minimum element in the given sorted and rotated array. 
+
+Example 1:
+
+Input:
+N = 10
+arr[] = {2,3,4,5,6,7,8,9,10,1}
+Output: 1
+Explanation: The array is rotated 
+once anti-clockwise. So minium 
+element is at last index (n-1) 
+which is 1.
+
+*/
     // your code here	
-	
-	
+ int minNumber(int arr[], int low, int high)
+    {
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(mid==0 || arr[mid]<arr[mid-1]){
+                
+        return arr[mid];
+            }
+            
+            else if(arr[mid]>arr[high]){
+                low=mid+1;
+            }
+            else{
+                high=mid;
+                
+            }
+        }
+        
+        // Your code here
+        
+    }
+
+
+
