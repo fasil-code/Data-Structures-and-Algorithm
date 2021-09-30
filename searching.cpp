@@ -808,17 +808,19 @@ only super prime
 	    for(int i= 2;i*i<=n;i++){
 	        if(prime[i]==true){
 	            for(int j=i*i;j<=n;j+=i){
-	                prime[j]=false;
+	                prime[j]=false;     //Apart from 2, all of the prime numbers are odd. 
+			                    //So it is not possible to represent a prime number (which is odd) to be written as a sum of two odd prime numbers 
+			                    // so we are sure that one of the two prime number should be 2.
 	            }
 	        }
 	    }
 
 	    int count=0;
-	for(int i=2;i<=n;i++){
+	   for(int i=2;i<=n;i++){
 	    if(prime[i-2] && prime[i]){
 	     count++;
 	    }
-	}    
-	return count;    
+	   }    
+	    return count;    
 	    // Your code goes here
 	}
