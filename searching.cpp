@@ -367,6 +367,63 @@ which is 1.
         // Your code here
         
     }
+/*
+You are given an array of N+2 integer elements. All elements of the array are in range 1 to N. 
+Also, all elements occur once except two numbers which occur twice. Find the two repeating numbers.
 
+Example 1:
 
+Input:
+N = 4
+array[] = {1,2,1,3,4,3}
+Output: 1 3
+Explanation: In the given array, 
+1 and 3 are repeated two times.
 
+*/
+
+// your code here	
+vector<int> twoRepeated (int arr[], int N) {
+        // Your code here
+        vector<int> v;
+        for(int i=0;i<N+2;i++){
+            if(arr[abs(arr[i])]>0){
+                arr[abs(arr[i])]=-arr[abs(arr[i])];
+            }
+            else {
+                v.push_back(abs(arr[i]));
+            }
+        }
+        return v;
+    }
+/*
+You are given heights of consecutive buildings. You can move from the roof of a building to the roof of next adjacent building. 
+You need to find the maximum number of consecutive steps you can put forward such that you gain an increase in altitude with each step.
+
+Example 1:
+
+Input:
+N = 5
+A[] = {1,2,2,3,2}
+Output: 1
+Explanation: 1, 2 or 2, 3 are the only consecutive 
+buildings with increasing heights.
+*/
+// your code here	
+ 
+int maxStep(int A[], int N)
+    {
+       int count=0,maxc=0;
+       for(int i=0;i<N-1;i++){
+           if(A[i+1]-A[i]>0){
+               count++;
+               maxc=max(count,maxc);
+           }
+           else{
+               
+               count=0;
+               
+           }
+               
+       }
+       return maxc;
