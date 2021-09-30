@@ -427,3 +427,74 @@ int maxStep(int A[], int N)
                
        }
        return maxc;
+}
+
+/*
+Given a sorted and rotated array A of N distinct elements which is rotated at some point, and given an element K.
+The task is to find the index of the given element K in the array A.
+
+Example 1:
+
+Input:
+N = 9
+A[] = {5 6,7,8,9,10,1,2,3}
+K = 10
+Output: 5
+Explanation: 10 is found at index 5.
+*/
+
+ int minNumber(vector<int>arr, int low, int high)
+    {
+        while(low<=high){
+            int mid=(low+high)/2;
+            if( mid==0 ||arr[mid]<arr[mid-1]){
+                
+        return mid;
+            }
+            
+            else if(arr[mid]>arr[high]){
+                low=mid+1;
+            }
+            else{
+                high=mid;
+                
+            }
+        }
+        
+        return -1;
+        
+    }
+        // Your code here
+    int binarysearch(vector<int>v ,int low,int high,int k){
+        while(low<=high){
+            int mid=(low+high)/2;
+            if(v[mid]==k){
+                return mid;
+            }
+            else if(v[mid]>k){
+                high=mid-1;
+            }
+            else{
+                low=mid+1;
+            }
+        }
+        return -1;
+        
+    }
+
+int Search(vector<int> vec, int K) {
+    
+    int ans=minNumber(vec,0,vec.size()-1);
+ //  cout<<ans<<endl;
+    if(ans==0){
+        return binarysearch(vec,0,vec.size()-1,K);
+    }
+    if(vec[ans]==K){
+        return ans;
+    }
+    if(vec[0]<=K){
+return binarysearch(vec,0,ans-1,K);
+    }
+    return binarysearch(vec,ans+1,vec.size()-1,K);
+    //code here
+}
