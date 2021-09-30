@@ -181,7 +181,8 @@ with sum equal to 0.
         //Your code here
     }
 /*
-Given an array of size N consisting of only 0's and 1's. The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
+Given an array of size N consisting of only 0's and 1's. 
+The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
 Find the count of all the 0's.
 O(log(n))
 Example 1:
@@ -545,7 +546,8 @@ common elements in A, B and C.
 
 /*Smallest greater elements in whole array 
 Easy Accuracy: 59.22% Submissions: 1217 Points: 2
-Given an array A of N length. We need to calculate the next greater element for each element in a given array. If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
+Given an array A of N length. We need to calculate the next greater element for each element in a given array. 
+If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
 
 Example 1:
 
