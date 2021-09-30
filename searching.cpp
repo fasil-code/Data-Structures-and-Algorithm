@@ -576,5 +576,37 @@ int* greaterElement(int arr[], int n)
     return arr;
     // Complete the function
 }
+/*
+Missing element of AP 
+Easy Accuracy: 38.74% Submissions: 2944 Points: 2
+Find the missing element from an ordered array arr[], consisting of N elements representing an Arithmetic Progression(AP).
+O(logn)
 
+Example 1:
 
+Input:
+N = 6
+Arr[] = {2, 4, 8, 10, 12, 14}
+Output: 6
+Explanation: Actual AP should be 
+2, 4, 6, 8, 10, 12, 14.
+*/
+int pos(int arr[],int low,int high,int diff){
+    int mid;
+   
+    while(low<=high){
+        mid=(low+high)/2;
+        if((arr[mid]-arr[0])/diff==mid){
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return arr[low]-diff;
+}
+    int findMissing(int arr[], int n) {
+          int diff = (arr[n - 1] - arr[0]) / n;
+        return pos(arr,0,n-1,diff);
+        // code here
+    }
