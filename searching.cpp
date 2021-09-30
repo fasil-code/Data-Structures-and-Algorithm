@@ -623,3 +623,34 @@ int pos(int arr[],int low,int high,int diff){
         }
         return count;
         }
+/*
+Given an integer x, find the square root of x. If x is not a perfect square, then return floor(√x).
+O(logn)
+Example 1:
+
+Input:
+x = 5
+Output: 2
+Explanation: Since, 5 is not a perfect 
+square, floor of square_root of 5 is 2.
+*/
+ long long int floorSqrt(long long int x) 
+    {
+        long long low=0;
+        long long high=x;
+        long long int ans=0;
+        while(low<=high){
+            long long mid =low+(high-low)/2;
+            if(mid*mid<=x){
+                ans=mid;
+                low=mid+1;
+            }
+            else{
+                high=mid-1;
+            }
+        }
+        return ans;
+        // Your code goes here   
+    }
+
+
