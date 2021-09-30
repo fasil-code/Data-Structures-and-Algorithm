@@ -181,8 +181,7 @@ with sum equal to 0.
         //Your code here
     }
 /*
-Given an array of size N consisting of only 0's and 1's. 
-The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
+Given an array of size N consisting of only 0's and 1's. The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
 Find the count of all the 0's.
 O(log(n))
 Example 1:
@@ -546,8 +545,7 @@ common elements in A, B and C.
 
 /*Smallest greater elements in whole array 
 Easy Accuracy: 59.22% Submissions: 1217 Points: 2
-Given an array A of N length. We need to calculate the next greater element for each element in a given array. 
-If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
+Given an array A of N length. We need to calculate the next greater element for each element in a given array. If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
 
 Example 1:
 
@@ -612,3 +610,16 @@ int pos(int arr[],int low,int high,int diff){
         return pos(arr,0,n-1,diff);
         // code here
     }
+ // program to find trailing zeroes of n!
+// time Complexity = O(logn)
+   int findtailing_zeroes(int n)
+        {
+       
+        int count=0;
+        if(n<0)
+        return -1;
+        for(int i=5;n/i>0;i*=5){
+            count+=n/i;
+        }
+        return count;
+        }
