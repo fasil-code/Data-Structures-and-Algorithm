@@ -742,7 +742,8 @@ other numbers occur twice,
 
 Sort an array according to the other 
 Medium Accuracy: 53.64% Submissions: 19672 Points: 4
-Given two integer arrays A1[ ] and A2[ ] of size N and M respectively. Sort the first array A1[ ] such that all the relative positions of the elements in the first array are the same as the elements in the second array A2[ ].
+Given two integer arrays A1[ ] and A2[ ] of size N and M respectively. 
+Sort the first array A1[ ] such that all the relative positions of the elements in the first array are the same as the elements in the second array A2[ ].
 See example for better understanding.
 Note: If elements are repeated in the second array, consider their first occurance only.
 
@@ -771,8 +772,8 @@ sorted order.
     }
     for(int i=0;i<M;i++){
         if(mp[A2[i]]){
-            while(mp[A2[i]]--){
-                v.push_back(A2[i]);
+          while(mp[A2[i]]--){
+        v.push_back(A2[i]);
             }
             mp.erase(A2[i]);
         }
@@ -786,3 +787,38 @@ sorted order.
     return v;
         //Your code here
     } 
+/*
+
+A prime number is Super Prime if it is a sum of two primes. Find all the Super Primes upto N
+
+Example 1:
+
+Input:
+N = 5
+Output: 1
+Explanation: 5 = 2 + 3, 5 is the
+only super prime
+*/
+	int superPrimes(int n)
+	{
+	    bool prime[n+1];
+	    memset(prime,true,sizeof(prime));
+	    prime[0]=false;
+	    prime[1]=false;
+	    for(int i= 2;i*i<=n;i++){
+	        if(prime[i]==true){
+	            for(int j=i*i;j<=n;j+=i){
+	                prime[j]=false;
+	            }
+	        }
+	    }
+
+	    int count=0;
+	for(int i=2;i<=n;i++){
+	    if(prime[i-2] && prime[i]){
+	     count++;
+	    }
+	}    
+	return count;    
+	    // Your code goes here
+	}
