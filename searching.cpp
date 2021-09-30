@@ -653,4 +653,46 @@ square, floor of square_root of 5 is 2.
         // Your code goes here   
     }
 
+/*
 
+Ternary Search- It is a divide and conquer algorithm that can be used to find an element in an array.
+In this algorithm, we divide the given array into three parts and determine which has the key (searched element).
+o(logn)
+Example 1:
+
+Input:
+N = 5, K = 6
+arr[] = {1,2,3,4,6}
+Output: 1
+Exlpanation: Since, 6 is present in 
+the array at index 4 (0-based indexing),
+output is 1.
+*/
+int ternarySearch(int arr[], int N, int k) 
+    { 
+        int low=0;
+        int high=N-1;
+        while(low<=high){
+            int mid1=low+(high-low)/3;
+            int mid2=high-(high-low)/3;
+            if(arr[mid1]==k){
+                return 1;
+            }
+            else if(arr[mid2]==k){
+                return 1;
+            }
+           else if(k<arr[mid1]){
+        high=mid1-1;
+            }
+            else if(k>arr[mid2]){
+                low=mid2+1;
+            }
+            else{
+                low=mid1+1;
+                high=mid2-1;
+            }
+            
+        }
+        return -1;
+       // Your code here
+    }
