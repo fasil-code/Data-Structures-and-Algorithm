@@ -125,12 +125,12 @@ return first;
 	}
 
 /*
-FIRST OCCURENCE OF ANY NUMBER IN ANY ARRAY O(LOG(N))
+Last OCCURENCE OF ANY NUMBER IN ANY ARRAY O(LOG(N))
 */
 int count(int arr[], int N, int K) {
 	int second=-1;
-	i=0;
-	j=N-1;
+	int i=0;
+	int j=N-1;
      while(i<=j){
     int mid=i+(j-i)/2;
     if(arr[mid]==K){
@@ -146,7 +146,7 @@ int count(int arr[], int N, int K) {
     }	
 	     return second;
     }   
-
+}
 /*
 Given an array arr[] of n integers. Check whether it contains a triplet that sums up to zero. 
 O(N^2)
@@ -297,7 +297,37 @@ int majorityElement(int arr[], int n)
    }
 }
 
+/*
+Given a sorted array arr[] of size N without duplicates, and given a value x. Floor of x is defined as the largest element K in arr[] such that K is smaller than or equal to x. 
+Find the index of K(0-based indexing).
 
+Example 1:
+
+Input:
+N = 7, x = 0 
+arr[] = {1,2,8,10,11,12,19}
+Output: -1
+Explanation: No element less 
+than 0 is found. So output 
+is "-1".
+*/
+int findFloor(long long int arr[], int N, long long int K) {
+    long long high=N-1;
+    long long low=0;
+int first=-1; //store ans;
+    while(low<=high){
+        long long mid=(low+high)/2;
+        if(arr[mid]<=K){
+            first=mid;
+            low=mid+1;
+        }
+        else{
+            high=mid-1;
+        }
+    }
+    return first;
+    //Your code here
+}	
     // your code here	
 	
 	
