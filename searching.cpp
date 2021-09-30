@@ -543,5 +543,38 @@ common elements in A, B and C.
            //code here.
         }
 
+/*Smallest greater elements in whole array 
+Easy Accuracy: 59.22% Submissions: 1217 Points: 2
+Given an array A of N length. We need to calculate the next greater element for each element in a given array. If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
+
+Example 1:
+
+â€‹Input : arr[ ] = {13, 6, 7, 12}
+Output : _ 7 12 13 
+Explanation:
+Here, at index 0, 13 is the greatest value 
+in given array and no other array element 
+is greater from 13. So at index 0 we fill 
+'-10000000'.*/
+int* greaterElement(int arr[], int n)
+{
+     set<int> x;
+    for(int i=0; i<n;i++)
+        x.insert(arr[i]);
+
+    for(int i=0; i<n;i++)
+    {
+        auto it=x.find(arr[i]);
+        it++;
+        if(it==x.end()){
+                arr[i]=-10000000;
+            }
+            else{
+                arr[i]=(*it);
+            }
+    }
+    return arr;
+    // Complete the function
+}
 
 
