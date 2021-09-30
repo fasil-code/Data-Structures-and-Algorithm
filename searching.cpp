@@ -696,3 +696,47 @@ int ternarySearch(int arr[], int N, int k)
         return -1;
        // Your code here
     }
+
+/*
+Given a sorted array A[] of N positive integers having all the numbers occurring exactly twice, except for one number which will occur only once. Find the number occurring only once.
+
+Example 1:
+
+Input:
+N = 5
+A = {1, 1, 2, 5, 5}
+Output: 2
+Explanation: 
+Since 2 occurs once, while
+other numbers occur twice, 
+2 is the answer.
+*/
+	int search(int arr[], int N){
+	    int low=0;
+	    int high=N-1;
+	    while(low<high){
+	        int mid=low+(high-low)/2;
+	        if(mid%2==0){
+	            if(arr[mid]==arr[mid+1]){
+	                low=mid+2;
+	            }
+	            else{
+	                high=mid;
+	            }
+	        }
+	            else{
+	                if(arr[mid]==arr[mid-1]){
+	                    low=mid+1;
+	                }
+	                else{
+	                    high=mid-1;
+	                }
+	            }
+	            
+	        }
+	    if(low==high)return arr[low];
+	    
+	    
+	}
+};
+
