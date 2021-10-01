@@ -9,10 +9,40 @@ It is the optimised approach to search an element.
 In this approach we form a middle element from first and last element index.Then we compare the middle with our required element.
 Now three conditions arise:
 if required element is mid we report it.
-if required element is less than mid we search for in left side
-if required element is more than mid we serach in righ side.
+if required element is less than mid we search it in left side
+if required element is more than mid we search it in right side.
+Here time taken is O(logn).	
 	
-	
+
+Problems of searching:
+
+BINARY SEARCH 
+LINEAR SEARCH
+INTERPOLATION SEARCH
+COUNT ZEROES IN SORTED MATRIX
+FIRST OCCURENCE
+LAST OCCURENCE
+TRIPLET SUM IS ZERO
+COUNT ZEROES IN SORTED ARRAY
+MOUNTAIN ARRAY
+MOORES VOTING ALGORTHIM OR MAJORITY ELEMENT
+FLOOR OF AN ELEMENT
+MINIMUM ELEMENT IN SORTED ROTATED ARRAY
+TWO REPEATED ELEMENTS
+ROOF TOP
+INDEX OF K IN SORTED ROTATED ARRAY
+COMMON ELEMENTS IN THREE SORTED ARRAY
+SMALLEST GREATER ELEMENT IN WHOLE ARRAY
+MIISING ELEMENT IN AP
+TRAILING ZEROE OF N FACTORIAL
+SQUARE ROOT OF NUMBER 
+TERNARY SEARCH
+ELEMENT PRESENT ONCE
+SORT AN ARRAY ACCORDING TO OTHER
+SIPER PRIME
+PAINTER PARTITION OR ALLOCATING MINIMUM NO PAGES
+MEDIAN OF TWO SORTED ARRAYS
+
 
 
 /*
@@ -198,7 +228,8 @@ with sum equal to 0.
         //Your code here
     }
 /*
-Given an array of size N consisting of only 0's and 1's. The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
+Given an array of size N consisting of only 0's and 1's. 
+The array is sorted in such a manner that all the 1's are placed first and then they are followed by all the 0's.
 Find the count of all the 0's.
 O(log(n))
 Example 1:
@@ -266,7 +297,8 @@ Explanation: Maximum element is 45.
 	    // code here
 	}
 	
-/*Given an array A of N elements. Find the majority element in the array. A majority element in an array A of size N is an element that appears more than N/2 times in the array.
+/*Given an array A of N elements. Find the majority element in the array. 
+A majority element in an array A of size N is an element that appears more than N/2 times in the array.
  
 MOORES VOTING ALGORITHM
 Example 1:
@@ -315,7 +347,8 @@ int majorityElement(int arr[], int n)
 }
 
 /*
-Given a sorted array arr[] of size N without duplicates, and given a value x. Floor of x is defined as the largest element K in arr[] such that K is smaller than or equal to x. 
+Given a sorted array arr[] of size N without duplicates, and given a value x. 
+Floor of x is defined as the largest element K in arr[] such that K is smaller than or equal to x. 
 Find the index of K(0-based indexing).
 
 Example 1:
@@ -562,7 +595,8 @@ common elements in A, B and C.
 
 /*Smallest greater elements in whole array 
 Easy Accuracy: 59.22% Submissions: 1217 Points: 2
-Given an array A of N length. We need to calculate the next greater element for each element in a given array. If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
+Given an array A of N length. We need to calculate the next greater element for each element in a given array.
+If the next greater element is not available in a given array then we need to fill ‘-10000000’ at that index place.
 
 Example 1:
 
@@ -715,7 +749,8 @@ int ternarySearch(int arr[], int N, int k)
     }
 
 /*
-Given a sorted array A[] of N positive integers having all the numbers occurring exactly twice, except for one number which will occur only once. Find the number occurring only once.
+Given a sorted array A[] of N positive integers having all the numbers occurring exactly twice, except for one number which will occur only once.
+Find the number occurring only once.
 
 Example 1:
 
