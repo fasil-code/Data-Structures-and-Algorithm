@@ -1,3 +1,20 @@
+Searching is a method to search a element in a data structure.
+Broadly we have two types of searches :
+Linear search:
+In this type of search we traverse a data structure and if at any point we found the required element .We report it.
+In worst case we have to traverse till last so time complexity of this array is O(n)
+
+Binary search:
+It is the optimised approach to search an element.
+In this approach we form a middle element from first and last element index.Then we compare the middle with our required element.
+Now three conditions arise:
+if required element is mid we report it.
+if required element is less than mid we search for in left side
+if required element is more than mid we serach in righ side.
+	
+	
+
+
 /*
 Binary search : Time complexity:O(N)  Space Complexity:O(1)
 */
