@@ -401,5 +401,167 @@ desired output.
 	        res[c++]=b[j++];
 	     }
 	}
+/*Intersection of two sorted Linked lists 
+Easy Accuracy: 29.44% Submissions: 53587 Points: 2
+Given two lists sorted in increasing order, create a new list representing the intersection of the two lists. The new list should be made with its own memory — the original lists should not be changed.
+Note: The list elements are not necessarily distinct.
+
+Example 1:
+
+Input:
+L1 = 1->2->3->4->6
+L2 = 2->4->6->8
+Output: 2 4 6
+Explanation: For the given first two
+linked list, 2, 4 and 6 are the elements
+in the intersection.	
+	*/
+Node* findIntersection(Node* head1, Node* head2)
+{
+    Node*temp1=head1;
+    Node*temp2=head2;
+    Node*head=new Node(0);
+    Node*ptr=head;
+    while(temp1!=NULL && temp2!=NULL){
+        if(temp1->data==temp2->data){
+             Node*gif=new Node(temp1->data);
+           head->next=gif;
+           head=gif;
+           temp1=temp1->next;
+             temp2=temp2->next;
+        }
+        else if(temp1->data>temp2->data){
+           
+            temp2=temp2->next;
+        }
+        else{
+           temp1=temp1->next; 
+        }
+    }
+  return ptr->next;
+    // Your Code Here
+}	
+/*
+Given two sorted matrices mat1 and mat2 of size N x N of elements. Given a value x. The problem is to count all pairs from both matrices whose sum is equal to x.
+
+Note: The pair has an element from each matrix. Matrices are strictly sorted which means that matrices are sorted in a way such that all elements in a row are sorted in increasing order and for row ‘i’, where 1 <= i <= n-1, the first element of row 'i' is greater than the last element of row 'i-1'.
+
+Example 1:
+
+Input: 
+N = 3, x = 21
+mat1 = { {1 5 6}
+         {8 10 11}
+         {15 16 18} }
+mat2 = { {2 4 7}
+         {9 10 12}
+         {13 16 20} }
+OUTPUT: 4
+Explanation: The pairs are (1, 20),
+            (5, 16), (8, 13), (11, 10).
+*/
+     int countPairs(vector<vector<int>> &mat1, vector<vector<int>> &mat2, int n, int x)
+	{
+	     int i,j;
+	    int k,l;
+	    i = j = 0;
+	    k = l = n - 1;
+	    int ret = 0;
+	    while(i < n and k >= 0){
+	       if(arr[i][j] + arr1[k][l] == x){
+	           ret++;
+	           j++;
+	       } 
+	       else if(arr[i][j] + arr1[k][l] > x){
+	           l--;
+	       }
+	       else if(arr[i][j] + arr1[k][l] < x){
+	           j++;
+	       }
+	      if(j == n){
+	           j = 0;
+	           i++;
+	       }
+	       if(l < 0){
+	           l =  n - 1;
+	           k--;
+	       }
+	    }
+	    return ret;
+	}	
+	/*
+	Largest Even Number 
+	Given an integer S. Find the largest even number that can be formed by rearranging the digits of S.
+
+Note: In case the number does not contain any even digit then output the largest odd number possible.
+	*/
+	  string LargestEven(string S){
+        sort(S.begin(),S.end());
+        reverse(S.begin(),S.end()); //Sort the string and check the last digit and if it's odd then swap with a even digit and again sort left portion. 
+                                      //If no even digit present then finds the largest odd number by sorting the string
+            if(S[S.size()-1]%2!=0){
+                int j=S.size()-1;
+                while(j>=0){
+                    if(S[j]%2==0){
+                        swap(S[S.size()-1],S[j]);
+                        break;
+                    }
+                    else{
+                        j--;
+                    }
+                    
+                }
+            }
+        sort(S.begin(),S.end()-1,greater<int>());
+    
+        return S; 
+    }  
 	
-	
+	/*
+	Shop in Candy Store 
+	In a candy store, there are N different types of candies available and the prices of all the N different types of candies are provided to you.
+You are now provided with an attractive offer.
+You can buy a single candy from the store and get at most K other candies ( all are different types ) for free.
+Now you have to answer two questions. Firstly, you have to find what is the minimum amount of money you have to spend to buy all the N different candies.
+Secondly, you have to find what is the maximum amount of money you have to spend to buy all the N different candies.
+In both the cases you must utilize the offer i.e. you buy one candy and get K other candies for free.
+Input:
+N = 4
+K = 2
+candies[] = {3 2 1 4}
+
+Output:
+3 7
+
+Explanation:
+As according to the offer if you buy 
+one candy you can take at most two 
+more for free. So in the first case, 
+you buy the candy which costs 1 and 
+takes candies worth 3 and 4 for free, 
+also you buy candy worth 2 as well.
+So min cost : 1+2 =3.
+In the second case, you can buy the 
+candy which costs 4 and takes candies 
+worth 1 and 2 for free, also you need 
+to buy candy worth 3 as well. 
+So max cost : 3+4 =7.
+	*/'
+  vector<int>v;
+        sort(candies,candies+N);
+       int n=N; 
+    int mini=0,ans=0;
+    for(int i=0;i<N;i++){
+        ans+=candies[i];
+        N=N-K;
+    }
+    v.push_back(ans);
+    int j=0;
+       for(int i=n-1;i>=j;i--){
+        mini+=candies[i];
+        j=j+K;
+    }   
+        
+         v.push_back(mini); 
+         return v;	
+}
