@@ -201,4 +201,47 @@ into ascending order.
            }
        }   
     }
-    
+    // Counting sort
+// Your code here
+int Max(string arr,int n){
+        int max=INT_MIN;
+        for(int i=0;i<n;i++){
+        if(arr[i]>max){
+            max=arr[i];
+        }
+        }
+        return max;
+    }
+    string countSort(string A){
+        // code here
+        int n=A.size();
+        int max = Max(A, n);
+ 
+    // Create count array
+    int* count = new int [max + 1];
+ 
+    // Initialize count array with 0
+    for (int i=0; i<max+1; i++){
+        count[i] = 0;
+    }
+ 
+    // Update count array values based on A values
+    for (int i=0; i<n; i++){
+        count[A[i]]++;
+    }
+ 
+    // Update A with sorted elements
+    int i = 0;
+    int j = 0;
+    while (j < max+1){
+        if (count[j] > 0){
+            A[i++] = j;
+            count[j]--;
+        } else {
+            j++;
+        }
+    }
+  return A;
+    // Delete heap memory
+    delete [] count;
+}
