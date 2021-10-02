@@ -368,5 +368,38 @@ void bubbleSort(int arr[], int n)
             }
         }
     }
+/*
+GIven two different arrays A and B of size N and M, the task is to merge the two arrays which are unsorted into another array which is sorted.
+Example 1:
+Input: N = 3, M = 3
+A[] = {10, 5, 15}
+B[] = {20, 3, 2}
+Output: 2 3 5 10 15 20
+Explanation: After merging both the 
+array's and sorting it with get the 
+desired output.  
+*/	
+	void sortedMerge(int a[], int b[], int res[],int n, int m)
+	{
+	 sort(a,a+n);
+	    sort(b,b+m);
+	    int i=0;
+	    int j=0;
+	    int c=0;
+	    while(i<n && j<m){
+	        if(a[i]<=b[j]){
+	            res[c++]=a[i++];
+	        }
+	        else{
+	            res[c++]=b[j++];
+	        }
+	    }
+	    while(i<n){
+	        res[c++]=a[i++];
+	    }
+	     while(j<m){
+	        res[c++]=b[j++];
+	     }
+	}
 	
 	
