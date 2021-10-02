@@ -202,7 +202,6 @@ into ascending order.
        }   
     }
     // Counting sort
-// Your code here
 int Max(string arr,int n){
         int max=INT_MIN;
         for(int i=0;i<n;i++){
@@ -245,3 +244,92 @@ int Max(string arr,int n){
     // Delete heap memory
     delete [] count;
 }
+/*
+UNION OF TWO LINKED LISTS
+
+*/
+struct Node* makeUnion(struct Node* head1, struct Node* head2)
+{
+    
+    set<int>s;
+Node*temp1=head1;
+Node*temp2=head2;
+while(temp1!=NULL){
+    s.insert(temp1->data);
+    temp1=temp1->next;
+}
+   while(temp2!=NULL){
+    s.insert(temp2->data);
+    temp2=temp2->next;
+} 
+struct Node*res=new Node(0);
+struct Node*ptr=res;
+
+for(auto x:s){
+    Node*temp=new Node(x);
+    res->next=temp;
+    res=temp;
+}
+ptr=ptr->next;
+return ptr;   // code here
+}
+/*Top K Frequent Elements in Array -
+Given a non-empty array of integers, find the top k elements which have the highest frequency in the array. 
+If two numbers have the same frequency then the larger number should be given preference. 
+
+Example 1:
+
+Input:
+nums = {1,1,1,2,2,3},
+k = 2
+Output: {1, 2}
+
+*/
+
+  vector<int> topK(vector<int>& nums, int k) {
+        unordered_map<int,int>v;
+        for(int i=0;i<nums.size();i++){
+            v[nums[i]]++;
+        }
+        vector<pair<int,int>>s;
+        for(auto x:v){
+        s.push_back({x.second,x.first});
+        }
+        sort(s.begin(),s.end());
+    vector<int>res;
+    for(int i=s.size()-1;i>=0;i--){
+        if(k>0)
+        res.push_back(s[i].second);
+        k--;
+    }
+    return res;
+        // Code here
+    }	
+Selection Sort :
+in selection sort the concept is to find minimum element or maximum element in each iteration.
+it is your choice to though.Now lets select maximum element strategy
+her we traverse reverse and select first element we check is there any element behind it which is greater than it .
+if we found we return its index and swap maximum element with current element.
+  int select(int arr[], int i)
+    {
+         int maxi=i;
+        
+    for( i-1;i>=0;i--){
+        if(arr[i]>arr[maxi]){
+            maxi=i;
+        }
+    }
+    return maxi;
+    // code here such that selecionSort() sorts arr[]
+}
+ 
+    void selectionSort(int arr[], int n)
+    {
+        
+    for(int i=n-1;i>=0;i--){
+        int res=select(arr,i);
+        swap(arr[i],arr[res]);
+    }
+     
+    }
+	
