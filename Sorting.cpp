@@ -547,7 +547,6 @@ worth 1 and 2 for free, also you need
 to buy candy worth 3 as well. 
 So max cost : 3+4 =7.
 	*/'
-		vector<int>v can(int candies[],int n)
   vector<int>v;
         sort(candies,candies+N);
        int n=N; 
@@ -605,4 +604,36 @@ int equalizeArray(int N, int k, int arr[]){
         }
         return steps%1000000007;
         // code here
+    }
+
+/*
+Minimum Distinct Ids 
+Easy Accuracy: 46.96% Submissions: 1180 Points: 2
+Given an array of items, the i'th index element denotes the item id’s and given a number m,
+the task is to remove m elements such that there should be minimum distinct id’s left. Print the number of distinct id’s.
+*/
+// your cod here
+int distinctIds(int arr[], int n, int m)
+    {
+        
+         map<int,int>mp;
+         vector<pair<int, int>> v;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        for(auto x:mp){
+            v.push_back({x.second, x.first});
+        }
+        sort(v.begin(),v.end());
+        int count=0;
+        int size=v.size();
+	
+        for(int i=0;i<size;i++){
+           if (v[i].first <= m) {
+            m -= v[i].first;
+            count++;
+        }
+        else return size-count;
+        }
+        return size-count;
     }
