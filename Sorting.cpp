@@ -637,3 +637,69 @@ int distinctIds(int arr[], int n, int m)
         }
         return size-count;
     }
+/*
+Next Greater Even Number 
+Given a positive integer X. The task is to find the smallest even number E such that
+E > X and all digits in X and E are same.
+
+Note: All the digits in X should be same with digits in E.
+
+ 
+
+Example 1:
+
+Input:
+X = 34722641
+Output:
+34724126
+Explanation:
+Next greater number with same 
+digits as in input is 34724126.
+*/
+ long long getNextEven(string s)
+    {
+      long long x = stoll(s);
+      while(next_permutation(s.begin(),s.end())){
+     int index=s[s.length()-1]-'0';
+      if(index%2==0 && stoll(s)>x){
+          return stoll(s);
+      }
+      }
+      return -1;
+ }
+/*
+Rope Cutting 
+Easy Accuracy: 77.36% Submissions: 583 Points: 2
+You are given N ropes. A cut operation is performed on ropes such that all of them are reduced by the length of the smallest rope. 
+Display the number of ropes left after every cut operation until the length of each rope is zero.
+
+Example 1:
+
+â€‹Input : arr[ ] = {5, 1, 1, 2, 3, 5}
+Output : 4 3 2
+Explanation:
+In the first operation, the minimum ropes 
+are 1 So, we reduce length 1 from all of 
+them after reducing we left with 4 ropes and 
+we do the same for rest.
+*/
+   vector<int> RopeCutting(int arr[], int n)
+    {
+  sort(arr,arr+n);
+int cnt = 1;
+int temp = arr[0];
+int lcnt = 0;
+vector<int> res;
+for(int i = 1; i < n; i++)
+{
+if(temp == arr[i])cnt++;
+else
+{
+res.push_back(n - (cnt+lcnt));
+lcnt += cnt;
+temp = arr[i];
+cnt = 1;
+}
+}
+return res;  
+  }
