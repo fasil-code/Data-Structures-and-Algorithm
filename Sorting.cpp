@@ -547,6 +547,7 @@ worth 1 and 2 for free, also you need
 to buy candy worth 3 as well. 
 So max cost : 3+4 =7.
 	*/'
+		vector<int>v can(int candies[],int n)
   vector<int>v;
         sort(candies,candies+N);
        int n=N; 
