@@ -565,3 +565,43 @@ So max cost : 3+4 =7.
          v.push_back(mini); 
          return v;	
 }
+
+/*
+Equalize an array in minimum operations 
+You are given an array of N integers A[0], A[1], …, A[N-1], and an integer k. Your task is to make all the elements of the given array equal in a minimum number of ‘moves’.
+All the elements of the array are non-negative. In each ‘move,’ you may add or subtract k from any element of the array. Give the answer modulo 109+7.
+
+Example 1:
+
+Input: N = 4, k = 2
+A = {7, 5, 21, 17}
+Output: 13
+Explaination: We can add k = 2 to A[1] 
+once and subtract k = 2 from A[2] seven 
+times and from A[3] five times.The 
+resulting array would be- 7 7 7 7. 
+Number of moves = 1 + 7 + 5 = 13.
+*/
+int equalizeArray(int N, int k, int arr[]){
+        long long  steps=0;
+        sort(arr,arr+N);
+        int mid=0;
+        if(N%2==1){
+            mid=N/2;
+        }
+        else{
+            mid=N/2-1;
+        }
+        for(long long int i=0;i<N;i++){
+    
+            if(  (abs(arr[i]-arr[mid]))%k!=0){
+                return -1;
+            }
+        }
+        for(long long int i=0;i<N;i++){
+        long long  diff=abs(arr[i]-arr[mid]);
+            steps+=(diff/k)%1000000007;
+        }
+        return steps%1000000007;
+        // code here
+    }
