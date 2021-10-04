@@ -803,4 +803,51 @@ swap 8 with 4.
 	        }
 	    }
 	    return count;
-	}
+/*	}
+Sorting Elements of an Array by Frequency 
+Medium Accuracy: 47.44% Submissions: 26118 Points: 4
+Given an array of integers, sort the array according to frequency of elements. That is elements that have higher frequency come first. If frequencies of two elements are same, then smaller number comes first.
+
+Example 1:
+
+Input:
+N = 5
+A[] = {5,5,4,6,4}
+Output: 4 4 5 5 6
+Explanation: The highest frequency here is
+2. Both 5 and 4 have that frequency. Now
+since the frequencies are same then 
+smallerelement comes first. So 4 4 comes 
+firstthen comes 5 5. Finally comes 6.
+The output is 4 4 5 5 6.
+*/
+		 static  bool comp(pair<int,int>a,pair<int,int>b){
+    if(a.first == b.first) 
+        {
+            return a.second < b.second;
+            
+        }
+         return a.first > b.first;
+    }
+    vector<int> sortByFreq(int arr[],int n)
+    {
+       unordered_map<int,int>mp;
+       for(int i=0;i<n;i++)
+       mp[arr[i]]++;
+       vector<pair<int,int>>v;
+       for(auto x:mp){
+           v.push_back({x.second,x.first});
+       }
+        
+        sort(v.begin(),v.end(),comp);
+        vector<int>res;
+        for(int i=0;i<v.size();i++){
+            while(v[i].first--){
+                res.push_back(v[i].second);
+            } 
+        }
+        return res;
+    }	
+		
+		
+		
