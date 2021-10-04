@@ -776,6 +776,31 @@ struct Node *sortDoubly(struct Node *head)
 return  merge(hea,temp);
 
 }
-
-
-  // } Driver C
+/*Minimum Swaps to Sort 
+Given an array of n distinct elements. Find the minimum number of swaps required to sort the array in strictly increasing order.
+Example 1:
+Input:
+nums = {2, 8, 5, 4}
+Output:
+1
+Explaination:
+swap 8 with 4.
+*/
+	int minSwaps(vector<int>&arr)
+	{
+	    int n=arr.size();
+	    vector<pair<int,int>>v;
+	    for(int i=0;i<n;i++){
+	        v.push_back({arr[i],i});
+	    }
+	    sort(v.begin(),v.end());
+	    int count=0;
+	    for(int i=0;i<n;i++){
+	     if(v[i].second!=i){
+	      swap(v[i], v[v[i].second]);
+	      count++; 
+	           i--;
+	        }
+	    }
+	    return count;
+	}
