@@ -703,3 +703,79 @@ cnt = 1;
 }
 return res;  
   }
+/*
+Given Pointer/Reference to the head of a doubly linked list of N nodes, the task is to Sort the given
+doubly linked list using Merge Sort in both non-decreasing and non-increasing order.
+
+Example 1:
+
+Input:
+N = 8
+value[] = {7,3,5,2,6,4,1,8}
+Output:
+1 2 3 4 5 6 7 8
+8 7 6 5 4 3 2 1
+Explanation: After sorting the given
+linked list in both ways, resultant
+matrix will be as given in the first
+two line of output, where first line
+is the output for non-decreasing
+order and next line is for non-
+increasing order.
+*/
+
+  struct Node*split(Node*head){
+    if(head==NULL){
+        return head;
+    }
+    Node*slow=head;
+    Node*fast=head;
+    while(slow && fast && fast->next && fast->next->next != NULL){
+     slow=slow->next;
+     fast=fast->next->next;
+    }
+Node*head2=slow->next;
+head2->prev=NULL;
+slow->next=NULL;
+return head2;
+
+}
+Node*merge(Node*first,Node*second){
+ if(first==NULL){
+     return second;
+ }   
+if(second==NULL){
+     return first;
+ }   
+   if(first->data<second->data){
+         first->next = merge(first->next,second);
+        first->next->prev = first;
+        first->prev = NULL;
+        return first;
+   }
+   else{
+       second->next=merge(first,second->next);
+       second->next->prev=second;
+       second->prev=NULL;
+       return second;
+   }
+   
+   
+    
+}
+struct Node *sortDoubly(struct Node *head)
+{
+ if(head==NULL || !head->next){
+     return head;
+ }
+ Node*hea=head;
+ Node*temp=split(hea);
+ hea=sortDoubly(hea);
+ temp=sortDoubly(temp);
+ 
+return  merge(hea,temp);
+
+}
+
+
+  // } Driver C
