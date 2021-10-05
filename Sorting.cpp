@@ -848,6 +848,59 @@ The output is 4 4 5 5 6.
         }
         return res;
     }	
-		
-		
+/*
+Merge Sort 
+Given an array arr[], its starting position l and its ending position r. Sort the array using merge sort algorithm.
+Example 1:
+
+Input:
+N = 5
+arr[] = {4 1 3 9 7}
+Output:
+1 3 4 7 9
+*/		
+ void merge(int arr[], int lo, int mi, int hi)
+    {
+        int n1 = mi - lo + 1;
+     int n2 = hi - mi;
+     
+     int a[n1], b[n2];
+     
+     for(int i = 0; i < n1; i++)
+        a[i] = arr[lo + i];
+        
+     for(int i = 0; i < n2; i++)
+        b[i] = arr[mi + 1 + i];
+        
+    int i = 0, j = 0, k = lo;
+    
+    while(i < n1 && j < n2){
+        if(a[i] <= b[j])
+            arr[k++] = a[i++];
+        
+        else
+            arr[k++] = b[j++];
+    }
+        
+    while(i < n1)
+        arr[k++] = a[i++];
+    
+    while(j < n2)
+        arr[k++] = b[j++];
+}
+         // Your code here
+    
+
+    void mergeSort(int arr[], int l, int r)
+    {
+         if(l >= r)
+        return;
+        
+    int m = l+(r-l)/2;
+    
+    mergeSort(arr, l, m);
+    mergeSort(arr, m+1, r);
+    merge(arr, l, m, r);
+      
+    }		
 		
