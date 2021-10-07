@@ -904,3 +904,43 @@ Output:
       
     }		
 		
+/*
+Two numbers with sum closest to zero
+Given an integer array of N elements. You need to find the maximum sum of two elements such that sum is closest to zero.
+
+Example 1:
+
+Input:
+N = 3
+arr[] = {-8 -66 -60}
+Output: -68
+Explanation: Sum of two elements closest to 
+zero is -68 using numbers -60 and -8.
+*/
+  int closestToZero(int arr[], int n)
+        {
+            sort(arr,arr+n);
+            int ans=-100000;
+            int res=1000000;
+            int i=0;
+            int j=n-1;
+           // int res=0,ans=0;
+            while(i<j){
+                int sum=arr[i]+arr[j];
+                if(sum==0){
+                    return 0;
+                    i++;
+                    j--;
+                }
+               else if(sum>0){
+                    res=min(res,sum);
+                    j--;
+                }
+               else if(sum<0){
+                    ans=max(ans,sum);
+                    i++;
+                }
+            }
+     return (abs(res)>abs(ans))?ans:res;
+            // your code here 
+        }		
