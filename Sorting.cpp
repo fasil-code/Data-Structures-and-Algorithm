@@ -944,3 +944,30 @@ zero is -68 using numbers -60 and -8.
      return (abs(res)>abs(ans))?ans:res;
             // your code here 
         }		
+// //   Quick Sort
+		
+  void quickSort(int arr[], int low, int high)
+    {
+       
+        if(low<high){
+           int x= partition(arr,low,high);
+           quickSort(arr,low,x-1);
+            quickSort(arr,x+1,high);
+        }
+    }
+    
+    public:
+    int partition (int arr[], int low, int high)
+    {
+      
+       int pivot=arr[low];
+       int l=low;
+       for(int i=low+1;i<=high;i++){
+           if(pivot>=arr[i]){
+               l++;
+               swap(arr[l],arr[i]);
+           }
+       }
+       swap(arr[l],arr[low]);
+       return l;
+    }
