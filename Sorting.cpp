@@ -1,4 +1,32 @@
-Sorting :
+Sorting : 
+PROBLEMS :
+CHECK IF TWO ARRAYS ARE EQUAL
+MAXIMUM PRODUCT OF TWO NUMBERS
+ALTERNATIVE SORT
+FIND TRIPLETS FAMILY
+SORTING EMPLOYEE
+Sort an array of 0s, 1s and 2S.
+Counting sort
+UNION OF TWO LINKED LISTS
+Top K Frequent Elements in Array .
+SELECTION SORT 
+BUBBLE SORT
+sortedMerge Array
+INTERSECTION OF TWO LINKED LIST
+SEARCH SUM IN TWO SORTED MATRICES
+lARGEST Even number
+Shop in candy store
+Equalize an array in minimum operations 
+Minimum Distinct Ids 
+Next Greater Even Number
+Rope cutting
+Merge sort DLL
+Minimum Swaps to Sort
+Sorting elements by frequency
+Merge Sort 
+Sum closest to Zero
+QuickSort
+Merge without Extra Space
 /*
 CHECK IF TWO ARRAYS ARE EQUAL
 Given two arrays A and B of equal size N, the task is to find if given arrays are equal or not. 
@@ -6,7 +34,6 @@ Two arrays are said to be equal if both of them contain same set of elements, ar
 Note : If there are repetitions, then counts of repeated elements must also be same for two array to be equal.
 
 Example 1:
-
 Input:
 N = 5
 A[] = {1,2,5,4,0}
@@ -806,7 +833,8 @@ swap 8 with 4.
 /*	}
 Sorting Elements of an Array by Frequency 
 Medium Accuracy: 47.44% Submissions: 26118 Points: 4
-Given an array of integers, sort the array according to frequency of elements. That is elements that have higher frequency come first. If frequencies of two elements are same, then smaller number comes first.
+Given an array of integers, sort the array according to frequency of elements. That is elements that have higher frequency come first. 
+If frequencies of two elements are same, then smaller number comes first.
 
 Example 1:
 
@@ -974,7 +1002,8 @@ zero is -68 using numbers -60 and -8.
 /*
 Merge Without Extra Space 
 Hard Accuracy: 44.55% Submissions: 76078 Points: 8
-Given two sorted arrays arr1[] and arr2[] of sizes n and m in non-decreasing order. Merge them in sorted order without using any extra space. Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements.
+Given two sorted arrays arr1[] and arr2[] of sizes n and m in non-decreasing order. Merge them in sorted order without using any extra space.
+Modify arr1 so that it contains the first N elements and modify arr2 so that it contains the last M elements.
  
 
 Example 1:
