@@ -62,3 +62,34 @@ int hash[256]={0};
          return res.size() == 0 ? "-1" : res;
             // code here
         }
+/*
+Anagram Palindrome 
+Given a string S, Check if characters of the given string can be rearranged to form a palindrome. 
+
+Example 1:
+
+Input:
+S = "geeksogeeks"
+Output: Yes
+Explanation: The string can be converted
+into a palindrome: geeksoskeeg
+*/
+int isPossible (string S)
+{
+    int hash[256]={0};
+    int count=1;
+    for(int i=0;i<S.size();i++){
+        hash[S[i]]++;
+    }
+    for(int i=0;i<256;i++){
+    if(count==1 &&hash[i]%2==1){
+        count++;
+    }
+           else if(count>1 &&hash[i]%2==1)
+        return 0;
+        
+    }
+    
+    return 1;
+    // your code here
+}
