@@ -93,3 +93,59 @@ int isPossible (string S)
     return 1;
     // your code here
 }
+/*
+Substrings with similar first and last characters 
+Basic Accuracy: 68.4% Submissions: 1801 Points: 1
+Given string s, the task is to find the count of all substrings which have the same character at the beginning and end.
+
+Example 1:
+
+Input: s = "abcab"
+Output: 7
+Explanation: a, abca, b, bcab, 
+c, a and b
+/
+*/
+// Your code goes here
+	int countSubstringWithEqualEnds(string s)
+	{
+	   
+	    int hash[256]={0};
+	    int res=0;
+	    for(int i=0;i<s.size();i++){
+	        hash[s[i]]++;
+	    }
+	    for(int i=0;i<256;i++){
+	        res+=(hash[i]*(hash[i]+1))/2;
+	    }
+	    return res;
+	}
+/*
+String Reversal 
+Basic Accuracy: 69.01% Submissions: 1313 Points: 1
+Given a string, say S, print it in reverse manner eliminating the repeated characters and spaces.
+
+Example 1:
+
+Input: S = "GEEKS FOR GEEKS"
+Output: "SKEGROF"
+*/
+string reverseString(string s)
+{
+    //code here.
+  int hash[256]={0};
+  string str;
+  for(int i=0;i<s.size()-1;i++){
+      if(s[i]!=' ')
+      hash[s[i]]++; 
+  }
+    for(int i=s.size()-1;i>=0;i--){
+          if(hash[s[i]]>=1){
+             str+=s[i];
+             hash[s[i]]=-1;
+          }
+      }
+ 
+  return str;
+    
+}
