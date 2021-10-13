@@ -93,3 +93,38 @@ int isPossible (string S)
     return 1;
     // your code here
 }
+/*
+Subarray with 0 sum 
+Easy Accuracy: 49.91% Submissions: 71355 Points: 2
+Given an array of positive and negative numbers. Find if there is a subarray (of size at-least one) with 0 sum.
+
+Example 1:
+
+Input:
+5
+4 2 -3 1 6
+
+Output: 
+Yes
+
+Explanation: 
+2, -3, 1 is the subarray 
+with sum 0.
+*/
+//Your code here
+bool subArrayExists(int arr[], int n)
+    {
+        
+        int sum=0;
+        unordered_map<int ,int>mp;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            mp[sum]++;
+        }
+        for(auto x:mp){
+            if(x.second>1 || x.first==0){
+                return 1;
+            }
+        }
+        return 0;
+    }
