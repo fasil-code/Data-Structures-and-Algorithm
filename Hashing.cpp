@@ -217,3 +217,91 @@ bool subArrayExists(int arr[], int n)
         }
         return 0;
     }
+ bool subArrayExists(int arr[], int n)
+    {
+        unordered_set<int>s;
+        int sum=0;
+        for(int i=0;i<n;i++){
+            sum+=arr[i];
+            if(s.find(sum)!=s.end() || arr[i]==0||sum==0 )return true;
+            s.insert(sum);
+        }
+        return false;
+        //Your code here
+    }
+/*
+Max distance between same elements 
+Easy Accuracy: 50.34% Submissions: 26427 Points: 2
+Given an array with repeated elements, the task is to find the maximum distance between two occurrences of an element.
+
+Example 1:
+
+Input
+n= 6
+arr = {1, 1, 2, 2, 2, 1}
+
+Output
+5
+
+Explanation
+arr[] = {1, 1, 2, 2, 2, 1}
+Max Distance: 5
+Distance for 1 is: 5-0 = 5
+Distance for 2 is : 4-2 = 2
+Max Distance 5
+*/
+ int maxDistance(int arr[], int n)
+    {
+        int maxi=-1;
+        unordered_map<int,int>mp;
+        for(int i=0;i<n;i++){
+            if(mp.find(arr[i])==mp.end())
+            mp[arr[i]]=i;
+            maxi=max(maxi,i-mp[arr[i]]);
+            
+        }
+        return maxi;
+    //Code here
+    }
+/*Winner of an election 
+Easy Accuracy: 49.75% Submissions: 19414 Points: 2
+Given an array of names (consisting of lowercase characters) of candidates in an election. A candidate name in array represents a vote casted to the candidate. Print the name of candidate that received Max votes. If there is tie, print lexicographically smaller name.
+
+Example 1:
+
+Input:
+n = 13
+Votes[] = {john,johnny,jackie,johnny,john 
+jackie,jamie,jamie,john,johnny,jamie,
+johnny,john}
+Output: john 4
+Explanation: john has 4 votes casted for 
+him, but so does johny. john is 
+lexicographically smaller, so we print 
+john and the votes he received.
+*/
+ vector<string> winner(string arr[],int n)
+    {
+        vector<string>s;
+        string res;
+        unordered_map<string,int>mp;
+        for(int i=0;i<n;i++){
+            mp[arr[i]]++;
+        }
+        int count=0;
+        for(auto x:mp){
+            count=max(count,x.second);
+            
+        }
+        for(auto x:mp){
+            if(x.second==count){
+            string ans=x.first;
+            if(res.size()==0 || ans<res){
+                res=ans;
+            }
+            }
+            
+        }
+             return{res,to_string(count)};
+        
+    }
