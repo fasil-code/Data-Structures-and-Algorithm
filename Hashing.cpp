@@ -183,8 +183,8 @@ string reverseString(string s)
   return str;
     
 }
-=======
-Subarray with 0 sum 
+
+/*Subarray with 0 sum 
 Easy Accuracy: 49.91% Submissions: 71355 Points: 2
 Given an array of positive and negative numbers. Find if there is a subarray (of size at-least one) with 0 sum.
 
@@ -200,8 +200,7 @@ Yes
 Explanation: 
 2, -3, 1 is the subarray 
 with sum 0.
-*/
-//Your code here
+//Your code here*/
 bool subArrayExists(int arr[], int n)
     {
         
