@@ -366,3 +366,241 @@ of distinct elements in this window are 3.*/
         return v;
         //code here.
     }
+/*
+Distinct Substrings 
+Easy Accuracy: 58.8% Submissions: 780 Points: 2
+Given a string s consisting of uppercase and lowercase alphabetic characters. Return the  number of distinct substrings of size 2 that appear in s as contiguous substrings.
+
+Example
+
+Input :
+s = "ABCAB"
+Output :
+3
+Explanation:  For "ABCAB", the 
+three distinct substrings of size 
+2 are "AB", "BC" and "CA". 
+*/
+int fun(string s)
+{
+    unordered_map<string,int>mp;
+    int count=0;
+   for(int i=0;i<s.size()-1;i++){
+       string str;
+       str+=s[i];
+       str+=s[i+1];
+       mp[str]++;
+       
+       
+   } 
+   for(auto x:mp){
+       count++;
+   }
+   return count;
+
+}
+/*
+Minimum Distinct Ids 
+Easy Accuracy: 46.58% Submissions: 1334 Points: 2
+Given an array of items, the i'th index element denotes the item id’s and given a number m,
+the task is to remove m elements such that there should be minimum distinct id’s left. Print the number of distinct id’s.
+
+Example 1 -
+
+Input:
+n = 6
+arr[] = {2, 2, 1, 3, 3, 3}
+m = 3
+Output:
+1
+Explanation : 
+Remove 2,2,1
+*/
+unordered_map<int,int> mp;
+for(int i = 0; i < n; i++)
+mp[arr[i]]++;
+priority_queue<pair<int,int>, vector<pair<int,int>>, greater<pair<int,int>>> pq;
+int count = 0;
+for(auto it : mp)
+{
+pq.push({it.second, it.first});
+}
+while(!pq.empty() && m--)
+{
+int x = pq.top().first;
+int y = pq.top().second;
+pq.pop();
+x--;
+if(x != 0)
+pq.push({x, y});
+}
+
+return pq.size(); 
+}
+/*
+Count the elements 
+Easy Accuracy: 60.23% Submissions: 684 Points: 2
+Given two arrays a and b. Given q queries each having a positive integer i denoting an index of the array a. 
+For each query, your task is to find all the elements less than or equal to qi in the array b.
+
+Example 1:
+
+Input:
+N=6
+a[] = {1, 2, 3, 4, 7, 9}
+b[] = {0, 1, 2, 1, 1, 4} 
+Query 1 -> 5
+Query 2 -> 4
+Output : 6
+         6
+Explanation: For 1st query, the given index is 5,
+             A[5] is 9 and in B all the elements 
+             are smaller than 9.
+             For 2nd query, the given index is 4, 
+             A[4] is 7 and in B all the elements 
+             are smaller than 7. 
+*/
+vector<long long> find(vector<long long> a,vector<long long> b,vector<long long> q) {
+vector<long long>v;
+unordered_map<int,int>mp;
+
+for(long long i=0;i<b.size();i++)mp[b[i]]++;
+for(int i=0;i<q.size();i++){
+    int qu=a[q[i]];
+    int count=0;
+    for(auto x:mp){
+        if(x.first<=qu){
+            count+=x.second;
+        }
+    }
+  
+    v.push_back(count);
+}
+  return v;  
+}
+/*
+Find all pairs with a given sum 
+Easy Accuracy: 38.72% Submissions: 7618 Points: 2
+Given two unsorted arrays A of size N and B of size M of distinct elements, the task is to find all pairs from both arrays whose sum is equal to X.
+
+ 
+
+Example 1:
+
+Input:
+A[] = {1, 2, 4, 5, 7}
+B[] = {5, 6, 3, 4, 8} 
+X = 9 
+Output: 
+1 8
+4 5 
+5 4
+Explanation:
+(1, 8), (4, 5), (5, 4) are the
+pairs which sum to 9.
+*/
+ vector<pair<int,int>> allPairs(int a[], int b[], int n, int m, int k)
+    {
+         unordered_set<int> s;
+   
+   for(int i = 0; i < m; i++)
+   {
+       s.insert(b[i]);
+   }
+   
+   
+   vector<pair<int,int>> res;
+   
+   for(int i = 0; i < n; i++)
+   {
+       if(s.find(k - a[i]) != s.end())
+       {
+           res.push_back({a[i], k - a[i]});
+       }
+   }
+   
+   sort(res.begin(), res.end());
+   
+   return res;
+    
+    }
+/*
+Count distinct pairs with difference k 
+Easy Accuracy: 31.01% Submissions: 7076 Points: 2
+Given an integer array and a non-negative integer k, count all distinct pairs with difference equal to k, i.e., A[ i ] - A[ j ] = k
+ 
+
+Example 1:
+
+Input: array = {1, 5, 4, 1, 2}, k = 0
+Output: 1
+Explanation: There is only one pair (1, 1)
+whose difference equal to 0.
+*/
+int TotalPairs(vector<int>nums, int k){
+	   unordered_map<int,int>s;
+	   int count=0;
+	   for(int i=0;i<nums.size();i++){
+	       s[nums[i]]++;;
+	   }
+	   if(k!=0){
+	   for(auto it:s){
+	       if(s.find(k+it.first)!=s.end()){
+	           count++;
+	       }
+	   }
+	   }
+	   else{
+	       for(auto it = s.begin(); it != s.end(); ++it)
+               if(it->second > 1)
+                   ++count;
+	   }
+	   return count;
+	    // Code here
+	}
+/*
+Swapping pairs make sum equal 
+Easy Accuracy: 41.35% Submissions: 12576 Points: 2
+Given two arrays of integers A[] and B[] of size N and M, 
+the task is to check if a pair of values (one value from each array) exists such that swapping the elements of the pair will make the sum of two arrays equal.
+
+ 
+
+Example 1:
+
+Input: N = 6, M = 4
+A[] = {4, 1, 2, 1, 1, 2}
+B[] = (3, 6, 3, 3)
+Output: 1
+Explanation: Sum of elements in A[] = 11
+Sum of elements in B[] = 15, To get same 
+sum from both arrays, we can swap following 
+values: 1 from A[] and 3 from B[]
+*/
+	int findSwapValues(int A[], int n, int B[], int m)
+	{
+	    sort(A,A+n);
+	    sort(B,B+m);
+	    int k=0;
+	    int j=0;
+	    int sum1=0;
+	    int sum2=0;
+	    for(int i=0;i<n;i++)sum1+=A[i];
+	     for(int i=0;i<m;i++)sum2+=B[i];
+	     
+	  
+	    while(k<n && j<m){
+	        
+	        if(sum1-A[k]+B[j]>sum2-B[j]+A[k]){
+	            k++;
+	        }
+	        else if(sum1-A[k]+B[j]<sum2-B[j]+A[k]){
+	            j++;
+	        }
+	        else{
+	            return 1;
+	        }
+	    }
+	    return -1;
+        // Your code goes here
+	}
