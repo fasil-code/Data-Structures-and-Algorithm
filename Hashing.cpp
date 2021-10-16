@@ -305,3 +305,64 @@ john and the votes he received.
              return{res,to_string(count)};
         
     }
+
+//Largest subarray with 0 sum
+int maxLen(vector<int>&A, int n)
+    {   
+        // Your code here
+     unordered_map<int,int>mp;
+        int maxLen=0;
+        int sum=0; 
+// to consider corner case if sum of elements from 0 to i is zero then length would be i-(-1)=i+1.
+        mp[0]=-1; 
+        for(int i=0;i<n;i++){
+            sum+=A[i];
+        if(mp.find(sum)!=mp.end())maxLen=max(maxLen,i-mp[sum]);
+            else mp[sum]=i;
+        }
+        return maxLen;
+    }
+/*
+
+Count distinct elements in every window 
+Easy Accuracy: 44.16% Submissions: 70051 Points: 2
+Given an array of integers and a number K. Find the count of distinct elements in every window of size K in the array.
+
+Example 1:
+
+Input:
+N = 7, K = 4
+A[] = {1,2,1,3,4,2,3}
+Output: 3 4 4 3
+Explanation: Window 1 of size k = 4 is
+1 2 1 3. Number of distinct elements in
+this window are 3. 
+Window 2 of size k = 4 is 2 1 3 4. Number
+of distinct elements in this window are 4.
+Window 3 of size k = 4 is 1 3 4 2. Number
+of distinct elements in this window are 4.
+Window 4 of size k = 4 is 3 4 2 3. Number
+of distinct elements in this window are 3.*/
+   vector <int> countDistinct (int A[], int n, int k)
+    { 
+        vector<int>v;
+            unordered_map<int,int>s;
+        for(int i=0;i<k;i++){
+        
+            s[A[i]]++;
+        }
+        v.push_back(s.size());
+        int j=0;
+        for(int i=k;i<n;i++){
+        s[A[j]]--;
+        if(s[A[j]]==0){
+            s.erase(A[j]);
+        }
+        s[A[i]]++;
+        v.push_back(s.size());
+        j++;
+        
+        }
+        return v;
+        //code here.
+    }
