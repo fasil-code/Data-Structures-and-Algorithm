@@ -675,3 +675,35 @@ int k=0;
 	}
         return v;
     }
+/*
+Numbers containing 1, 2 and 3 
+Easy Accuracy: 52.63% Submissions: 5915 Points: 2
+Given an array arr[] of n numbers. The task is to print only those numbers whose digits are from set {1,2,3}.
+
+Example 1:
+
+Input:
+n = 3
+arr[] = {4,6,7}
+Output: -1
+Explanation: No elements are there in the 
+array which contains digits 1, 2 or 3.
+*/
+ bool validEntry(int n) {
+    
+    while(n) {
+        int key = n % 10;
+        
+        if(key == 0 or key >= 4) return false;
+        
+        n = n/10;
+    }    
+    return true;
+}
+//Function to find all the numbers with only 1,2 and 3 in their digits.
+void findAll() {
+   for(int i = 1; i < 1e6+1; ++i) {
+        
+        if(validEntry(i)) mp[i]++;
+    }
+} 
