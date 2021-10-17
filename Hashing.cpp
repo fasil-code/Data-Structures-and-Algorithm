@@ -604,3 +604,74 @@ values: 1 from A[] and 3 from B[]
 	    return -1;
         // Your code goes here
 	}
+/*
+Count pairs with given sum 
+Easy Accuracy: 41.59% Submissions: 79930 Points: 2
+Given an array of N integers, and an integer K, find the number of pairs of elements in the array whose sum is equal to K.
+
+
+Example 1:
+
+Input:
+N = 4, K = 6
+arr[] = {1, 5, 7, 1}
+Output: 2
+Explanation: 
+arr[0] + arr[1] = 1 + 5 = 6 
+and arr[1] + arr[3] = 5 + 1 = 6.
+*/
+ int getPairsCount(int arr[], int n, int k) {
+        unordered_map<int,int>mp;
+        int c=0;
+        for(int i=0;i<n;i++){
+            if(mp.find(k-arr[i])!=mp.end()){
+            c+=mp[k-arr[i]];
+              mp[arr[i]]++;
+            }
+   else{
+        mp[arr[i]]++;
+  }
+	}
+        return c;
+       // code here
+    }
+/*
+Largest Fibonacci Subsequence 
+Easy Accuracy: 63.25% Submissions: 1592 Points: 2
+Given an array with positive number the task to find the largest subsequence from array that contain elements which are Fibonacci numbers.
+
+ 
+
+Example 1:
+
+Input : arr[] = {1, 4, 3, 9, 10, 13, 7}
+Output : subset[] = {1, 3, 13}
+The output three numbers are Fibonacci
+numbers.
+*/
+ vector<int> findFibSubset(int arr[], int n) {
+        
+         vector<int>v;
+        int maxi=INT_MIN;
+        for(int i=0;i<n;i++){
+         maxi=max(maxi,arr[i]);   
+        }
+    unordered_map<int,int>fib;
+    int sum = 0;
+int a = 0;
+int b = 1;
+int k=0;
+    while(sum<=maxi){
+        fib[sum]++;
+        a=b;
+        b=sum;
+        sum=a+b;
+    }
+        
+        for(int i=0;i<n;i++){
+            if(fib.find(arr[i])!=fib.end()){
+                v.push_back(arr[i]);
+            }
+	}
+        return v;
+    }
