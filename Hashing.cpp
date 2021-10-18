@@ -707,3 +707,113 @@ void findAll() {
         if(validEntry(i)) mp[i]++;
     }
 } 
+/*
+Subarrays with equal 1s and 0s 
+Medium Accuracy: 50.04% Submissions: 19978 Points: 4
+Given an array containing 0s and 1s. Find the number of subarrays having equal number of 0s and 1s.
+
+Example 1:
+
+Input:
+n = 7
+A[] = {1,0,0,1,0,1,1}
+Output: 8
+Explanation: The index range for the 8 
+sub-arrays are: (0, 1), (2, 3), (0, 3), (3, 4), 
+(4, 5) ,(2, 5), (0, 5), (1, 6)
+
+*/
+ long long int countSubarrWithEqualZeroAndOne(int arr[], int n)
+    {
+        for(long long i=0;i<n;i++){
+            if(arr[i]==0)arr[i]=-1;
+        }
+        long long sum=0;
+        unordered_map<long long,long long >mp;
+        for(long long int i=0;i<n;i++){
+            sum+=arr[i];
+            mp[sum]++;
+        }
+        long long count=0;
+        for(auto x:mp){
+            if(x.second>1){
+            long long int f=x.second;
+            count+=(f*(f-1))/2;
+            }
+        }
+        if(mp.find(0)!=mp.end()){
+            count+=mp[0];
+        }
+        return count;
+        //Your code here
+    }
+//just count number of zeroes and frequencies of distinct sum
+/*
+Print Anagrams Together 
+Medium Accuracy: 56.1% Submissions: 20347 Points: 4
+Given an array of strings, return all groups of strings that are anagrams. The groups must be created in order of their appearance in the original array. Look at the sample case for clarification.
+
+
+Example 1:
+
+Input:
+N = 5
+words[] = {act,god,cat,dog,tac}
+Output: 
+god dog
+act cat tac
+Explanation:
+There are 2 groups of
+anagrams "god", "dog" make group 1.
+"act", "cat", "tac" make group 2.
+*/
+ vector<vector<string> > Anagrams(vector<string>& string_list) {
+         vector<vector<string>> vect;
+        unordered_map<string,vector<string>>mp;
+        for(int i=0;i<string_list.size();i++){
+            string fist=string_list[i];
+            sort(fist.begin(),fist.end());
+            mp[fist].push_back(string_list[i]);
+        }
+        for(auto x:mp){
+            vect.push_back(x.second);
+        }
+        return vect;
+        //code here
+    }
+/*
+Subarrays with sum K 
+Medium Accuracy: 60.17% Submissions: 8781 Points: 4
+Given an unsorted array of integers, find the number of continuous subarrays having sum exactly equal to a given number k.
+
+
+Example 1:
+
+Input:
+N = 5
+Arr = {10 , 2, -2, -20, 10}
+k = -10
+Output: 3
+Explaination: 
+Subarrays: arr[0...3], arr[1...4], arr[3..4]
+have sum exactly equal to -10.
+*/
+ int findSubArraySum(int Arr[], int N, int k)
+    {
+        unordered_map<int,int>mp;
+        int count=0,sum=0;
+        for(int i=0;i<N;i++){
+            sum+=Arr[i];
+            if(sum==k){
+                count++;
+            }
+             if(mp.find(sum-k)!=mp.end()){
+               count+=mp[sum-k];
+           }
+            mp[sum]++;
+           
+        }
+        return count;
+        
+        // code here
+    }
