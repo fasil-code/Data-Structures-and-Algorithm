@@ -817,3 +817,42 @@ have sum exactly equal to -10.
         
         // code here
     }
+/*
+Longest consecutive subsequence 
+Medium Accuracy: 48.9% Submissions: 86739 Points: 4
+Given an array of positive integers. Find the length of the longest sub-sequence such that elements in the subsequence are consecutive integers, the consecutive numbers can be in any order.
+ 
+
+Example 1:
+
+Input:
+N = 7
+a[] = {2,6,1,9,4,5,3}
+Output:
+6
+Explanation:
+The consecutive numbers here
+are 1, 2, 3, 4, 5, 6. These 6 
+numbers form the longest consecutive
+subsquence.
+*/
+ unordered_map<int,int>mp;
+        for(int i=0;i<N;i++)mp[arr[i]]++;
+        int first=0;
+        int count=1;
+        int maxi=1;
+        for(int i=0;i<N;i++){
+            if(mp.find(arr[i]-1)==mp.end()){
+                first=arr[i];
+                count=1;
+            
+           while(mp.find(first+count)!=mp.end()){
+               count++;
+               
+           }
+            maxi=max(maxi,count);
+            
+        }
+        }
+    return maxi;
+}
