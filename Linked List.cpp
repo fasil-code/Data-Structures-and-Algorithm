@@ -223,5 +223,23 @@ Node* reverseDLL(Node * head)
       pre=curr;
       curr=curr->prev;
   }
-  return pre;
+     return  pre;
 }
+    //Delete Middle of Linked List 
+    Node* deleteMid(Node* head)
+{
+      if(head==NULL || head->next==NULL)
+        return NULL;
+    Node*slow=head;
+    Node*fast=head;
+    Node*prev=NULL;
+    while(fast && fast->next){
+        prev=slow;
+        slow=slow->next;
+        fast=fast->next->next;
+    }
+    prev->next=slow->next;
+    return head;
+   
+}
+
