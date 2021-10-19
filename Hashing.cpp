@@ -747,8 +747,7 @@ sub-arrays are: (0, 1), (2, 3), (0, 3), (3, 4),
         return count;
         //Your code here
     }
-//just count number of zeroes and frequencies of distinct sum
-/*
+
 Print Anagrams Together 
 Medium Accuracy: 56.1% Submissions: 20347 Points: 4
 Given an array of strings, return all groups of strings that are anagrams. The groups must be created in order of their appearance in the original array. Look at the sample case for clarification.
@@ -856,3 +855,57 @@ subsquence.
         }
     return maxi;
 }
+/*
+/*
+A Simple Fraction 
+Medium Accuracy: 48.0% Submissions: 19113 Points: 4
+Given a fraction. Convert it into a decimal. 
+If the fractional part is repeating, enclose the repeating part in parentheses.
+ 
+
+Example 1:
+
+Input: numerator = 1, denominator = 3
+Output: "0.(3)"
+Explanation: 1/3 = 0.3333... So here 3 is 
+recurring.
+*/
+//just count number of zeroes and frequencies of distinct sum
+/*
+*/
+ unordered_map<int,int>m;
+        int q= n/d;
+        string ans=to_string(q);
+        int r=0;
+        if(n%d==0)
+        {
+            return ans;
+        }
+        else
+        {
+            ans+='.';
+            r=n%d;
+            while(r!=0)
+            {
+                if(m.find(r)!=m.end())
+                {
+                    int l=m[r];
+                    ans.insert(l,"(");
+                    ans+=")";
+                    break;
+                }
+                else
+                {
+                    m[r]=ans.length();
+                    r*=10;
+                    q=r/d;
+                    r=r%d;
+                    ans = ans+to_string(q);
+                }
+                
+            }
+        }
+    
+	  return ans;  // Code here
+	}
+};
