@@ -1,3 +1,30 @@
+
+HASHING:
+CHECKING ISOGRAM
+UNCOMMON CHRACHTERS
+ANAGRAM PALINDROME
+SUBARRAY WITH 0 SUM
+SUBSTRINGS WITH SIMILAR FIRST and LAST CHRACHTERS
+STRING REVERSAL
+MAXIMUM DISTANCE BETWEEN SAME ELEMENTS
+WINNER OF ELECTION
+LARGEST SUBARRAY WITH 0 SUM
+COUNT DISTINT ELEMENTS IN EVERY WINDOW
+DISTINCT SUBSTRINGS
+MINIMUM DISTINCT IDS
+COUNT THE ELEMENTS
+FIND ALL PAIRS WITH K SUM
+Count distinct pairs with difference k 
+Swapping pairs make sum equal
+Count pairs with given sum 
+Largest Fibonacci Subsequence 
+Numbers containing 1, 2 and 3 
+Subarrays with equal 1s and 0s 
+PRINT ANAGRAMS TOGETHER
+SUBARRAYS WITH SUM K 
+LONGEST CONSECATIVE SUBSEQUENCE
+SAMPLE FRACTION
+
 /*
 Check if a string is Isogram or not 
 Basic Accuracy: 55.24% Submissions: 23754 Points: 1
@@ -128,7 +155,7 @@ bool subArrayExists(int arr[], int n)
         }
         return 0;
     }
-Substrings with similar first and last characters 
+/*Substrings with similar first and last characters 
 Basic Accuracy: 68.4% Submissions: 1801 Points: 1
 Given string s, the task is to find the count of all substrings which have the same character at the beginning and end.
 
@@ -138,7 +165,6 @@ Input: s = "abcab"
 Output: 7
 Explanation: a, abca, b, bcab, 
 c, a and b
-/
 */
 // Your code goes here
 	int countSubstringWithEqualEnds(string s)
@@ -265,7 +291,9 @@ Max Distance 5
     }
 /*Winner of an election 
 Easy Accuracy: 49.75% Submissions: 19414 Points: 2
-Given an array of names (consisting of lowercase characters) of candidates in an election. A candidate name in array represents a vote casted to the candidate. Print the name of candidate that received Max votes. If there is tie, print lexicographically smaller name.
+Given an array of names (consisting of lowercase characters) of candidates in an election.
+A candidate name in array represents a vote casted to the candidate. Print the name of candidate that received Max votes.
+If there is tie, print lexicographically smaller name.
 
 Example 1:
 
@@ -369,7 +397,8 @@ of distinct elements in this window are 3.*/
 /*
 Distinct Substrings 
 Easy Accuracy: 58.8% Submissions: 780 Points: 2
-Given a string s consisting of uppercase and lowercase alphabetic characters. Return the  number of distinct substrings of size 2 that appear in s as contiguous substrings.
+Given a string s consisting of uppercase and lowercase alphabetic characters. 
+Return the  number of distinct substrings of size 2 that appear in s as contiguous substrings.
 
 Example
 
