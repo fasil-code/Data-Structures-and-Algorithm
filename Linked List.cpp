@@ -304,3 +304,122 @@ linked list will contain only 2.
         }
         return head;
     }
+/*Find length of Loop 
+Easy Accuracy: 43.66% Submissions: 61315 Points: 2
+Given a linked list of size N. 
+    The task is to complete the function countNodesinLoop() that 
+    checks whether a given Linked List contains a loop or not and if the loop is present then return the count of nodes in a loop or else return 0.
+        C is the position of the node to which the last node is connected. If it is 0 then no loop.
+Example 1:
+
+Input:
+N = 10
+value[]={25,14,19,33,10,21,39,90,58,45}
+C = 4
+Output: 7
+Explanation: The loop is 45->33. So
+length of loop is 33->10->21->39->
+90->58->45 = 7. The number 33 is
+connected to the last node to form the
+loop because according to the input the
+4th node from the beginning(1 based
+index) will be connected to the last
+node for the loop.*/
+int countNodesinLoop(struct Node *head)
+{
+ Node*slow=head;
+        Node*fast=head;
+        int flag=0;
+        while(slow && fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
+            flag=1;
+            break;
+            }
+        }
+        if(flag==0){
+            return 0;
+        }
+    int l=1;
+    slow=slow->next;
+    while(slow!=fast){
+        l++;
+        slow=slow->next;
+    }
+    return l;
+}
+/*//Insert in a Sorted List 
+Easy Accuracy: 43.83% Submissions: 37881 Points: 2
+Given a linked list sorted in ascending order and an integer called data, insert data in the linked list such that the list remains sorted.
+
+Example 1:
+
+Input:
+LinkedList: 25->36->47->58->69->80
+data: 19
+Output: 19 25 36 47 58 69 80
+*/
+Node *sortedInsert(struct Node* head, int data) {
+        Node*temp=new Node(data);
+        Node*curr=head;
+        Node*prev=NULL;
+        if(head==NULL|| head->data>data){
+            temp->next=head;
+            head=temp;
+       return head;
+        }
+      else
+{
+while (curr->next != NULL and curr->next->data < temp->data)
+{
+curr = curr->next;
+}
+
+temp->next = curr->next;
+curr->next = temp;
+return head;
+}
+  /*
+  Pairwise swap elements of a linked list 
+Easy Accuracy: 43.06% Submissions: 66985 Points: 2
+Given a singly linked list of size N. The task is to swap elements in the linked list pairwise.
+For example, if the input list is 1 2 3 4, the resulting list after swaps will be 2 1 4 3.
+Note: You need to swap the nodes, not only the data. If only data is swapped then driver will print -1.
+
+Example 1:
+
+Input:
+LinkedList: 1->2->2->4->5->6->7->8
+Output: 2 1 4 2 6 5 8 7
+Explanation: After swapping each pair
+considering (1,2), (2, 4), (5, 6).. so
+on as pairs, we get 2, 1, 4, 2, 6, 5,
+8, 7 as a new linked list.
+  */
+     Node* pairWiseSwap(struct Node* head) 
+    {
+        
+         if(head==NULL ||head->next==NULL){
+           return head;
+       }
+       Node*temp1=head;
+       Node*temp2=temp1->next;
+       Node*temp3;
+       Node*prev=NULL;
+     Node*modified =temp2;
+       while(temp1!=NULL && temp1->next!=NULL){
+           temp2=temp1->next;
+           temp3=temp2->next;
+           temp2->next=temp1;
+           temp1->next=temp3;
+           if(prev!=NULL){
+               prev->next=temp2;
+           }
+           prev=temp1;
+           temp1=temp3;
+       }
+       return modified;
+   
+    }
+    
