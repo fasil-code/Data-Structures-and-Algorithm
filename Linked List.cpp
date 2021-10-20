@@ -467,3 +467,32 @@ pre->next=curr->next;
     *head_ref = prev;
 // Your code goes here
 }
+//Sorted insert for circular linked list 
+    Node *sortedInsert(Node* head, int data)
+    {
+        
+    Node*ptr=new Node(data);
+    if(head==NULL){
+        return ptr;
+    }
+    else if(head->data>ptr->data){
+        Node*curr=head;
+        while(curr->next!=head){
+            curr=curr->next;
+        }
+        curr->next=ptr;
+        ptr->next=head;
+        head=ptr;
+        return head;
+        
+    }
+    else{
+    Node*p=head;
+    while(p->next->data<ptr->data){
+        p=p->next;
+    }
+    ptr->next=p->next;
+    p->next=ptr;
+    return head;
+    }
+        
