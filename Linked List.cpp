@@ -422,4 +422,48 @@ on as pairs, we get 2, 1, 4, 2, 6, 5,
        return modified;
    
     }
-    
+    //Deletion and Reverse in Circular Linked List
+    void deleteNode(struct Node **head, int key)
+{
+Node*curr=*head;
+
+if((*head)->data==key){
+    Node*temp=*head;
+
+    while(temp->next!=*head){
+        temp=temp->next;
+    }
+    Node*t=(*head)->next;
+    temp->next=(*head)->next;
+    *head=t;
+}
+while(curr->next!=*head && curr->data!=key){
+    pre=curr;
+    curr=curr->next;
+}
+//cout<<pre->data<<endl;
+//cout<<curr->data<<endl;
+pre->next=curr->next;
+
+}
+
+/* Function to reverse the linked list */
+ void reverse(struct Node** head_ref)
+{
+    if (*head_ref == NULL)
+        return;
+
+    Node* prev = NULL;
+    Node* current = *head_ref;
+    Node* next;
+    do {
+        next = current->next;
+        current->next = prev;
+        prev = current;
+        current = next;
+    } while (current != (*head_ref));
+
+    (*head_ref)->next = prev;
+    *head_ref = prev;
+// Your code goes here
+}
