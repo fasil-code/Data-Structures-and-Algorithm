@@ -595,3 +595,65 @@ Output:
         }
     } 
         
+/*
+Add two numbers represented by linked lists 
+Easy Accuracy: 30.12% Submissions: 100k+ Points: 2
+Given two numbers represented by two linked lists of size N and M. The task is to return a sum list.
+
+The sum list is a linked list representation of the addition of two input numbers from the last.
+
+Example 1:
+
+Input:
+N = 2
+valueN[] = {4,5}
+M = 3
+valueM[] = {3,4,5}
+Output: 3 9 0  
+Explanation: For the given two linked
+list (4 5) and (3 4 5), after adding
+the two linked list resultant linked
+list will be (3 9 0).
+*/
+ Node*reverse(Node *h){
+        Node *r=NULL;
+        Node* p=h;
+        Node* q=NULL;
+        while(p){
+            r=q;
+            q=p;
+            p=p->next;
+            q->next=r;
+        }
+        return q;
+    }
+    //Function to add two numbers represented by linked list.
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
+    {
+        Node*l1=reverse(first);
+        Node*l2=reverse(second);
+        Node*dummy=new Node(0);
+        Node*temp=dummy;
+        int c=0;
+        while(l1!=NULL || l2!=NULL ||c){
+            int sum=0;
+               if(l1!=NULL){
+            sum+=l1->data;
+            l1=l1->next;
+        }
+        if(l2!=NULL){
+            sum+=l2->data;
+            l2=l2->next;
+        }
+        sum+=c;
+            c=sum/10;
+            Node*sumi=new Node(sum%10);
+            temp->next=sumi;
+            temp=temp->next;
+        }
+     Node*ans=reverse(dummy->next);
+        return ans;
+    }
+        
+             
+        
