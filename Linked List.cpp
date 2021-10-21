@@ -721,5 +721,90 @@ void quickSort(struct node **head) {
     struct node*high=*head;
     while(high->next)high=high->next;
     solve(*head,high);    
-}   
-        
+}
+ /*
+ Intersection Point in Y Shapped Linked Lists 
+Medium Accuracy: 49.55% Submissions: 100k+ Points: 4
+Given two singly linked lists of size N and M, write a program to get the point where two linked lists intersect each other.
+example 1:
+
+Input:
+LinkList1 = 3->6->9->common
+LinkList2 = 10->common
+common = 15->30->NULL
+Output: 15
+Explanation:
+Y ShapedLinked List
+ */       
+  int intersectPoint(Node* head1, Node* head2)
+{
+    int length1=0;
+    int length2=0;
+    Node*p=head1;
+    Node*q=head2;
+    while(p!=NULL){
+        length1++;
+        p=p->next;
+    }
+    while(q!=NULL){
+        length2++;
+        q=q->next;
+    }
+    
+    int res=abs(length1-length2);
+    if(length1>length2){
+        p=head1;
+        q=head2;
+    }
+    else{
+        p=head2;
+        q=head1;
+    }
+    for(int i=0;i<res;i++){
+        p=p->next;
+    }
+    while(p!=NULL && q!=NULL){
+        if(p==q)return p->data;
+        else{
+            p=p->next;
+            q=q->next;
+        }
+    }
+    return -1;  
+}      
+/*
+Rotate a Linked List 
+Medium Accuracy: 33.33% Submissions: 100k+ Points: 4
+Given a singly linked list of size N. 
+The task is to left-shift the linked list by k nodes, where k is a given positive integer smaller than or equal to length of the linked list.
+
+Example 1:
+
+Input:
+N = 5
+value[] = {2, 4, 7, 8, 9}
+k = 3
+Output: 8 9 2 4 7
+Explanation:
+Rotate 1: 4 -> 7 -> 8 -> 9 -> 2
+Rotate 2: 7 -> 8 -> 9 -> 2 -> 4
+Rotate 3: 8 -> 9 -> 2 -> 4 -> 7
+*/
+ Node* rotate(Node* head, int k)
+    {
+        Node*ptr=head;
+        if(head==NULL|| head->next==NULL)
+        return head;
+      for(int i=1;i<k;i++){
+        ptr=ptr->next;
+      }
+      Node*curr=ptr;
+      while(ptr->next!=NULL){
+          ptr=ptr->next;
+      }
+      ptr->next=head;
+      head=curr->next;
+      curr->next=NULL;
+    return head;
+        // Your code here
+    }       
