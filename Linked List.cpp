@@ -723,3 +723,49 @@ void quickSort(struct node **head) {
     solve(*head,high);    
 }   
         
+ /*
+ Remove all occurences of duplicates in a linked list 
+Medium Accuracy: 58.59% Submissions: 2863 Points: 4
+Given a sorted linked list, delete all nodes that have duplicate numbers (all occurrences), leaving only numbers that appear once in the original list. 
+
+Example 1:
+
+Input: 
+N = 8
+Linked List = 23->28->28->35->49->49->53->53
+Output: 
+23 35
+Explanation:
+The duplicate numbers are 28, 49 and 53 which 
+are removed from the list.
+ */
+// Your Code 
+        Node* removeAllDuplicates(struct Node* head)
+    {
+        //code here
+         Node*h=head->next;
+    Node *ans=new Node(0);
+    Node *res=ans;
+    Node *prev=new Node(head->data);
+    Node *p=new Node(-1);
+    while(h){
+        
+        if(prev->data!=h->data && p->data!=prev->data ){
+            Node*temp=new Node(prev->data);
+            res->next=temp;
+            res=res->next;
+        }
+        if(h->next==NULL){
+            if(h->data!=prev->data){
+                Node*temp= new Node(h->data);
+                 res->next=temp;
+               res=res->next;
+            }
+        }
+        p=prev;
+        prev=h;
+        h=h->next;
+    }
+    
+    return ans->next;
+    }
