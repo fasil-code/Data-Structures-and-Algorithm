@@ -654,6 +654,45 @@ list will be (3 9 0).
      Node*ans=reverse(dummy->next);
         return ans;
     }
-        
+   /*
+   Linked List in Zig-Zag fashion 
+Easy Accuracy: 51.51% Submissions: 11145 Points: 2
+Given a Linked list, rearrange it such that converted list should be of the form a < b > c < d > e < f .. where a, b, c are consecutive data node of linked list and such that
+the order of linked list is sustained.
+For example: In 11 15 20 5 10 we consider only 11 20 5 15 10 because it satisfies the above condition and 
+the order of linked list. 5 20 11 15 10 is not considered as it does not follow the order of linked list.
+
+To maintain the order, keep swapping the adjacent nodes of the linked list (whenever required) to get the desired output.  
+
+Example 1:
+
+Input:
+LinkedList: 1->2->3->4 
+Output: 1 3 2 4
+   */     
+      void swap(Node *a,Node *b){
+        int t = a->data;
+        a->data = b->data;
+        b->data = t;
+    }
+    Node *zigZag(Node* head)
+    {
+     // your code goes here
+     Node *temp = head;
+     int bit = 0;
+     while(temp->next){
+         if(bit){
+             if(temp->data < temp->next->data) 
+             swap(temp,temp->next);
+             bit = 0;
+         }
+         else{
+             if(temp->data > temp->next->data) swap(temp,temp->next);
+             bit = 1;
+         }
+         temp = temp->next;
+     }
+     return head;
+    }   
              
         
