@@ -495,4 +495,103 @@ pre->next=curr->next;
     p->next=ptr;
     return head;
     }
+    /*
+    Check if Linked List is Palindrome 
+Easy Accuracy: 39.25% Submissions: 100k+ Points: 2
+Given a singly linked list of size N of integers. The task is to check if the given linked list is palindrome or not.
+
+Example 1:
+
+Input:
+N = 3
+value[] = {1,2,1}
+Output: 1
+Explanation: The given linked list is
+1 2 1 , which is a palindrome and
+Hence, the output is 1.
+    */    
+  bool isPalindrome(Node *head)
+    { int length=0;
+        Node*curr=head;
+        while(curr!=NULL){
+           length++;
+           curr=curr->next;
+        }
+        stack<int>s;
+        Node*slow=head;
+        Node*fast=head;
+        while(slow && fast && fast->next){
+            s.push(slow->data);
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+       
+        if(length%2==1)
+        slow=slow->next;
+        while(slow!=NULL){
+        
+            if(slow->data==s.top()){
+                s.pop();
+                slow=slow->next;
+            }
+            else{
+                return 0;
+            }
+        }
+        return 1;
+    }
+       
+        /*
+        Delete N nodes after M nodes of a linked list 
+Easy Accuracy: 37.19% Submissions: 34904 Points: 2
+Given a linked list, delete N nodes after skipping M nodes of a linked list until the last of the linked list.
+
+Input:
+First line of input contains number of testcases T.
+For each testcase, first line of input contains number of elements in the linked list and next M and N respectively space separated.
+The last line contains the elements of the linked list.
+
+Output:
+Function should not print any output to stdin/console.
+
+User Task:
+The task is to complete the function linkdelete() which should modify the linked list as required.
+
+Example:
+Input:
+2
+8
+2 1
+9 1 3 5 9 4 10 1
+6
+6 1
+1 2 3 4 5 6
+
+Output: 
+9 1 5 9 10 1
+1 2 3 4 5 6
+        
+        */
+   void linkdelete(struct Node  *head, int M, int N)
+    {
+        unsigned int m=M-1, n=N;
+        Node *itr=head;
+        while(itr)
+        {
+            if(!m)
+            {
+                Node *temp=itr;
+                while(n-- && temp)
+                    temp=temp->next;
+                if(itr && temp)
+                  itr->next=temp->next;
+                else
+                    itr->next=nullptr;
+                n=N;
+                m=M;
+            }
+            m--;
+            itr=itr->next;
+        }
+    } 
         
