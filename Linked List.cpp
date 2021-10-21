@@ -694,5 +694,32 @@ Output: 1 3 2 4
      }
      return head;
     }   
-             
+ //QUICK SORT LINKED LIST
+    struct node*pivot(struct node*low,struct node*high){
+   struct node* pvt = low, *curr = low->next, *prev= low;
+   while(curr!=high->next){
+       if(pvt->data>curr->data){
+        
+           swap(prev->next->data,curr->data);
+              prev=prev->next;
+       }
+       curr=curr->next;
+   }
+   swap(prev->data,pvt->data);
+   return prev;
+}
+void solve(node*low,node*high){
+    if(!low || !high ||low==high){
+        return;
+    }
+    node*pvt=pivot(low,high);
+    solve(low,pvt);
+    solve(pvt->next,high);
+}
+void quickSort(struct node **head) {
+    if(!(*head)|| !(*head)->next)return ;
+    struct node*high=*head;
+    while(high->next)high=high->next;
+    solve(*head,high);    
+}   
         
