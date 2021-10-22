@@ -657,7 +657,8 @@ list will be (3 9 0).
    /*
    Linked List in Zig-Zag fashion 
 Easy Accuracy: 51.51% Submissions: 11145 Points: 2
-Given a Linked list, rearrange it such that converted list should be of the form a < b > c < d > e < f .. where a, b, c are consecutive data node of linked list and such that
+Given a Linked list, rearrange it such that converted list should be of the form a < b > c < d > e < f .. 
+where a, b, c are consecutive data node of linked list and such that
 the order of linked list is sustained.
 For example: In 11 15 20 5 10 we consider only 11 20 5 15 10 because it satisfies the above condition and 
 the order of linked list. 5 20 11 15 10 is not considered as it does not follow the order of linked list.
@@ -808,3 +809,146 @@ Rotate 3: 8 -> 9 -> 2 -> 4 -> 7
     return head;
         // Your code here
     }       
+/*
+Remove loop in Linked List 
+Medium Accuracy: 47.96% Submissions: 100k+ Points: 4
+Given a linked list of N nodes such that it may contain a loop.
+
+A loop here means that the last node of the link list is connected to the node at position X. If the link list does not have any loop, X=0.
+
+Remove the loop from the linked list, if it is present.  
+
+
+Example 1:
+
+Input:
+N = 3
+value[] = {1,3,4}
+X = 2
+Output: 1
+Explanation: The link list looks like
+1 -> 3 -> 4
+     ^    |
+     |____|    
+A loop is present. If you remove it 
+successfully, the answer will be 1. 
+*/
+  void removeLoop(Node* head)
+    {
+        Node*slow=head;
+        Node*fast=head;
+        while(slow && fast && fast->next){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast)break;
+        }
+        if(slow==head){
+            
+            while(fast->next!=head){
+                fast=fast->next;
+            }
+            fast->next=NULL;
+        }
+        else if(slow==fast){
+            slow=head;
+            while(slow->next!=fast->next){
+                slow=slow->next;
+                fast=fast->next;
+            }
+            fast->next=NULL;
+            
+        }
+      /*
+      Reverse alternate nodes in Link List 
+Medium Accuracy: 50.78% Submissions: 11632 Points: 4
+Given a linked list, you have to perform the following task:
+
+Extract the alternative nodes starting from second node.
+Reverse the extracted list.
+Append the extracted list at the end of the original list.
+â€‹Example 1:
+
+Input:
+LinkedList = 10->4->9->1->3->5->9->4
+Output: 10 9 3 9 4 5 1 4
+Explanation: Reversing the alternative
+nodes from the given list, and then
+appending them to the end of the list
+results in a list with 
+      */ 
+       void rearrange(struct Node *odd)
+    {
+        struct Node *t=odd,*m=t->next,*r=t->next;
+while(t && t->next && t->next->next!=NULL)
+{
+t->next=t->next->next;
+t=t->next;
+m->next=t->next;
+m=t->next;
+}
+t->next=NULL;
+m=r;
+struct Node *next,*prev=NULL;
+while(m!=NULL)
+{
+next=m->next;
+m->next=prev;
+prev=m;
+m=next;
+
+}
+t->next=prev;
+       }
+      /*
+      Flattening a Linked List 
+Medium Accuracy: 33.91% Submissions: 69318 Points: 4
+Given a Linked List of size N, where every node represents a sub-linked-list and contains two pointers:
+(i) a next pointer to the next node,
+(ii) a bottom pointer to a linked list where this node is head.
+Each of the sub-linked-list is in sorted order.
+Flatten the Link List such that all the nodes appear in a single level while maintaining the sorted order. 
+Note: The flattened list will be printed using the bottom pointer instead of next pointer.
+
+ 
+
+Example 1:
+
+Input:
+5 -> 10 -> 19 -> 28
+|     |     |     | 
+7     20    22   35
+|           |     | 
+8          50    40
+|                 | 
+30               45
+Output:  5-> 7-> 8- > 10 -> 19-> 20->
+22-> 28-> 30-> 35-> 40-> 45-> 50.
+Explanation:
+The resultant linked lists has every 
+node in a single level.
+(Note: | represents the bottom pointer.)
+      */
+      Node* merge(Node* a,Node*b)
+    {
+        if(a==NULL)
+        return b;
+        if(b==NULL)
+        return a;
+        if(a->data<b->data)
+        {
+            a->bottom=merge(a->bottom,b);
+            return a;
+        }
+        else
+        {
+            b->bottom=merge(a,b->bottom);
+            return b;
+        }
+    }
+Node *flatten(Node *root)
+{
+    if(root==NULL|| root->next==NULL)
+    return root;
+    return merge(root,flatten(root->next));
+   // Your code here
+}
