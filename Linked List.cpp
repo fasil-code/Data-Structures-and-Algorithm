@@ -1,3 +1,39 @@
+LINKED LIST:
+DELETE ALTERNATE NODES
+CHECKING CIRCULAR LINKED LIST
+DELETE NODE IN DOUBLY LINKED LIST
+IMPLEMENT STACK IN LINKED LIST
+DELETE WITHOUT HEAD POINTER
+MULTI -LINKED LIST
+REVERSE DOUBLY LINKED LIST
+DELETE MIDDLE OF LINKED LIST
+REVERSE A LINKED LIST
+REMOVE DUPLICATES (UNSORTED)
+FIND LENGTH OF LOOP
+INSERT IN A SORTED LINKED LIST
+PAIRWISE SWAP ELEMENTS OF LINKED LIST
+DELETION AND REVERSE IN CIRCULAR LINKED LIST
+FUNCTION TO REVERSE A CIRCULAR LINKED LIST
+SORTED INSERTION CIRCULAR LINKED LIST
+CHECK IF LINKED LIST IS PALINDROME
+DELETE N NODES AFTER M NODES OF LINKED LIST
+ADD TWO NUMBERS 
+LINKED LIST IN ZIGZAG FASHION
+QUICKSORT FOR LINKED LIST
+INTERSECTION OF LINKED LIST(Y-SHAPED)
+ROTATE A LINKED LIST
+REMOVE LOOP IN LINKED LIST
+REVERSE ALTERNATE NODES IN LINKED LIST
+FLATTENING OF LINKED LIST
+INSERTION SORT FOR LINKED LIST
+SWAP KTH NODE FROM BEGINNING AND END
+REVERSE A LINKED LIST IN GROUPS OF GIVEN SIZE
+REVERSE A SUBLIST OF A LINKED LIST
+CLONE A LINKED LIST WITH NEXT AND RANDOM POINTER
+MERGE K SORTED LINKED LISTS
+
+
+
 /*
 Delete Alternate Nodes 
 Basic Accuracy: 51.7% Submissions: 37885 Points: 1
@@ -97,7 +133,8 @@ the linked list will be now as 1->3.
 /*
 Implement Stack using Linked List 
 Basic Accuracy: 49.96% Submissions: 57521 Points: 1
-Let's give it a try! You have a linked list and you have to implement the functionalities push and pop of stack using this given linked list. Your task is to use the class as shown in the comments in the code editor and complete the functions push() and pop() to implement a stack. 
+Let's give it a try! You have a linked list and you have to implement the functionalities push and pop of stack using this given linked list. 
+Your task is to use the class as shown in the comments in the code editor and complete the functions push() and pop() to implement a stack. 
 
 Example 1:
 
@@ -1217,4 +1254,53 @@ above example, the output will be 1.
        return temp;
         //Write your code here
     }
+      /*
+      Merge K sorted linked lists 
+Medium Accuracy: 41.42% Submissions: 37852 Points: 4
+Given K sorted linked lists of different sizes. The task is to merge them in such a way that after merging they will be a single sorted linked list.
+
+Example 1:
+
+Input:
+K = 4
+value = {{1,2,3},{4 5},{5 6},{7,8}}
+Output: 1 2 3 4 5 5 6 7 8
+Explanation:
+The test case has 4 sorted linked 
+list of size 3, 2, 2, 2
+1st    list     1 -> 2-> 3
+2nd   list      4->5
+3rd    list      5->6
+4th    list      7->8
+The merged list will be
+1->2->3->4->5->5->6->7->8.
       
+      */
+  Node* merge(Node* a,Node*b)
+    {
+        if(a==NULL)
+        return b;
+        if(b==NULL)
+        return a;
+        if(a->data<b->data)
+        {
+            a->next=merge(a->next,b);
+            return a;
+        }
+        else
+        {
+            b->next=merge(a,b->next);
+            return b;
+        }
+    }
+    //Function to merge K sorted linked list.
+    Node * mergeKLists(Node *arr[], int n)
+    {
+         Node* result=NULL;
+       for(int i=0;i<n;i++)
+       {
+           result=merge(result,arr[i]);
+       }
+       return result;
+      
+    }   
