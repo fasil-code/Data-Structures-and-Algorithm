@@ -1078,3 +1078,64 @@ resultant linked list is 4->2->2->1->8->7->6->5.
         }
         return q;
     }
+/*
+Reverse a sublist of a linked list 
+Hard Accuracy: 78.92% Submissions: 1537 Points: 8
+Given a linked list and positions m and n. Reverse the linked list from position m to n.
+
+Example 1:
+
+Input :
+N = 10
+Linked List = 1->7->5->3->9->8->10
+                      ->2->2->5->NULL
+m = 1, n = 8
+Output : 2 10 8 9 3 5 7 1 2 5 
+Explanation :
+The nodes from position 1 to 8 
+are reversed, resulting in 
+2 10 8 9 3 5 7 1 2 5.
+*/
+       Node* reverseBetween(Node* head, int m, int n)
+    {
+        
+    Node*prev=NULL;
+    Node*curr=head;
+        int count=0;
+    for(int i=1;i<m;i++){
+        prev=curr;
+        curr=curr->next;
+        count++;
+    }
+   // cout<<prev->data<<endl;
+       
+    
+     
+        // next pointers
+        Node* current =curr, *next = NULL;
+        Node*cu=curr;
+     Node*pre=NULL;
+  
+        while (current != NULL && count<n) {
+            // Store next
+            next = current->next;
+ 
+            // Reverse current node's pointer
+            current->next = pre;
+ 
+            // Move pointers one position ahead.
+            pre = current;
+            current = next;
+            count++;
+        }
+    
+    if(m==1){
+        head=pre;
+        cu->next=current;
+        return head;
+    }
+    prev->next= pre;
+    cu->next=current;
+      return head;
+        //code here
+    }
