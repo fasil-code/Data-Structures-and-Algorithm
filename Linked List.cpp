@@ -952,3 +952,30 @@ Node *flatten(Node *root)
     return merge(root,flatten(root->next));
    // Your code here
 }
+/*
+  Insertion Sort for Singly Linked List 
+  */
+      // Your code
+      Node* insertionSort(struct Node* head)
+    {
+        //code here
+        Node *dummy=new Node(-1);
+        Node*curr=head;
+        while(curr!=NULL){
+            Node *temp=curr->next;
+            Node*prev=dummy;
+            Node *nxt=dummy->next;
+            while(nxt!=NULL){
+                if(nxt->data>curr->data){
+                    break;
+                }
+                prev=nxt;
+                nxt=nxt->next;
+            }
+            curr->next=nxt;
+            prev->next=curr;
+            curr=temp;
+            
+        }
+        return dummy->next;
+    }
