@@ -979,3 +979,66 @@ Node *flatten(Node *root)
         }
         return dummy->next;
     }
+/*
+Swap Kth nodes from ends 
+Medium Accuracy: 46.75% Submissions: 26826 Points: 4
+Given a singly linked list of size N, and an integer K. You need to swap the Kth node from the beginning and Kth node from the end of the linked list. 
+Swap the nodes through the links. Do not change the content of the nodes.
+Example 1:
+
+Input:
+N = 4,  K = 1
+value[] = {1,2,3,4}
+Output: 1
+Explanation: Here K = 1, hence after
+swapping the 1st node from the beginning
+and end thenew list will be 4 2 3 1.
+
+*/
+      Node *swapkthnode(Node* head, int num, int K)
+{
+    
+    if(K>num){
+        return head;
+    }
+    int res=num-K;
+    Node*first=head;
+    Node*second=head;
+    Node*prev=NULL;
+    Node*prev2=NULL;
+    for(int i=1;i<K;i++){
+        prev=first;
+        first=first->next;
+    }
+   // cout<<first->data<<endl;
+    
+    for(int i=0;i<res;i++){
+        prev2=second;
+        second=second->next;
+    }
+    if(K==1){
+    second->next=first->next;
+    prev2->next=first;
+    first->next=NULL;
+    head=second;
+    }
+    else if(K==num){
+        prev->next=second;
+        first->next=second->next;
+         second->next=NULL;
+        head=first;
+        return head;
+    }
+  else{
+    
+      prev->next=second;
+       prev2->next=first;
+      Node*temp=first->next;
+       first->next=second->next;
+       second->next=temp;
+       return head;
+      
+  }
+    return head;
+    // Your Code here
+}
