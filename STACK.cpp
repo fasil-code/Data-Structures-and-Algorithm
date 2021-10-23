@@ -112,4 +112,116 @@ void SortedStack :: sort()
     }
  
 }
+//Delete middle element of a stack 
+ void solve(stack<int>&s,int mid){
+        if(mid==1){
+            s.pop();
+            return;
+        }
+           int temp=s.top();
+       s.pop();
+       solve(s,mid-1);
+       s.push(temp);
+    }
+    void deleteMid(stack<int>&s, int sizeOfStack)
+    {
+       int mid=sizeOfStack/2+1;
+       solve(s,mid);      
+    }
+//Implement two stacks in an array 
+    This method efficiently utilizes the available space. It doesn't cause an overflow if there is space available in arr[].
+    The idea is to start two stacks from two extreme corners of arr[]. stack1 starts from the leftmost element, the first element in stack1 is pushed at index 0.
+    The stack2 starts from the rightmost corner, the first element in stack2 is pushed at index (n-1). Both stacks grow (or shrink) in opposite direction. 
+    To check for overflow, all we need to check is for space between top elements of both stacks. 
+    This check is highlighted in the below code. 
+     void twoStacks :: push1(int x)
+{
+    ++top1;
+    
+    arr[top1]=x;
 
+}
+   
+//Function to push an integer into the stack2.
+void twoStacks ::push2(int x)
+{
+ --top2;
+    
+    arr[top2]=x;
+}
+   
+//Function to remove an element from top of the stack1.
+int twoStacks ::pop1()
+{
+    if(top1==-1){
+        return -1;
+    }
+    int res=arr[top1];
+    top1=top1-1;
+return res;
+}
+
+//Function to remove an element from top of the stack2.
+int twoStacks :: pop2()
+{
+    if(top2==size){
+        return -1;
+    }
+    int res=arr[top2];
+    top2=top2+1;
+    return res;
+}   
+/*
+Parenthesis Checker 
+Easy Accuracy: 49.12% Submissions: 96928 Points: 2
+Given an expression string x. Examine whether the pairs and the orders of “{“,”}”,”(“,”)”,”[“,”]” are correct in exp.
+For example, the function should return 'true' for exp = “[()]{}{[()()]()}” and 'false' for exp = “[(])”.
+
+Example 1:
+
+Input:
+{([])}
+Output: 
+true
+Explanation: 
+{ ( [ ] ) }. Same colored brackets can form 
+balaced pairs, with 0 number of 
+unbalanced bracket.
+
+*/
+bool ispar(string x)
+    {
+        stack<char>s;
+        for(int i=0;i<x.size();i++){
+        char c=x[i];
+        
+        if(c=='{' || c=='(' || c=='['){
+            s.push(c);
+        }
+        else if(c=='}'){
+            if(!s.empty() && s.top()=='{'){
+                s.pop();
+            }
+            else{
+                return false;
+            }
+        }
+         else if(c==')'){
+            if(!s.empty() && s.top()=='('){
+                s.pop();
+            }
+            else{
+                return false;
+            }
+        } else if(c==']'){
+            if(!s.empty() && s.top()=='['){
+                s.pop();
+            }
+            else{
+                return false;
+            }
+        }
+    }
+   return  s.size()==0?true:false;
+        
+    }
