@@ -430,3 +430,57 @@ since it doesn't exist, it is -1.
         return v;
         // Your code here
     }
+/*
+Restrictive Candy Crush 
+Medium Accuracy: 50.67% Submissions: 15868 Points: 4
+Given a string s and an integer k, the task is to reduce the string by applying the following operation:
+Choose a group of k consecutive identical characters and remove them.
+
+The operation can be performed any number of times until it is no longer possible.
+
+Example 1:
+
+Input:
+k = 2
+s = "geeksforgeeks"
+Output:
+gksforgks
+Explanation:
+Modified String after each step: 
+"geeksforgeeks" -> "gksforgks"
+*/
+ string Reduced_String(int k,string s){
+      if(k==1){
+            return "";
+        }
+        stack<pair<char,int>> st;
+         for(int i=0;i< s.length();i++)
+         {
+             if(!st.empty() && st.top().first==s[i] && st.top().second==k-1)
+             {
+                 st.pop();
+             }
+             else if( !st.empty()&&st.top().first==s[i])
+             {
+                 st.top().second+=1;
+             }
+             else
+             {
+                 st.push(make_pair(s[i],1));
+             }
+         }
+         string ans="";
+         while(!st.empty())
+         {
+             while(st.top().second!=0)
+             {
+                 char r=st.top().first;
+                 ans+=r;
+                 st.top().second-=1;
+             }
+             st.pop();
+         }
+         reverse(ans.begin(),ans.end());
+         return ans;
+        // Your code goes here
+    }
