@@ -273,3 +273,55 @@ int QueueStack :: pop()
     }
     return x;             
 }
+
+//INFIX TO POSTFIX
+    int priority(char c)
+    {
+        if(c=='^') return 3;
+        if(c=='*' or c=='/') return 2;
+        if(c=='+' or c=='-') return 1;
+        if(c=='(') return 0;
+    }
+    //Function to convert an infix expression to a postfix expression.
+    string infixToPostfix(string s)
+    {
+        stack<char> st;
+        string ans="";
+        for(auto c : s)
+        {
+            if(isalpha(c)) ans+=c;
+            else if(c=='(') st.push(c);
+            else 
+            {
+                if(c==')')
+                {
+                    while(st.top()!='(')
+                    {
+                        ans+=st.top();
+                        st.pop();
+                    }
+                    st.pop();
+                }
+                else if(st.empty() or priority(c)>priority(st.top()))
+                {
+                    st.push(c);
+                }
+                else
+                {
+                    while(!st.empty() and priority(c)<=priority(st.top()))
+                    {
+                        ans+=st.top();
+                        st.pop();
+                    }
+                    st.push(c);
+                }
+            }
+            
+        }
+        while(!st.empty())
+        {
+            ans+=st.top();
+            st.pop();
+        }
+        return ans;
+    }
