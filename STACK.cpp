@@ -325,3 +325,108 @@ int QueueStack :: pop()
         }
         return ans;
     }
+//REVERSE A STACKL
+void insertAtBottom(int item) {  
+    if (isEmpty()) {  
+        push(item);  
+    } else {  
+       int top = pop();  
+        insertAtBottom(item);  
+        push(top);  
+    }  
+}  
+void reverse() {  
+    if (!isEmpty()) {  
+         int top = pop();  
+        reverse();  
+        insertAtBottom(top);  
+    }  
+}  
+/*
+Stock span problem 
+Medium Accuracy: 49.89% Submissions: 46736 Points: 4
+The stock span problem is a financial problem where we have a series of n daily price quotes for a stock and we need to calculate the span of stock’s price for all n days. 
+The span Si of the stock’s price on a given day i is defined as the maximum number of consecutive days just before the given day, for which the price of the stock on the current day is less than or equal to its price on the given day.
+For example, if an array of 7 days prices is given as {100, 80, 60, 70, 60, 75, 85}, then the span values for corresponding 7 days are {1, 1, 1, 2, 1, 4, 6}.
+
+Example 1:
+
+Input: 
+N = 7, price[] = [100 80 60 70 60 75 85]
+Output:
+1 1 1 2 1 4 6
+Explanation:
+Traversing the given input span for 100 
+will be 1, 80 is smaller than 100 so the 
+span is 1, 60 is smaller than 80 so the 
+span is 1, 70 is greater than 60 so the 
+span is 2 and so on. Hence the output will 
+be 1 1 1 2 1 4 6.
+*/
+ vector<int>calculateSpan(int arr[], int n)
+    {
+        stack<int>s;
+        vector<int>v;
+     for(int i=0;i<n;i++){
+         while(!s.empty()&& arr[s.top()]<=arr[i] ){
+             s.pop();
+         }
+         
+         if(s.empty()){
+             v.push_back(i+1);
+         }
+         else{
+           v.push_back(i-s.top());    
+         }
+        
+          s.push(i);
+     }
+     return v;
+       // Your code here
+    }
+/*
+Next Greater Element 
+Medium Accuracy: 48.92% Submissions: 67358 Points: 4
+Given an array arr[ ] of size N having distinct elements, the task is to find the next greater element for each element of the array in order of their appearance in the array.
+Next greater element of an element in the array is the nearest element on the right which is greater than the current element.
+If there does not exist next greater of current element, then next greater element for current element is -1. For example, next greater of the last element is always -1.
+
+Example 1:
+
+Input: 
+N = 4, arr[] = [1 3 2 4]
+Output:
+3 4 4 -1
+Explanation:
+In the array, the next larger element 
+to 1 is 3 , 3 is 4 , 2 is 4 and for 4 ? 
+since it doesn't exist, it is -1.
+
+*/
+ vector<long long> nextLargerElement(vector<long long> arr, int n){
+        stack<long long>s;
+        vector<long long >v;
+        for(long long i= n-1;i>=0;i--){
+            if(s.empty()){
+                v.push_back(-1);
+            }
+            else if(!s.empty() && s.top()>arr[i]){
+                v.push_back(s.top());
+            }
+            else {
+                while(!s.empty() && s.top()<=arr[i]){
+                    s.pop();
+                }
+                if(s.empty()){
+                    v.push_back(-1);
+                }
+                else{
+                    v.push_back(s.top());
+                }
+            }
+            s.push(arr[i]);
+        }
+        reverse(v.begin(),v.end());
+        return v;
+        // Your code here
+    }
