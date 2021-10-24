@@ -225,3 +225,51 @@ bool ispar(string x)
    return  s.size()==0?true:false;
         
     }
+//Queue using two Stacks 
+void StackQueue :: push(int x)
+{
+    s1.push(x);
+    // Your Code
+}
+
+//Function to pop an element from queue by using 2 stacks.
+int StackQueue :: pop()
+{
+    if(s1.empty()){
+        return -1;
+    }
+    while(!s1.empty()){
+        s2.push(s1.top());
+        s1.pop();
+    }
+    int x= s2.top();
+      s2.pop();
+    while(!s2.empty()) {s1.push(s2.top()); s2.pop();}
+    return x;
+        
+}
+//Stack using two queues 
+void QueueStack :: push(int x)
+{
+    q1.push(x);
+        // Your Code
+}
+
+//Function to pop an element from stack using two queues. 
+int QueueStack :: pop()
+{
+    if(q1.empty()){
+        return -1;
+    }
+    while(q1.size()!=1){
+        q2.push(q1.front());
+        q1.pop();
+    }
+    int x=q1.front();
+    q1.pop();
+    while(!q2.empty()){
+        q1.push(q2.front());
+        q2.pop();
+    }
+    return x;             
+}
