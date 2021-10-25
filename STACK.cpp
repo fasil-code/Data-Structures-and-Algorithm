@@ -686,3 +686,50 @@ int maxLength(string S){
 	}
 	return result;      
     }
+/*
+
+132 Geeky Buildings 
+Hard Accuracy: 49.05% Submissions: 10869 Points: 8
+There are N buildings in Linear Land. They appear in a linear line one after the other and their heights are given in the array arr[]. Geek wants to select three buildings in Linear Land and remodel them as recreational spots. The third of the selected building must be taller than the first and shorter than the second.
+Can geek build the three-building recreational zone? 
+
+
+Example 1:
+
+Input:
+N = 6
+arr[] = {4, 7, 11, 5, 13, 2}
+Output:
+True
+Explanation:
+[4, 7, 5] fits the condition. 
+*/
+	bool recreationalSpot(int arr[], int n){
+if (n < 3)
+return false;
+stack<int>s;
+int left[n];
+
+s.push(arr[0]);
+left[0] = arr[0];
+for (int i = 1; i < n; i++) {
+if (s.top() > arr[i])
+s.push(arr[i]);
+
+left[i] = s.top();
+}
+stack<int>st;
+
+for (int i = n - 1; i >= 0; i--) {
+if (arr[i] > left[i]) {
+while (!st.empty() && left[i] >= st.top()) {
+st.pop();
+}
+if (!st.empty() && st.top() < arr[i])
+return true;
+
+st.push(arr[i]);
+}
+}
+return false;	    
+	}
