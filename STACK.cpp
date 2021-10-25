@@ -387,7 +387,8 @@ be 1 1 1 2 1 4 6.
 /*
 Next Greater Element 
 Medium Accuracy: 48.92% Submissions: 67358 Points: 4
-Given an array arr[ ] of size N having distinct elements, the task is to find the next greater element for each element of the array in order of their appearance in the array.
+Given an array arr[ ] of size N having distinct elements, the task is to find the next greater element for each element of the array in order
+of their appearance in the array.
 Next greater element of an element in the array is the nearest element on the right which is greater than the current element.
 If there does not exist next greater of current element, then next greater element for current element is -1. For example, next greater of the last element is always -1.
 
@@ -483,4 +484,127 @@ Modified String after each step:
          reverse(ans.begin(),ans.end());
          return ans;
         // Your code goes here
+    }
+
+/*
+party such that if an element of row i and column j  is set to 1 it means ith person knows jth person. Here M[i][i] will always be 0.
+Note: Follow 0 based indexing.
+ 
+
+Example 1:
+
+Input:
+N = 3
+M[][] = {{0 1 0},
+         {0 0 0}, 
+         {0 1 0}}
+Output: 1
+Explanation: 0th and 2nd person both
+know 1. Therefore, 1 is the celebrity. 
+*/
+ int celebrity(vector<vector<int> >& M, int n) 
+    {
+        int count=0;
+        for(int i=1;i<n;i++){
+            if(M[count][i]==1){
+                count=i;
+            }
+        }
+         for(int i=0;i<n;i++){
+            if(i!=count and (M[count][i]==1 or M[i][count]==0)){
+                return -1;
+            }
+        }
+        return count;
+        // c
+        // code here 
+    }
+/*
+Reverse each word in a given string 
+Medium Accuracy: 61.71% Submissions: 7756 Points: 4
+Given a String. Reverse each word in it where the words are separated by dots.
+
+Example 1:
+
+Input:
+S = "i.like.this.program.very.much"
+Output: i.ekil.siht.margorp.yrev.hcum
+Explanation: The words "i", "like",
+"this", "program", "very", "much"
+are all reversed.
+*/
+ string reverseWords (string s){
+    // {
+        stack<char>st;
+        string temp="";
+        string res="";
+        for(int i=0;i<s.size();i++){
+            st.push(s[i]);
+        }
+        while(!st.empty()){
+            if(st.top()!='.'){
+                temp+=st.top();
+                st.pop();
+            }
+            else{
+                temp=st.top()+temp;//maintain order
+                st.pop();
+                res=temp+res;
+                temp="";
+            }
+        }
+        res=temp+res;//maintain order
+       
+        return res;
+ }
+/*
+Remove K Digits 
+Medium Accuracy: 41.64% Submissions: 8414 Points: 4
+Given a non-negative integer S represented as a string, remove K digits from the number so that the new number is the smallest possible.
+Note : The given num does not contain any leading zero.
+
+Example 1:
+
+Input:
+S = "149811", K = 3
+Output: 111
+Explanation: Remove the three digits 
+4, 9, and 8 to form the new number 111
+which is smallest.
+*/
+string removeKdigits(string S, int K) {
+      stack<char>s;
+      int i=0;
+      while(i<S.length()){
+          char x=S[i];
+        while(!s.empty() && s.top()>x && K>0){
+            s.pop();
+            K--;
+        }
+        s.push(x);
+        i++;
+      }
+       if(K>0){
+           while(!s.empty() && K>0){
+            s.pop();
+            K--;
+        } 
+       }
+       string ans="";
+       if(s.empty()){
+           return "0";
+       }
+       while(!s.empty()){
+           ans+=s.top();
+           s.pop();
+       }
+        reverse(ans.begin(),ans.end());
+    
+    i=0;
+    while(i < ans.size() && ans[i] == '0')
+i++;
+
+if(i == ans.size()) ans = "0";
+else ans =ans.substr(i);
+return ans;
     }
