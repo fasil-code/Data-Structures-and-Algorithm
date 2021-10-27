@@ -3,4 +3,38 @@
 ##  This repo contains the  solutions for DSA Sheet. These questions will be good for coverge of dsa and  👩‍💻👨. I am personally doing these questions and recommend everyone to do atleast these questions. All the best 👍👍.
 
 ## EDIT ->  I have created folders for different Topics. I will be pushing  c++ and , u can contribute.
-##Topics include
+<h2>Topics include:
+Data Structures include:
+Array
+String 
+Matrix
+Linked list
+Stack
+Queue
+Tree
+Graph
+Priority queues
+Trie
+
+
+Algorithms broadly include:
+Searching
+Sorting
+Greedy
+Recursion and Backtracking
+Divide and Conqueor
+Bit manipulation
+Hashing
+Patterns
+
+
+Maths & prequisites:
+complexity
+Number theory
+Basic Geometry
+Sequences and Series
+Binary numbers
+ 
+ 
+STL
+</h2>
