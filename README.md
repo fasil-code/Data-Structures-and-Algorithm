@@ -4,9 +4,11 @@
 
 ## EDIT ->  I have created folders for different Topics. I will be pushing  c++ and , u can contribute.
 <h2>Topics include:
-Data Structures include:
+
 Array
+ <br>
 String 
+ <br>
 Matrix
 Linked list
 Stack
@@ -17,7 +19,6 @@ Priority queues
 Trie
 
 
-Algorithms broadly include:
 Searching
 Sorting
 Greedy
