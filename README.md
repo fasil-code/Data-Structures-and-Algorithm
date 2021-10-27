@@ -10,32 +10,34 @@ Array
 String 
  <br>
 Matrix
+  <br>
 Linked list
-Stack
-Queue
-Tree
-Graph
-Priority queues
+  <br>
+Stack <br>
+Queue <br>
+Tree <br>
+Graph <br>
+Priority queues <br>
 Trie
+ <br>
+
+Searching <br>
+Sorting <br>
+Greedy <br>
+Recursion and Backtracking <br>
+Divide and Conqueor <br>
+Bit manipulation <br>
+Hashing <br>
+Patterns <br>
 
 
-Searching
-Sorting
-Greedy
-Recursion and Backtracking
-Divide and Conqueor
-Bit manipulation
-Hashing
-Patterns
-
-
-Maths & prequisites:
-complexity
-Number theory
-Basic Geometry
-Sequences and Series
+Maths & prequisites: <br>
+complexity <br>
+Number theory <br>
+Basic Geometry <br>
+Sequences and Series <br>
 Binary numbers
- 
+  <br>
  
 STL
 </h2>
