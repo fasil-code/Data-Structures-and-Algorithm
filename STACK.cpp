@@ -1,3 +1,58 @@
+/*
+Stack is a data stucture in which is of filo or lifo type means first in last out.
+\\OPERATRION 
+Inserting element in stack is called push 
+deleting an element is called pop
+top()->ast filled element in stack is called top
+size()->it returns t6he size of stack;
+isempty()->is sttack empty or not;
+isfull()-is stack full or not;
+
+\\exception
+pushing element in full stack(stackoverflow);
+poping from an empty stack throws exception(stackunderflow);
+
+\\implementation 
+1. by array 
+2. by linked list;
+3. C++ stl based stack<data type> _nameOfStack;
+ for single operations in stack time complexity is O(1);
+
+\\ARRAY based implementation
+inr ar[10];
+if(is empty){
+    top=-1;
+}
+push(x){
+    top++;
+    arr[top]=x;
+}
+pop(){
+    top--;
+
+}
+\\Linked List implementation
+we will dop stack operations from head of linked list as O(1);
+push()create a new node 
+set  link to head;
+head to new node;
+pop(){
+    temp=head;
+    head=head->next;
+    return temp;
+}
+
+INFIX:-> operetor occurs between string  string 
+e.g->(A+B)-(C+D);
+POSTFIX:->Oerator occurs after string 
+e.g -> AB+CD-+;
+PREFIX()->operator occurs before string 
+e.g->++AB-CD;
+
+*/
+
+
+
 //IMPLEMENT STACK USING ARRAY
 void MyStack :: push(int x)
 {
