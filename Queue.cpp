@@ -225,6 +225,80 @@ Explanation:
             else j++;
         }
         return res;
-        
+       
+    }
+/*
+First non-repeating character in a stream 
+Medium Accuracy: 51.34% Submissions: 29493 Points: 4
+Given an input stream of A of n characters consisting only of lower case alphabets. The task is to find the first non repeating character, each time a character is inserted to the stream. If there is no such character then append '#' to the answer.
+ 
+
+Example 1:
+
+Input: A = "aabc"
+Output: "a#bb"
+Explanation: For every character first non
+repeating character is as follow-
+"a" - first non-repeating character is 'a'
+"aa" - no non-repeating character so '#'
+"aab" - first non-repeating character is 'b'
+"aabc" - first non-repeating character is 'b'
+*/
+  	string FirstNonRepeating(string A){
+		    string s = "";
+queue<char> q;
+vector<int> v(26, 0);
+for (auto i : A) {
+q.push(i);
+v[i - 'a']++;
+
+while (!q.empty() and v[q.front() - 'a']>1) q.pop();
+s += q.empty()?'#':q.front();
+}
+return s;
+		}
+  /*
+  Circular tour 
+Medium Accuracy: 33.91% Submissions: 81187 Points: 4
+Suppose there is a circle. There are N petrol pumps on that circle. You will be given two sets of data.
+1. The amount of petrol that every petrol pump has.
+2. Distance from that petrol pump to the next petrol pump.
+Find a starting point where the truck can start to get through the complete circle without exhausting its petrol in between.
+Note :  Assume for 1 litre petrol, the truck can go 1 unit of distance.
+
+Example 1:
+
+Input:
+N = 4
+Petrol = 4 6 7 4
+Distance = 6 5 3 5
+Output: 1
+Explanation: There are 4 petrol pumps with
+amount of petrol and distance to next
+petrol pump value pairs as {4, 6}, {6, 5},
+{7, 3} and {4, 5}. The first point from
+where truck can make a circular tour is
+2nd petrol pump. Output in this case is 1
+(index of 2nd petrol pump).
+  */
+    int tour(petrolPump p[],int n)
+    {
+        int sum=0;
+        int negative_sum=0;
+           int start=0;
+        for(int i=0;i<n;i++){
+         
+            sum+=p[i].petrol-p[i].distance;
+            if(sum<0){
+                start=i+1;
+                negative_sum+=sum;
+                sum=0;
+            }
+        }
+        if(sum+negative_sum>=0){
+            return start;
+        }
+        return -1;
       
     }
+    
