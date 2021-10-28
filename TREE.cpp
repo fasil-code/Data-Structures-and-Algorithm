@@ -1,4 +1,5 @@
-*A tree is  a non linear data structure in which  one node points to different nodes 
+/*
+A tree is  a non linear data structure in which  one node points to different nodes 
 
 Terms:
 
