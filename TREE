@@ -27,7 +27,8 @@ Binary tree:A tree is said to be binaryif each node has either one two or no chi
 
 Types of  binary trees:
 
- Strict	Binary	Tree:A	binary	tree	is	called	strict	binary	tree if	each node  has	exactly	two children or	no children.
+ Strict	Binary	Tree:A	binary	tree	is	called	strict	binary	tree 
+ if	each node  has	exactly	two children or	no children.
 
 Full binary tree:A binary tree is said to be full bvinary tree if each node has exactly two children and all leaf nodes are at same level.(2^(h+1)-1)
 
