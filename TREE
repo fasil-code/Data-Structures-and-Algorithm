@@ -19,7 +19,8 @@ Level:Set of nodes having same depth
 
 Height:the height of node from deepest node
 
-Skew Trees: If	every node in a	tree has only one child(except	leaf nodes)	then we	call such trees skew trees.	If every node has only left	child then we call them	left.
+Skew Trees: If	every node in a	tree has only one child(except	leaf nodes)	
+then we	call such trees skew trees.	If every node has only left	child then we call them	left.
 skew trees.or node having only right child form right skew trees
 
 Binary tree:A tree is said to be binaryif each node has either one two or no child .Empty trees are also valid binary trees
