@@ -167,7 +167,8 @@ int evalTree(node* root) {
 /*
 K distance from root 
 Easy Accuracy: 55.52% Submissions: 53384 Points: 2
-Given a Binary Tree of size N and an integer K. Print all nodes that are at distance k from root (root is considered at distance 0 from itself). Nodes should be printed from left to right. If k is more that height of tree, nothing should be printed.
+Given a Binary Tree of size N and an integer K. Print all nodes that are at distance k from root (root is considered at distance 0 from itself).
+Nodes should be printed from left to right. If k is more that height of tree, nothing should be printed.
 
 For example, if below is given tree and k is 2. Output should be 4 5 6.
 
@@ -260,3 +261,66 @@ sum at odd levels - sum at even levels
       return oddsum-evensum;
       
     }
+/*
+Minimum Depth of a Binary Tree 
+Easy Accuracy: 52.43% Submissions: 38063 Points: 2
+Given a binary tree, find its minimum depth.
+
+Example 1:
+
+Input:
+            1
+          /   \
+         3     2
+        /
+       4           
+
+Output: 2
+
+Explanation:
+Minimum depth is between nodes 1 and 2 since
+minimum depth is defined as  the number of 
+nodes along the shortest path from the root 
+node down to the nearest leaf node.
+*/
+  int minDepth(Node *root) {
+        if(root==NULL)return 0;
+        else if(root->left==NULL){
+            return (1+minDepth(root->right));
+        }
+        else if(root->right==NULL){
+           return (1+minDepth(root->left));  
+        }
+        else{
+            return min(1+minDepth(root->left),1+minDepth(root->right));
+        }
+    }
+/*
+Determine if Two Trees are Identical 
+Easy Accuracy: 52.24% Submissions: 100k+ Points: 2
+Given two binary trees, the task is to find if both of them are identical or not. 
+
+
+Example 2:
+
+Input:
+     1          1
+   /   \      /   \
+  2     3    2     3
+Output: Yes
+Explanation: There are two trees both
+having 3 nodes and 2 edges, both trees
+are identical having the root as 1,
+left child of 1 is 2 and right child
+of 1 is 3.
+*/
+ bool isIdentical(Node *r1, Node *r2)
+    {
+        if(r1==NULL && r2==NULL)return true;
+        if(r1==NULL || r2==NULL)return false;
+        if(r1->data!=r2->data){
+            return false;
+        }
+        else{
+            return isIdentical(r1->left,r2->left)&& isIdentical(r1->right,r2->right);
+        }}
