@@ -324,3 +324,188 @@ of 1 is 3.
         else{
             return isIdentical(r1->left,r2->left)&& isIdentical(r1->right,r2->right);
         }}
+
+/*
+Perfect Binary Tree 
+Easy Accuracy: 49.07% Submissions: 9406 Points: 2
+Given a Binary Tree, write a function to check whether the given Binary Tree is a prefect Binary Tree or not. A Binary tree is Perfect Binary Tree in which all internal nodes have two children and all leaves are at same level.
+
+Example 1:
+
+Input: 
+          7
+      /  \
+     4    9
+Output: YES
+Explanation: 
+As the root node 7 has two children and 
+two leaf nodes 4 and 9 are at same level 
+so it is a perfect binary tree.
+*/
+int depth(Node*root){
+    if(!root)return 0;
+    int l=depth(root->left);
+    int r=depth(root->right);
+    return max(l,r)+1;
+    
+    
+}
+bool solve(Node*root,int lvl,int d){
+    if(root==NULL)return false;
+    if(root->left==NULL && root->right==NULL){
+        return (lvl+1==d);
+    }
+    if(root->left==NULL || root->right==NULL){
+        return false;
+    }
+    else {
+        return solve(root->left,lvl+1,d)&& solve(root->right,lvl+1,d);
+    }
+}
+    bool isPerfect(Node *root)
+    {
+      int d=depth(root);
+      return solve(root,0,d);
+    }
+/*
+ Remove Half Nodes 
+Easy Accuracy: 51.47% Submissions: 13880 Points: 2
+Given A binary Tree. Your task is to remove all the half nodes (which has only one child).
+
+Example 1:
+
+Input:
+         7
+       /   \
+      7     8
+     / 
+    2
+Output: 2 7 8   
+       
+*/
+Node *RemoveHalfNodes(Node *root)
+{
+    if(root==NULL)return root;
+root->left=RemoveHalfNodes(root->left);
+root->right=RemoveHalfNodes(root->right);
+    if(root->left && !root->right){
+        free(root);
+        return root->left;
+    }
+    else if(!root->left && root->right){
+        free(root);
+        return root->right;
+    }
+    else{
+        return root;
+    }
+  /*
+  Right View of Binary Tree 
+Easy Accuracy: 51.66% Submissions: 70878 Points: 2
+Given a Binary Tree, find Right view of it. Right view of a Binary Tree is set of nodes visible when tree is viewed from right side.
+
+Right view of following tree is 1 3 7 8.
+
+          1
+       /     \
+     2        3
+   /   \      /    \
+  4     5   6    7
+    \
+     8
+
+Example 1:
+
+Input:
+       1
+    /    \
+   3      2
+Output: 1 2
+  
+  */
+vector<int> rightView(Node *root)
+    {
+        vector<int>v;
+        if(root==NULL)return v;
+        queue<Node*>q;
+        q.push(root);
+        while(!q.empty()){
+            int size=q.size();
+              v.push_back(q.front()->data);
+            while(size--){
+                Node*temp=q.front();
+                q.pop();
+                if(temp->right){
+                    q.push(temp->right);
+                }
+                if(temp->left){
+                    q.push(temp->left);
+                }
+            }
+          
+            
+        }
+        return v;
+    
+    }
+ /*
+ Vertical sum 
+Easy Accuracy: 50.84% Submissions: 20218 Points: 2
+Given a Binary Tree, find vertical sum of the nodes that are in same vertical line. Print all sums through different vertical lines starting from left-most vertical line to right-most vertical line.
+
+Example 1:
+
+Input:
+       1
+    /   \
+  2      3
+ / \    / \
+4   5  6   7
+Output: 
+Explanation:
+The tree has 5 vertical lines
+Vertical-Line-1 has only one node
+4 => vertical sum is 4
+Vertical-Line-2: has only one node
+2=> vertical sum is 2
+Vertical-Line-3: has three nodes:
+1,5,6 => vertical sum is 1+5+6 = 12
+Vertical-Line-4: has only one node 3
+=> vertical sum is 3
+Vertical-Line-5: has only one node 7
+=> vertical sum is 7
+ */
+  void solve(Node*root,int lvl,map<int,int>&mp){
+      if(root==NULL)return;
+      mp[lvl]+=root->data;
+      solve(root->left,lvl-1,mp);
+      solve(root->right,lvl+1,mp);
+  }
+    vector <int> verticalSum(Node *root) {
+        vector<int>v;
+    map<int,int>mp;
+        solve(root,0,mp);
+    for(auto x:mp){
+        v.push_back(x.second);
+    }
+    return v;
+    }
+ //Diagonal Sum In Binary Tree 
+ void solve(Node*root,int lvl,map<int,int>&mp){
+      if(root==NULL)return;
+      mp[lvl]+=root->data;
+      solve(root->left,lvl+1,mp);
+      solve(root->right,lvl,mp);
+  }
+   
+       
+vector <int> diagonalSum(Node* root) {
+     vector<int>v;
+    map<int,int>mp;
+        solve(root,0,mp);
+    for(auto x:mp){
+        v.push_back(x.second);
+    }
+    return v;
+   
+}
