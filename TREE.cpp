@@ -746,3 +746,79 @@ void inorder(Node*root,vector<int>&v){
          //Code here
     }
 	
+/*
+Leaf at same level 
+Easy Accuracy: 49.76% Submissions: 34616 Points: 2
+Given a Binary Tree, check if all leaves are at same level or not.
+
+Example 1:
+
+Input: 
+            1
+          /   \
+         2     3
+
+Output: 1
+
+Explanation: 
+Leaves 2 and 3 are at same level.
+*/
+ int height(Node*root){
+        if(root==NULL)
+        return 0;
+        int l=height(root->left);
+        int r=height(root->right);
+        return max(l,r)+1;
+    }
+    
+    bool solve(Node*root,int lvl,int height){
+         if(root==NULL){
+            return true;
+        }
+        
+        if(root->left==NULL && root->right==NULL){
+            return lvl+1==height;
+        }
+        return solve(root->left,lvl+1,height)&&solve(root->right,lvl+1,height);
+    }
+    
+    bool check(Node *root)
+    {
+        if(root==NULL){
+            return true;
+        }
+        int h=height(root);
+        return solve(root,0,h);
+   
+    }	
+	/*
+	Delete nodes greater than k 
+Easy Accuracy: 49.67% Submissions: 11974 Points: 2
+Given a BST and a value k, the task is to delete the nodes having values greater than or equal to x.
+
+Example 1:
+
+Input:
+    4   
+   / \  
+  1   9 
+k = 2 
+Output:
+1
+	
+	*/
+	Node* deleteNode(Node* root, int k)
+    {
+        if(root==NULL)return root;
+        // root->left=deleteNode(root->left,k);
+        // root->right=deleteNode(root->right,k);
+        if(root->data>=k){
+            free(root);
+            return deleteNode(root->left,k);
+        }
+        else{
+             root->right=deleteNode(root->right,k); 
+        }
+        return root;
+        //Your code here
+    }
