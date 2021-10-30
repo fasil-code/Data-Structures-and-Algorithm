@@ -726,4 +726,23 @@ void inorder(Node*root,vector<int>&v){
  sort(v.begin(),v.end());
  return bsdk(v,0,v.size()-1);     
     }	
+//Sum of Right Leaf Nodes 
+	 void solve(Node*root,int &sum){
+        if(root==NULL )return;
+        if(root->right){
+            if(root->right->right==NULL && root->right->left==NULL){
+                sum+=root->right->data;
+            }
+        }
+        solve(root->left,sum);
+        solve(root->right,sum);
+        
+    }
+    int rightLeafSum(Node* root)
+    {
+        int sum=0;
+    solve(root,sum);
+        return sum;
+         //Code here
+    }
 	
