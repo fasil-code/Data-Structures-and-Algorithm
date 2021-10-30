@@ -525,3 +525,205 @@ vector <int> diagonalSum(Node* root) {
        return solve(root,root);
 	    // Code here
     }
+/*
+Transform to Sum Tree 
+Easy Accuracy: 50.22% Submissions: 41222 Points: 2
+Given a Binary Tree of size N , where each node can have positive or negative values. Convert this to a tree where each node contains the sum of the left and right sub trees of the original tree. The values of leaf nodes are changed to 0.
+
+Example 1:
+
+Input:
+             10
+          /      \
+        -2        6
+       /   \     /  \
+     8     -4   7    5
+
+Output:
+            20
+          /    \
+        4        12
+       /  \     /  \
+     0     0   0    0
+
+Explanation:
+
+           (4-2+12+6)
+          /           \
+      (8-4)          (7+5)
+       /   \         /  \
+      0     0       0    0
+*/
+ int fun(Node*root){
+      if(root==NULL)return 0;
+      int x=root->data;
+      root->data=(fun(root->left))+fun((root->right));
+      return x+root->data;
+  }
+    
+    void toSumTree(Node *node)
+    {
+       fun(node);
+    }	
+	/*
+	Lowest Common Ancestor in a BST 
+Easy Accuracy: 50.22% Submissions: 77927 Points: 2
+Given a Binary Search Tree (with all values unique) and two node values. Find the Lowest Common Ancestors of the two nodes in the BST.
+
+Example 1:
+
+Input:
+              5
+           /    \
+         4       6
+        /         \
+       3           7
+                    \
+                     8
+n1 = 7, n2 = 8
+Output: 7
+	*/
+	Node* LCA(Node *root, int n1, int n2)
+{
+  if(root==NULL)return root;
+  if((root->data<=n2 && root->data>=n1)||(root->data>=n2 && root->data<=n1)){
+      return root;
+  }
+  else if(root->data<n1 && root->data<n2){
+      return LCA(root->right,n1,n2);
+  }
+  else{
+       return LCA(root->left,n1,n2);
+  }
+}
+/*
+Check if Tree is Isomorphic 
+Easy Accuracy: 50.16% Submissions: 37876 Points: 2
+Given two Binary Trees. Check whether they are Isomorphic or not.
+
+Note: 
+Two trees are called isomorphic if one can be obtained from another by a series of flips, i.e. by swapping left and right children of several nodes.
+Any number of nodes at any level can have their children swapped. Two empty trees are isomorphic.
+For example, the following two trees are isomorphic with the following sub-trees flipped: 2 and 3, NULL and 6, 7 and 8.
+*/	
+bool isIsomorphic(Node *root1,Node *root2)
+    {
+       if(root1==NULL && root2==NULL){
+           return true;
+       } 
+        if(root1==NULL || root2==NULL)
+        return false;
+        if(root1->data!=root2->data){
+            return false;
+        }
+        else {
+            return ( isIsomorphic(root1->left,root2->left)&& isIsomorphic(root1->right,root2->right))||
+    (isIsomorphic(root1->left,root2->right)&& isIsomorphic(root1->right,root2->left));
+        }
+    //add code here.
+    }
+	/*
+	Check for Balanced Tree 
+Easy Accuracy: 50.11% Submissions: 100k+ Points: 2
+Given a binary tree, find if it is height balanced or not. 
+A tree is height balanced if difference between heights of left and right subtrees is not more than one for all nodes of tree. 
+
+A height balanced tree
+        1
+     /     \
+   10      39
+  /
+5
+
+An unbalanced tree
+        1
+     /    
+   10   
+  /
+5
+	*/
+	int height(Node*root){
+        if(root==NULL)return 0;
+        int l=height(root->left);
+        int r=height(root->right);
+        return max(l,r)+1;
+    }
+    bool isBalanced(Node *root)
+    {
+        if(root==NULL)return true;
+        int l=height(root->left);
+        int h=height(root->right);
+        if(abs(l-h)>1){
+            return false;
+        }
+        return isBalanced(root->left)&&isBalanced(root->right);
+       // return true;
+        //  Your Code here
+    }
+	/*
+Diameter of a Binary Tree 
+Easy Accuracy: 50.01% Submissions: 100k+ Points: 2
+The diameter of a tree (sometimes called the width) is the number of nodes on the longest path between two end nodes. 
+The diagram below shows two trees each with diameter nine, the leaves that form the ends of the longest path are shaded
+(note that there is more than one path in each tree of length nine, but no path longer than nine nodes). 
+	*/
+	int height(Node*root){
+      if(root==NULL)return 0;
+      int l=height(root->left);
+      int r=height(root->right);
+      return max(l,r)+1;
+  }
+    // Function to return the diameter of a Binary Tree.
+    int diameter(Node* root) {
+        if(root==NULL)return 0;
+        int lh=height(root->left);
+        int rh=height(root->right);
+        int ld=diameter(root->left);
+        int rd=diameter(root->right);
+    return max(1+lh+rh,max(ld,rd));
+      
+    }
+	/*
+	Binary Tree to BST 
+Easy Accuracy: 50.0% Submissions: 28915 Points: 2
+Given a Binary Tree, convert it to Binary Search Tree in such a way that keeps the original structure of Binary Tree intact.
+ 
+
+Example 1:
+
+Input:
+      1
+    /   \
+   2     3
+Output: 1 2 3
+	
+	*/
+void inorder(Node*root,vector<int>&v){
+      if(root==NULL)return;
+      v.push_back(root->data);
+      inorder(root->left,v);
+      inorder(root->right,v);
+  }
+    // The given root is the root of the Binary Tree
+    // Return the root of the generated BST
+    Node*bsdk(vector<int>v,int low,int high){
+        if(low>high){
+            return NULL;
+        }
+ //       if(root==NULL)return;
+        int mid=(low+high)/2;
+        Node*new_node=new Node(v[mid]);
+
+        new_node->left=bsdk(v,low,mid-1);
+         new_node->right=bsdk(v,mid+1,high);
+         return new_node;
+    }
+    Node *binaryTreeToBST (Node *root)
+    {
+        if(root==NULL)return root;
+        vector<int>v;
+      inorder(root,v);
+ sort(v.begin(),v.end());
+ return bsdk(v,0,v.size()-1);     
+    }	
+	
