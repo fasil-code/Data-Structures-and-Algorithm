@@ -985,3 +985,76 @@ if(root->key==key){
        findPreSuc(root->right,pre,suc,key);
    }   
 }	
+/*
+Level order traversal in spiral form 
+Easy Accuracy: 43.27% Submissions: 100k+ Points: 2
+Complete the function to find spiral order traversal of a tree. For below tree, function should return 1, 2, 3, 4, 5, 6, 7.
+*/
+	vector<int> findSpiral(Node *root)
+{
+    vector<int>v;
+    int count=0;
+   if(root==NULL)return v;
+   queue<Node*>q;
+   q.push(root);
+   while(!q.empty()){
+      int size=q.size();
+      vector<int>s;
+      while(size--){
+        Node*temp=q.front();
+        q.pop();
+        s.push_back(temp->data);
+        if(temp->left)
+        q.push(temp->left);
+      
+      if(temp->right){
+          q.push(temp->right);
+      }
+   }
+   if(count%2==0){
+       reverse(s.begin(),s.end());
+   }
+    for(int i=0;i<s.size();i++){
+          v.push_back(s[i]);
+       }
+count++;
+   }
+   return v;
+  
+}
+/*
+Check if two Nodes are Cousins 
+Easy Accuracy: 43.07% Submissions: 23091 Points: 2
+Given the binary Tree of and two-node values. Check whether the two-node values are cousins of each other or not.
+
+Example 1:
+
+Input:
+      1
+    /   \
+   2     3
+a = 2, b = 3
+Output: 0
+*/
+void helper(Node *root,int x,int level,pair<Node*,int> &dp){
+    if(!root)
+        return;
+    if(root->left and root->left->data == x){
+        dp = {root,level};
+    }
+    if(root->right and root->right->data == x){
+        dp = {root,level};
+    }
+    helper(root->left,x,level + 1,dp);
+    helper(root->right,x,level + 1,dp);
+}
+bool isCousins(Node *root, int a, int b)
+{
+   pair<Node*,int>a1; pair<Node*,int>b1;
+   helper(root,a,1,a1);
+   helper(root,b,1,b1);
+  if(a1.first != b1.first and a1.second == b1.second)
+        return 1;
+    return 0;
+   //add code here.
+}	
