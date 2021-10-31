@@ -822,3 +822,166 @@ Output:
         return root;
         //Your code here
     }
+/*
+Sum of Leaf Nodes at Min Level 
+Easy Accuracy: 48.73% Submissions: 14154 Points: 2
+Given a Binary Tree of size N, find the sum of all the leaf nodes that are at minimum level of the given binary tree.
+Example 1:
+
+Input: 
+         1
+        /  \
+       2    3
+     /  \     \
+    4    5     8 
+  /  \ 
+ 7    2      
+Output:
+sum = 5 + 8 = 13
+*/
+void height(Node*root,int lvl,int &maxi){
+    if(root==NULL){
+        return ;
+    }
+    if(!root->left && !root->right)
+maxi=min(maxi,lvl);
+    height(root->left,lvl+1,maxi);
+    height(root->right,lvl+1,maxi);
+}
+void solve(Node*root,int lvl,int h,int &sum){
+    if(root==NULL){
+        return;
+    }
+    //cout<<lvl<<endl;
+    if(root->left==NULL && root->right==NULL && lvl==h)
+    sum+=root->data;
+    solve(root->left,lvl+1,h,sum);
+    solve(root->right,lvl+1,h,sum);
+    
+}
+    int minLeafSum(Node *root)
+    {if(!root){
+        return 0;
+    }
+    int sum=0;
+    int lvl=INT_MAX;
+      height(root,1,lvl);
+      solve(root,1,lvl,sum);
+      return sum;  
+    }	
+/*
+Root to Leaf Paths 
+Easy Accuracy: 47.42% Submissions: 26005 Points: 2
+Given a Binary Tree of size N, you need to find all the possible paths from root node to all the leaf node's of the binary tree.
+
+Example 1:
+
+Input:
+       1
+    /     \
+   2       3
+Output: 1 2 #1 3 #
+Explanation: 
+All possible paths:
+1->2
+1->3
+*/	
+ void solve(Node*root,vector<vector<int>>&v,vector<int>res){
+     if(root==NULL){
+         return;
+     }
+   res.push_back(root->data);
+    if(root->left==NULL && root->right==NULL){
+         v.push_back(res);
+   }
+    solve(root->left,v,res);
+    solve(root->right,v,res);
+    
+ }
+vector<vector<int>> Paths(Node* root)
+{
+    vector<vector<int>>v;
+vector<int>res;
+    solve(root,v,res);
+    return v;  
+}
+/*
+Reverse Level Order Traversal 
+*/	
+vector<int> reverseLevelOrder(Node *root)
+{
+    vector<int>res;
+  
+    if(root==NULL){
+        return res;
+    }
+    queue<Node*>q;
+    q.push(root);
+    while(!q.empty()){
+        int size=q.size();
+        
+        while(size--){
+            Node*temp=q.front();
+            q.pop();
+            res.push_back(temp->data);
+            if(temp->right){
+                q.push(temp->right);
+            }
+            if(temp->left){
+                q.push(temp->left);
+            }
+        }
+   
+      //  v.append(res);
+        
+    }
+         reverse(res.begin(),res.end());
+    return res;
+  
+}	
+/*
+Predecessor and Successor 
+Easy Accuracy: 46.01% Submissions: 34755 Points: 2
+There is BST given with root node with key part as integer only. You need to find the inorder successor and predecessor of a given key. 
+In case, if the either of predecessor or successor is not found print -1.
+
+*/
+Node* solve(Node*root){
+    Node*temp=root->left;
+    while(temp->right){
+        temp=temp->right;
+    }
+   return temp;
+}
+Node*fun(Node*root){
+      Node*temp=root->right;
+    while(temp->left){
+        temp=temp->left;
+    }
+   return temp;
+}
+
+
+
+void findPreSuc(Node* root, Node*& pre, Node*& suc, int key)
+{
+    if(root==NULL)return;
+if(root->key==key){
+    if(root->left){
+        pre=solve(root);
+    }
+    if(root->right){
+        suc=fun(root);
+    }
+    return;
+}
+    
+   if(root->key > key){
+       suc = root;
+       findPreSuc(root->left,pre,suc,key);
+   }
+   else if(root->key < key){
+       pre = root;
+       findPreSuc(root->right,pre,suc,key);
+   }   
+}	
