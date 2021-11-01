@@ -451,7 +451,8 @@ vector<int> rightView(Node *root)
  /*
  Vertical sum 
 Easy Accuracy: 50.84% Submissions: 20218 Points: 2
-Given a Binary Tree, find vertical sum of the nodes that are in same vertical line. Print all sums through different vertical lines starting from left-most vertical line to right-most vertical line.
+Given a Binary Tree, find vertical sum of the nodes that are in same vertical line. Print all sums through different vertical lines starting from left-most 
+vertical line to right-most vertical line.
 
 Example 1:
 
@@ -1199,4 +1200,36 @@ return false;
 hasSum(root,S,sum);
     // Your code here
 }
-	
+/*
+Reverse alternate levels of a perfect binary tree 
+Easy Accuracy: 49.82% Submissions: 10483 Points: 2
+Given a complete binary tree, reverse the nodes present at alternate levels.
+
+Example 1:
+
+Input:
+             1
+          /   \
+        3      2
+
+Output:
+
+             1
+          /   \
+        2      3
+
+Explanation: Nodes at level 2 are reversed.
+*/	
+void solve(Node*root1,Node*root2,int lvl){
+    if(root1==NULL || root2==NULL)return;
+    if(lvl%2==0){
+        swap(root1->data,root2->data);
+    }
+    solve(root1->left,root2->right,lvl+1);
+    solve(root1->right,root2->left,lvl+1);
+}
+void reverseAlternate(Node *root)
+{
+  solve(root->left,root->right,0);
+    //Your code here
+}
