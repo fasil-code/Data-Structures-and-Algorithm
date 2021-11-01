@@ -1160,3 +1160,43 @@ bool fun(Node*root, int max ,int min){
         // Your code here
     }	
 	
+/*
+Root to leaf path sum 
+Easy Accuracy: 36.24% Submissions: 67536 Points: 2
+Given a binary tree and an integer S, check whether there is root to leaf path with its sum as S.
+
+Example 1:
+
+Input:
+Tree = 
+            1
+          /   \
+        2      3
+S = 2
+
+Output: 0
+
+Explanation:
+There is no root to leaf path with sum 2.
+*/
+	   bool hasSum(Node *root,int S,int &sum){
+if(root==NULL){
+return false;
+}
+
+sum+=root->data;
+if(root->left==NULL && root->right==NULL&& sum==S){
+return true;
+}
+if(hasSum(root->left,S,sum)||hasSum(root->right,S,sum)){
+return true;
+}
+sum-=root->data;
+return false;
+}
+    bool hasPathSum(Node *root, int S) {
+        int sum=0;
+hasSum(root,S,sum);
+    // Your code here
+}
+	
