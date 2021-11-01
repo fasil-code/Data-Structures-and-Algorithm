@@ -1117,8 +1117,46 @@ int kthAncestor(Node *root, int k, int node)
     if(k<=v.size()){
         return v[k-1];
     }
-      return -1;  
-    
+      return -1;      
 }
-	
+	/*
+	Check for BST 
+Easy Accuracy: 21.58% Submissions: 100k+ Points: 2
+Given the root of a binary tree. Check whether it is a BST or not.
+Note: We are considering that BSTs can not contain duplicate Nodes.
+A BST is defined as follows:
+
+The left subtree of a node contains only nodes with keys less than the node's key.
+The right subtree of a node contains only nodes with keys greater than the node's key.
+Both the left and right subtrees must also be binary search trees.
+ 
+
+Example 1:
+
+Input:
+   2
+ /    \
+1      3
+Output: 1 
+Explanation: 
+The left subtree of root node contains node 
+with key lesser than the root node’s key and 
+the right subtree of root node contains node 
+with key greater than the root node’s key.
+Hence, the tree is a BST.
+	*/
+bool fun(Node*root, int max ,int min){
+        if(!root)return true;;
+        if(root->data>=max || root->data<=min)return false;
+        
+          return  fun(root->left,root->data,min)&&
+            fun(root->right,max,root->data);
+    
+    }
+    //Function to check whether a Binary Tree is BST or not.
+    bool isBST(Node* root) 
+    {
+    return fun(root,INT_MAX,INT_MIN);
+        // Your code here
+    }	
 	
