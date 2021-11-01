@@ -1274,4 +1274,31 @@ struct Node* deletionBT(struct Node* root, int key)
     last->right==temp?last->right=NULL:last->left=NULL;
     return root;
 }
-	
+/*
+Convert Ternary Expression to Binary Tree 
+Easy Accuracy: 53.16% Submissions: 12910 Points: 2
+Given a string that contains ternary expressions. The expressions may be nested. You need to convert the given ternary expression to a binary Tree and return the root.
+
+Example 1:
+
+Input: a?b:c
+Output: a b c
+Explanation:
+string expression = a?b:c
+So the binary tree for the above expression is:
+       a  
+     /   \   
+    b     c
+*/	
+Node *convertExpression(string str,int i)
+{
+    if(i==str.length())return NULL;
+    Node*tmp=new Node(str[i]);
+    if(i+1<str.length() && str[i+1]=='?'){
+        tmp->left=convertExpression(str,i+2);
+    }
+    if(i+1<str.length() && str[i+1]==':'){
+        tmp->right=convertExpression(str,i+2);
+    }
+    return tmp;
+}
