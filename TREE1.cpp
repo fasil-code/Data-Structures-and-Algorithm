@@ -1233,3 +1233,45 @@ void reverseAlternate(Node *root)
   solve(root->left,root->right,0);
     //Your code here
 }
+/*
+Deletion in a Binary Tree 
+Easy Accuracy: 38.05% Submissions: 16923 Points: 2
+Given a Binary Tree of size N, your task is to complete the function deletionBT(), that should delete a given node from the tree by making sure that
+tree shrinks from the bottom (the deleted node is replaced by bottommost and rightmost node).
+Example:
+
+*/
+struct Node* deletionBT(struct Node* root, int key)
+{
+   queue<Node*>q;
+    q.push(root);
+    Node*temp;
+    Node*del,*last,*lastchild;
+    while(!q.empty())
+    {
+        int n=q.size();
+        for(int i=0;i<n;i++)
+        {
+            temp = q.front();
+            q.pop();
+            
+            if(temp->data == key)
+            del = temp;
+            
+            if(temp->left)
+            {
+                last = temp;
+                q.push(temp->left);
+            }
+            if(temp->right)
+            {
+                last = temp;
+                q.push(temp->right);
+            }
+        }
+    }
+    del->data = temp->data;
+    last->right==temp?last->right=NULL:last->left=NULL;
+    return root;
+}
+	
