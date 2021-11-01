@@ -1058,3 +1058,67 @@ bool isCousins(Node *root, int a, int b)
     return 0;
    //add code here.
 }	
+/*
+Ancestors in Binary Tree 
+Easy Accuracy: 39.92% Submissions: 27504 Points: 2
+Given a Binary Tree and a target key, you need to find all the ancestors of the given target key.
+
+              1
+            /   \
+          2      3
+        /  \
+      4     5
+     /
+    7
+Key: 7
+Ancestor: 4 2 1
+
+*/
+	 bool solve(vector<int>&v,int target,Node*root){
+      if(root==NULL)return false;
+      if(root->data==target){
+          return true;
+      }
+      if(solve(v,target,root->left)||solve(v,target,root->right)){
+          v.push_back(root->data);
+          return true;
+      }
+   return false;   
+  }
+    
+    vector<int> Ancestors(struct Node *root, int target)
+    {
+        vector<int>v;
+        solve(v,target,root);
+        return v;
+        
+    }
+/*
+Kth Ancestor in a Tree 
+Easy Accuracy: 47.34% Submissions: 13690 Points: 2
+Given a binary tree of size  N, a node and a positive integer k., Your task is to complete the function kthAncestor(),
+the function should return the kth ancestor of the given node in the binary tree. If there does not exist any such ancestor then return -1.
+*/	
+bool solve(vector<int>&v,Node*root,int node){
+    if(root==NULL)return false;
+    if(root->data==node){
+        return true;
+    }
+    if(solve(v,root->left,node)||solve(v,root->right,node)){
+        v.push_back(root->data);
+        return true;
+    }
+    return false;
+}
+int kthAncestor(Node *root, int k, int node)
+{   vector<int>v;
+    solve(v,root, node);
+   
+    if(k<=v.size()){
+        return v[k-1];
+    }
+      return -1;  
+    
+}
+	
+	
