@@ -369,7 +369,8 @@ of 1 is 3.
 /*
 Perfect Binary Tree 
 Easy Accuracy: 49.07% Submissions: 9406 Points: 2
-Given a Binary Tree, write a function to check whether the given Binary Tree is a prefect Binary Tree or not. A Binary tree is Perfect Binary Tree in which all internal nodes have two children and all leaves are at same level.
+Given a Binary Tree, write a function to check whether the given Binary Tree is a prefect Binary Tree or not. A Binary tree is
+Perfect Binary Tree in which all internal nodes have two children and all leaves are at same level.
 
 Example 1:
 
@@ -570,7 +571,8 @@ vector <int> diagonalSum(Node* root) {
 /*
 Transform to Sum Tree 
 Easy Accuracy: 50.22% Submissions: 41222 Points: 2
-Given a Binary Tree of size N , where each node can have positive or negative values. Convert this to a tree where each node contains the sum of the left and right sub trees of the original tree. The values of leaf nodes are changed to 0.
+Given a Binary Tree of size N , where each node can have positive or negative values. Convert this to a tree where each node contains the sum of the left and 
+right sub trees of the original tree. The values of leaf nodes are changed to 0.
 
 Example 1:
 
