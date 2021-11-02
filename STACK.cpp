@@ -1,3 +1,4 @@
+THEOREY
 /*
 Stack is a data stucture in which is of filo or lifo type means first in last out.
 \\OPERATRION 
@@ -50,6 +51,28 @@ PREFIX()->operator occurs before string
 e.g->++AB-CD;
 
 */
+IMPLEMENT STACK USING ARRAY
+IMPLEMENT STACK USING LINKED LIST
+REVERSE QUEUE
+EVALUATION OF POSTFIX EXPRESSION
+SORT A STACK
+DELETE A MIDDLE OF STACK
+IMPLEMENT TWO STACKS IN ARRAY
+PARENTHESIS CHECKER
+QUEUE USING TWO STACK
+STACK USING TWO QUEUES
+INFIX TO POSTFIX
+REVERSE A STACK
+STOCK SPAN PROBLEM
+NEXT GREATER ELEMENT
+RESTRICTIVE CANDY CRUSH
+CELEBRITY PROBLEM
+REVERSE EACH WORD IN A STRING
+REMOVE K DIGITS
+MAXIMUM AREA OF RECTANGLE IN HISTOGRAM
+LONGEST VALID PARENTHESIS
+GEEKY BUILDINGS
+REVERSE FIRST K ELEMENTS OF QUEUE
 
 
 
@@ -401,7 +424,8 @@ void reverse() {
 Stock span problem 
 Medium Accuracy: 49.89% Submissions: 46736 Points: 4
 The stock span problem is a financial problem where we have a series of n daily price quotes for a stock and we need to calculate the span of stock’s price for all n days. 
-The span Si of the stock’s price on a given day i is defined as the maximum number of consecutive days just before the given day, for which the price of the stock on the current day is less than or equal to its price on the given day.
+The span Si of the stock’s price on a given day i is defined as the maximum number of consecutive days just before the given day, for which the price of the stock on
+the current day is less than or equal to its price on the given day.
 For example, if an array of 7 days prices is given as {100, 80, 60, 70, 60, 75, 85}, then the span values for corresponding 7 days are {1, 1, 1, 2, 1, 4, 6}.
 
 Example 1:
@@ -541,6 +565,7 @@ Modified String after each step:
         // Your code goes here
     }
 
+//CELEBRITY PROBLEM
 /*
 party such that if an element of row i and column j  is set to 1 it means ith person knows jth person. Here M[i][i] will always be 0.
 Note: Follow 0 based indexing.
@@ -745,7 +770,9 @@ int maxLength(string S){
 
 132 Geeky Buildings 
 Hard Accuracy: 49.05% Submissions: 10869 Points: 8
-There are N buildings in Linear Land. They appear in a linear line one after the other and their heights are given in the array arr[]. Geek wants to select three buildings in Linear Land and remodel them as recreational spots. The third of the selected building must be taller than the first and shorter than the second.
+There are N buildings in Linear Land. They appear in a linear line one after the other and their heights are given in the array arr[].
+Geek wants to select three buildings in Linear Land and remodel them as recreational spots. The third of the selected building must be taller than the first 
+and shorter than the second.
 Can geek build the three-building recreational zone? 
 
 
