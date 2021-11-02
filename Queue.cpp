@@ -1,3 +1,13 @@
+QUEUE:
+IMPLEMENTING QUEUE USING ARRAY
+IMPLEMENT QUEUE USING LINKED LIST
+GENERATE BINARY NUMBERS
+MINIMUM COST OF ROPES
+FIRST NEGATIVE NUMBER IN EVERY WINDOW SIZE OF K
+MAXIMUM OF ALL SUBAARAYS OF SIZE K WINDOW
+FIRST NON REPEATING CHRACTER IN A STREAM
+CIRCULAR TOUR
+
 //IMPLEMENTING QUEUE USING ARRAY
 void MyQueue :: push(int x)
 {
@@ -6,7 +16,7 @@ arr[rear++]=x;
         // Your Code
 }
 
-//Function to pop an element from queue and return that element.
+
 int MyQueue :: pop()
 {
     if(front>=rear){
@@ -30,7 +40,7 @@ int MyQueue :: pop()
         // Your Code
 }
 
-//Function to pop front element from the queue.
+
 int MyQueue :: pop()
 {
     if(front==NULL)return -1;
