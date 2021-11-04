@@ -410,5 +410,97 @@ Explanation: S is present in T
         if(isSubTree(T->left,S)|| isSubTree(T->right,S)||solve(T,S))return true;
         }
         return  false;
-     
-    }          
+  
+    }
+   /*
+   Construct Binary Tree from Parent Array 
+Medium Accuracy: 45.96% Submissions: 23829 Points: 4
+Given an array of size N that can be used to represents a tree. The array indexes are values in tree nodes and array values give the parent node of that particular index (or node). The value of the root node index would always be -1 as there is no parent for root. Construct the standard linked representation of Binary Tree from this array representation.
+
+
+Example 1:
+
+Input:
+N = 7
+parent[] = {-1,0,0,1,1,3,5}
+Output: 0 1 2 3 4 5 6
+Explanation: the tree generated
+will have a structure like 
+          0
+        /   \
+       1     2
+      / \
+     3   4
+    /
+   5
+ /
+6
+   
+   */         
+Node *createTree(int parent[], int N)
+    {
+        unordered_map<int,Node*>mp;
+        for(int i=0;i<N;i++){
+            Node*temp=new Node(i);
+            mp[i]=temp;
+        }
+        Node*root;
+        Node*rooot;
+        for(int i=0;i<N;i++){
+            if(parent[i]==-1){
+                rooot=mp[i];
+                
+            }
+            else{
+                Node*temp=mp[i];
+                int val=parent[i];
+                root=mp[val];
+                if(!root->left){
+                    root->left=temp;
+                }
+                else{
+                    root->right=temp;
+                }
+            }
+        }
+        return rooot;
+        // Your code here
+    }
+            /*
+            Preorder Traversal and BST 
+Medium Accuracy: 58.03% Submissions: 5042 Points: 4
+Given an array arr[ ] of size N consisting of distinct integers, write a program that returns 1 if given array can represent preorder traversal of a possible BST, else returns 0.
+
+Example 1:
+
+Input:
+N = 3
+arr = {2, 4, 3}
+Output: 1
+Explaination: Given arr[] can represent
+preorder traversal of following BST:
+               2
+                \
+                 4
+                /
+               3
+            */
+     int canRepresentBST(int pre[], int n) {
+         stack<int> s;
+       int root = INT_MIN;
+       for (int i=0; i<n; i++)
+       {
+           if (pre[i] < root)
+               return 0;
+   
+           while (!s.empty() && s.top()<pre[i])
+           {
+               root = s.top();
+               s.pop();
+           }
+           s.push(pre[i]);
+       }
+       return 1;
+        // code here
+    }
+;        
