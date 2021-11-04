@@ -708,5 +708,136 @@ Node * deSerialize(vector<int> &A)
 int pointer=0;
 return deSerializeUtil(A,pointer);
 } 
+   /*
+   Boundary Traversal of binary tree 
+Medium Accuracy: 26.78% Submissions: 100k+ Points: 4
+Given a Binary Tree, find its Boundary Traversal. The traversal should be in the following order: 
+
+Left boundary nodes: defined as the path from the root to the left-most node ie- the leaf node you could reach when you always travel preferring the left subtree over the right subtree. 
+Leaf nodes: All the leaf nodes except for the ones that are part of left or right boundary.
+Reverse right boundary nodes: defined as the path from the right-most node to the root. The right-most node is the leaf node you could reach when you always travel preferring the right subtree over the left subtree. Exclude the root from this as it was already included in the traversal of left boundary nodes.
+Note: If the root doesn't have a left subtree or right subtree, then the root itself is the left or right boundary. 
+
+Example 1:
+
+Input:
+        1 
+      /   \
+     2     3  
+    / \   / \ 
+   4   5 6   7
+      / \
+     8   9
    
-         
+Output: 1 2 4 8 9 6 7 3
+Explanation:
+   
+   
+   */
+            void leaf(Node*root,vector<int>&v){
+    if(root==NULL){
+        return;
+    }
+    if(root->left ==NULL && root->right==NULL){
+        v.push_back(root->data);
+    }
+    leaf(root->left,v);
+    leaf(root->right,v);
+    
+}
+void fun(Node*root,vector<int>&v){
+    if(root==NULL){
+        return;
+    }
+    if(root->right){
+        fun(root->right,v);
+     v.push_back(root->data);   
+    }
+    else if(root->left){
+    fun(root->left,v);
+     v.push_back(root->data);    
+    }
+}
+void solve(Node*root,vector<int>&v){
+    if(root==NULL){
+        return;
+    }
+    if(root->left){
+        v.push_back(root->data);
+        solve(root->left,v);
+    }
+    else if(root->right){
+          v.push_back(root->data);
+        solve(root->right,v);
+    }
+    
+}
+    vector <int> boundary(Node *root)
+    {
+        vector<int>v;
+        if(root==NULL){
+            return v;
+        }
+        v.push_back(root->data);
+        solve(root->left,v);
+        leaf(root,v);
+        fun(root->right,v);
+     
+    }
+ /*
+ Min distance between two given nodes of a Binary Tree 
+Medium Accuracy: 45.05% Submissions: 49448 Points: 4
+Given a binary tree and two node values your task is to find the minimum distance between them.
+
+Example 1:
+
+Input:
+        1
+      /  \
+     2    3
+a = 2, b = 3
+Output: 2
+Explanation: The tree formed is:
+       1
+     /   \ 
+    2     3
+We need the distance between 2 and 3.
+Being at node 2, we need to take two
+steps ahead in order to reach node 3.
+The path followed will be:
+2 -> 1 -> 3. Hence, the result is 2. 
+ */        
+  int dis(Node*root,int a){
+            if(root==NULL)return 0;
+            if(root->data==a)return 1;
+            int l=dis(root->left,a);
+            int r=dis(root->right,a);
+            if(!l && !r)return 0;
+            return l+r+1;
+    }
+    Node*lca(Node*root,int a,int b){
+        if(root==NULL){
+            return root;
+        }
+        if(root->data==a || root->data==b){
+            return root;
+        }
+        Node*l=lca(root->left,a,b);
+        Node*r=lca(root->right,a,b);
+        if(l&&r)return root;
+        if(l){
+            return l;
+        }
+        else{
+            return r;
+        }
+    }
+    int findDist(Node* root, int a, int b) {
+         if(root){
+          int x=dis(root,a);
+          int y=dis(root,b);
+          Node*temp=lca(root, a,b);
+          int z=dis(root,temp->data);
+          return (x+y)-(2*z);
+        }
+        // Your code he
