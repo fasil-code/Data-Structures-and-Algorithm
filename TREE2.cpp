@@ -503,4 +503,210 @@ preorder traversal of following BST:
        return 1;
         // code here
     }
-;        
+/*
+traversal of BST. The task is to print its postorder traversal.
+
+Example 1:
+
+Input:
+N = 5
+arr[]  = {40,30,35,80,100}
+Output: 35 30 100 80 40
+Explanation: PreOrder: 40 30 35 80 100
+InOrder: 30 35 40 80 100
+Therefore, the BST will be:
+              40
+           /      \
+         30       80
+           \        \   
+           35      100
+Hence, the postOrder traversal will
+be: 35 30 100 80 40
+*/        
+Node*solve(Node*&root,int x){
+    if(root==NULL){
+        return root=newNode(x);
+    }
+    if(root->data>x){
+        root->left=solve(root->left,x);
+    }
+    else{
+        root->right=solve(root->right,x);
+    }
+    return root;
+}
+Node* post_order(int pre[], int size)
+{
+    Node*root=NULL;
+    for(int i=0;i<size;i++){
+        solve(root,pre[i]);
+    }
+    return root;
+   
+}
+ /*
+ Clone a Binary Tree 
+Medium Accuracy: 55.34% Submissions: 15640 Points: 4
+Given a special binary tree having random pointers along with the usual left and right pointers. Clone the given tree.
+
+
+Example 1:
+
+Input:
+ */           
+ void insertmid(Node *root)
+{
+if(!root)
+return;
+
+Node*temp= new Node(root->data);
+temp->left=root->left;
+temp->right=root->right;
+root->left=temp;
+
+insertmid(temp->left);
+insertmid(temp->right);
+}
+void random(Node *root)
+{
+if(!root)
+return;
+
+root->left->random=(root->random)?root->random->left:NULL;
+
+random(root->left->left);
+random(root->left->right);
+}
+void restore (Node *root)
+{
+if(!root)
+return;
+
+Node*copy=root->left;
+root->left=copy->left;
+root->right=copy->right;
+
+copy->left=(root->left)?root->left->left:NULL;
+copy->right=(root->right)?root->right->left:NULL;
+
+restore(root->left);
+restore(root->right);
+}
+Node* cloneTree(Node* root)
+{
+insertmid(root);
+random(root);
+
+Node* cloneroot=root->left;
+restore(root);
+
+return cloneroot;
+}
+/*
+Construct Tree from Preorder Traversal 
+Medium Accuracy: 50.68% Submissions: 13694 Points: 4
+Construct a binary tree of size N using two given arrays pre[] and preLN[]. Array pre[] represents preorder traversal of a binary tree. Array preLN[] has only two possible values ‘L’ and ‘N’. The value ‘L’ in preLN[] indicates that the corresponding node in Binary Tree is a leaf node and value ‘N’ indicates that the corresponding node is a non-leaf node.
+Note: Every node in the binary tree has either 0 or 2 children.
+
+Example 1:
+
+Input :      
+N = 5
+pre[] = {10, 30, 20, 5, 15}
+preLN[] = {N, N, L, L, L}
+
+Output:
+          10
+        /    \
+      30      15
+     /  \     
+   20    5   
+*/      
+ struct Node *constructTree(int n, int pre[], char preLN[])
+{
+    Node*root=new Node(pre[0]);
+    stack<Node*>s;
+    s.push(root);
+    int i=1;
+    while(i<n){
+        Node*temp=s.top();
+        if(temp->left==NULL){
+            temp->left=new Node(pre[i]);
+            if(preLN[i]=='N'){
+                s.push(temp->left);
+                
+            }
+             i++;
+        }
+             else if(temp->right==NULL){
+            temp->right=new Node(pre[i]);
+            if(preLN[i]=='N'){
+                s.push(temp->right);
+            }
+            i++;
+        }
+        
+        else{
+            s.pop();
+        }
+
+    }
+   return root; 
+ }
+            /*
+   Serialize and Deserialize a Binary Tree 
+Medium Accuracy: 47.46% Submissions: 35481 Points: 4
+Serialization is to store a tree in an array so that it can be later restored and Deserialization is reading tree back from the array. Now your task is to complete the function serialize which stores the tree into an array A[ ] and deSerialize which deserializes the array to the tree and returns it.
+Note: The structure of the tree must be maintained. Multiple nodes can have the same data.
+
+Example 1:
+
+Input:
+      1
+    /   \
+   2     3
+Output: 2 1 3         
+            
+            */
+    void solve(Node*root,vector<int>&v){
+        if(root==NULL){
+            v.push_back(-1);
+            return;
+        }
+        v.push_back(root->data);
+        solve(root->left,v);
+        solve(root->right,v);
+        
+    }
+    //Function to serialize a tree and return a list containing nodes of tree.
+    vector<int> serialize(Node *root) 
+    {vector<int>v;
+    solve(root,v);
+    return v;
+        
+        //Your code here
+    }
+    
+    //Function to deserialize a list and construct the tree.
+  Node* deSerializeUtil(vector<int> &A,int &pointer)
+{
+if(A[pointer]==-1){
+pointer++;
+return NULL;
+}
+Node *root = new Node(A[pointer]);
+pointer++;
+root->left = deSerializeUtil(A,pointer);
+root->right = deSerializeUtil(A,pointer);
+
+return root;
+}
+
+Node * deSerialize(vector<int> &A)
+{
+//Your code here
+int pointer=0;
+return deSerializeUtil(A,pointer);
+} 
+   
+         
