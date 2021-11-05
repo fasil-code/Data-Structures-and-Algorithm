@@ -841,3 +841,136 @@ The path followed will be:
           return (x+y)-(2*z);
         }
         // Your code he
+/*
+Construct Tree from Inorder & Preorder 
+Medium Accuracy: 36.26% Submissions: 56170 Points: 4
+Given 2 Arrays of Inorder and preorder traversal. Construct a tree and print the Postorder traversal. 
+
+Example 1:
+
+Input:
+N = 4
+inorder[] = {1 6 8 7}
+preorder[] = {1 6 7 8}
+Output: 8 7 6 1
+*/
+  int search(int *in,int x,int n){
+        for(int i=0;i<n;i++){
+            if(in[i]==x){
+                return i;
+            }
+        }
+        return -1;
+    }
+    Node* buildTree(int in[],int pre[], int n)
+    {
+     if(n==0)return NULL;
+    int i=search(in,pre[0],n);
+    Node*root=new Node(pre[0]);
+    root->left=buildTree(in,pre+1,i);
+    root->right=buildTree(in+i+1,pre+i+1,n-i-1);
+    return root;
+    }
+      / *
+        Tree from Postorder and Inorder 
+Medium Accuracy: 49.98% Submissions: 24325 Points: 4
+Given inorder and postorder traversals of a Binary Tree in the arrays in[] and post[] respectively. The task is to construct the binary tree from these traversals.
+
+ 
+
+Example 1:
+
+Input:
+N = 8
+in[] = 4 8 2 5 1 6 3 7
+post[] =8 4 5 2 6 7 3 1
+Output: 1 2 4 8 5 3 6 7
+Explanation: For the given postorder and
+inorder traversal of tree the  resultant
+binary tree will be
+           1
+       /      \
+     2         3
+   /  \      /  \
+  4    5    6    7
+   \
+     8         
+                 
+        */
+        //  
+      int search(int *in,int x,int n){
+        for(int i=0;i<n;i++){
+            if(in[i]==x){
+                return i;
+            }
+        }
+        return -1;
+    }
+Node *buildTree(int in[], int pre[], int n) {
+  
+      if(n==0)return NULL;
+        Node*root=new Node(pre[n-1]);
+    int i=search(in,pre[n-1],n);
+  
+      root->left=buildTree(in,pre,i);
+      root->right=buildTree(in+i+1,pre+i,n-i-1);
+  
+  
+    return root;
+    // Your code here
+}
+               /*
+             Largest BST 
+Medium Accuracy: 30.88% Submissions: 48314 Points: 4
+Given a binary tree. Find the size of its largest subtree that is a Binary Search Tree.
+Note: Here Size is equal to the number of nodes in the subtree.
+
+Example 1:
+
+Input:
+        1
+      /   \
+     4     4
+   /   \
+  6     8
+Output: 1
+Explanation: There's no sub-tree with size
+greater than 1 which forms a BST. All the
+leaf Nodes are the BSTs with size equal
+to 1.  
+               
+               
+               */
+  int count(Node *root)
+   {
+       if(!root)
+       return 0;
+    return 1 + count(root->left) + count(root->right);
+   }
+    bool check(Node *root,int min,int max)
+   {
+       if(!root)
+       return true;
+       bool p = check(root->left,min,root->data);
+       bool k = check(root->right,root->data,max);
+       int h = root->data;
+       if(h>min && h<max && p && k )
+       return true;
+       return false;
+   }
+  void fun(Node*root,int &ans){
+      if(root==NULL)return;
+      int num=count(root);
+      if(check(root,INT_MIN,INT_MAX)){
+          ans=max(ans,num);
+      }
+         fun(root->left,ans);
+       fun(root->right,ans);
+  }  
+    int largestBst(Node *root)
+    {
+        int ans=1;
+        fun(root,ans);
+        return ans;
+    	//Your code here
+    }               
