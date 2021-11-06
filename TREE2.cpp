@@ -1382,3 +1382,37 @@ Turns will be at 2, 1, 3, 6.
     int b=fun(LCA->right,first,second,0,'r');
     return a+b+1;
     }            
+/*
+Distribute candies in a binary tree 
+Hard Accuracy: 62.78% Submissions: 491 Points: 8
+Given a binary tree with N nodes, in which each node value represents number of candies present at that node. In one move, one may choose two adjacent nodes and move one candy from one node to another (the move may be from parent to child, or from child to parent.) 
+The task is to find the number of moves required such that every node have exactly one candy.
+
+Example 1:
+
+Input :      3
+           /   \
+          0     0 
+Output : 2
+Explanation: 
+From the root of the tree, we move one 
+candy to its left child, and one candy to
+its right child
+
+*/
+   
+                   int helper(Node* root, int& ans){
+        if(root==NULL) return 0;
+        int l = helper(root->left, ans);
+        int r = helper(root->right, ans);
+        ans += abs(l) + abs(r);
+        return root->key + l + r - 1;
+    }
+    
+    int distributeCandy(Node* root)
+    {
+        int ans = 0;
+        helper(root, ans);
+        return ans;
+        //code here
+    }
