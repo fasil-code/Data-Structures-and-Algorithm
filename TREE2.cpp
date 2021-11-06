@@ -1299,3 +1299,86 @@ vector<int>fun(Node*target,map<Node*,Node*>&mp,int k){
         return v;
         // return the sorted vector of all nodes at k dist
     }
+/*
+Number of Turns in Binary Tree 
+Hard Accuracy: 36.4% Submissions: 8027 Points: 8
+Given a binary tree and data value of two of its nodes. Find the number of turns needed to reach from one node to another in the given binary tree.
+
+Example 1:
+
+Input:      
+Tree = 
+           1
+        /    \
+       2       3
+     /  \     /  \
+    4    5   6    7                        
+   /        / \                        
+  8        9   10   
+first node = 5
+second node = 10
+Output: 4
+Explanation: 
+Turns will be at 2, 1, 3, 6.
+
+*/
+   struct Node* lca(struct Node* root, 
+                        int n1, int n2)
+{
+    
+    if (root == NULL)
+        return NULL;
+
+   
+    if (root->data == n1 || root->data == n2)
+        return root;
+
+    // Look for keys in left and right subtrees
+    Node* left_lca =lca(root->left, n1, n2);
+    Node* right_lca = lca(root->right, n1, n2);
+
+  
+    if (left_lca && right_lca)
+        return root;
+
+    return (left_lca != NULL) ? left_lca : 
+                                right_lca;
+}
+   //bool CountTurn(Node*root,)
+   int fun(Node*root,int a,int b,int c,char d){
+       if(!root)
+           return -1;
+           if(root->data==a || root->data==b)
+           return c;
+           int left;
+           if(d=='l'){
+               left=fun(root->left,a,b,c,d);
+               return left!=-1?left:fun(root->right,a,b,c+1,'r');
+           }
+           else{
+               left=fun(root->left,a,b,c+1,'l');
+               return left!=-1?left:fun(root->right,a,b,c,d);
+           }
+       }
+   
+    // function should return the number of turns required to go from first node to second node 
+    int NumberOFTurns(struct Node* root, int first, int second)
+    {
+      // Your code goes here
+      Node *LCA=lca(root,first,second);
+  
+    int turns;
+    if (LCA->data==first){
+        turns=fun(LCA->left,second,second,0,'l');
+        turns=(turns!=-1)?turns:fun(LCA->right,second,second,0,'r');
+        return (turns==0)?-1:turns;
+    }
+    else if(LCA->data==second){
+        turns=fun(LCA->left,first,first,0,'l');
+        turns=(turns!=-1)?turns:fun(LCA->right,first,first,0,'r');
+        return (turns==0)?-1:turns;
+    }
+    int a=fun(LCA->left,first,second,0,'l');
+    int b=fun(LCA->right,first,second,0,'r');
+    return a+b+1;
+    }            
