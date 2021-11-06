@@ -1205,5 +1205,95 @@ It takes 7s to burn the complete tree.
         map<Node*,Node*>mp;
      Node*targ=solve(root,mp,target); 
      return fun(targ,mp);
+    }    
+      /*
+      Nodes at given distance in binary tree 
+Hard Accuracy: 45.23% Submissions: 23906 Points: 8
+Given a binary tree, a target node in the binary tree, and an integer value k, find all the nodes that are at distance k from the given target node. No parent pointers are available.
 
-    }            
+Example 1:
+
+Input:      
+          20
+        /    \
+      8       22 
+    /   \
+   4    12 
+       /   \
+      10    14
+Target Node = 8
+K = 2
+Output: 10 14 22
+Explanation: The three nodes at distance 2
+from node 8 are 10, 14, 22.
+      */         
+vector<int>fun(Node*target,map<Node*,Node*>&mp,int k){
+       queue<Node*>q;
+       vector<int>v;
+       q.push(target);
+       map<Node*,int>m;
+       m[target]=1;
+      int fl=0;
+       int maxi=0;
+       while(!q.empty()){
+           int size=q.size();
+            if(fl++==k)break;
+           while(size--){
+               Node*temp=q.front();
+               q.pop();
+               if(temp->left && !m[temp->left]){
+                  
+                  m[temp->left]=1;
+                  q.push(temp->left);
+               }
+                if(temp->right && !m[temp->right]){
+                 
+                  m[temp->right]=1;
+                  q.push(temp->right);
+               }
+               if(mp[temp] && !m[mp[temp]]){
+                  
+                   m[mp[temp]]=1;
+                   q.push(mp[temp]);
+               }
+           }
+          
+       }
+     while(!q.empty()){
+         Node*curr=q.front();
+          q.pop();
+         v.push_back(curr->data);
+        
+     }
+     sort(v.begin(),v.end());
+     return v;
+   }
+ Node*solve(Node*root,map<Node*,Node*>&mp,int target){
+      queue<Node*>q;
+      q.push(root);
+      Node*res;
+      while(!q.empty()){
+          Node*temp=q.front();
+          q.pop();
+          if(temp->data==target){
+              res=temp;
+          }
+          if(temp->left){
+              mp[temp->left]=temp;
+              q.push(temp->left);
+          }
+           if(temp->right){
+              mp[temp->right]=temp;
+              q.push(temp->right);
+          }
+      }
+      return res;
+  }
+    vector <int> KDistanceNodes(Node* root, int target , int k)
+    {
+    map<Node*,Node*>mp;
+        Node*targ=solve(root,mp,target);
+        vector<int>v=fun(targ,mp,k);
+        return v;
+        // return the sorted vector of all nodes at k dist
+    }
