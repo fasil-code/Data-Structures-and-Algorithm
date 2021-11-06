@@ -972,5 +972,238 @@ to 1.
         int ans=1;
         fun(root,ans);
         return ans;
+/*
+Merge two BST 's 
+Hard Accuracy: 50.0% Submissions: 26384 Points: 8
+Given two BSTs, return elements of both BSTs in sorted form.
+
+
+Example 1:
+
+Input:
+BST1:
+       5
+     /   \
+    3     6
+   / \
+  2   4  
+BST2:
+        2
+      /   \
+     1     3
+            \
+             7
+            /
+           6
+Output: 1 2 2 3 3 4 5 6 6 7
+Explanation: 
+After merging and sorting the
+two BST we get 1 2 2 3 3 4 5 6 6 7.
     	//Your code here
     }               
+
+*/
+   void inorder(Node*root,vector<int>&v){
+        
+    if(root==NULL)return;
+    inorder(root->left,v);
+    v.push_back(root->data);
+    inorder(root->right,v);
+}
+vector<int>merge(vector<int>v,vector<int>s){
+    vector<int>ve;
+    int i=0;
+    int j=0;
+   int  n=v.size()>s.size()?s.size():v.size();
+   
+while(i<n&& j<n){
+    if(v[i]<s[j]){
+        ve.push_back(v[i]);
+        i++;
+    }
+    else{
+         ve.push_back(s[j]);
+        j++;
+    }
+    
+}
+while(i<v.size()){
+       ve.push_back(v[i]);
+       i++;
+}
+while(j<s.size()){
+       ve.push_back(s[j]);
+       j++;
+}
+return ve;
+}
+    vector<int> merge(Node *root1, Node *root2)
+    {
+        vector<int>v;
+    vector<int>s;
+    inorder(root1,v);
+    inorder(root2,s);
+    vector<int>res=merge(v,s);
+    return res;
+    }
+      /*
+      Maximum Path Sum between 2 Leaf Nodes 
+Hard Accuracy: 49.92% Submissions: 100k+ Points: 8
+Given a binary tree in which each node element contains a number. Find the maximum possible path sum from one leaf node to another leaf node.
+
+Note: Here Leaf node is a node which is connected to exactly one different node.
+
+
+Example 1:
+
+Input:      
+           3                               
+         /    \                          
+       4       5                     
+      /  \      
+    -10   4                          
+Output: 16
+Explanation:
+Maximum Sum lies between leaf node 4 and 5.
+4 + 4 + 3 + 5 = 16.
+Example 2:
+
+Input:    
+            -15                               
+         /      \                          
+        5         6                      
+      /  \       / \
+    -8    1     3   9
+   /  \              \
+  2   -3              0
+                     / \
+                    4  -1
+                       /
+                     10  
+Output:  27
+Explanation:
+The maximum possible sum from one leaf node 
+to another is (3 + 6 + 9 + 0 + -1 + 10 = 27)
+      */         
+ int leafsum(Node*root,int &maxi){
+    if(root==NULL)return 0;
+    if(root->left==NULL && root->right==NULL){
+        return root->data;
+    }
+    int l=leafsum(root->left,maxi);
+    int r=leafsum(root->right,maxi);
+    int sum=l+r+root->data;
+    if(root->left && root->right){
+          maxi=max(maxi,sum);
+          return max(l,r)+root->data;
+    }
+  if(root->left==NULL){
+      return root->data+r;
+  }
+   if(root->right==NULL){
+      return root->data+l;
+  }
+}
+    int maxPathSum(Node* root)
+    {
+        
+        int maxi=INT_MIN;
+        int ans=leafsum(root,maxi);
+         if(maxi==INT_MIN)
+         return ans;
+         return maxi;       
+    }      
+      /*
+      Burning Tree 
+Hard Accuracy: 41.61% Submissions: 6434 Points: 8
+Given a binary tree and a node called target. Find the minimum time required to burn the complete binary tree if the target is set on fire. It is known that in 1 second all nodes connected to a given node get burned. That is its left child, right child, and parent.
+
+
+Example 1:
+
+Input:      
+          1
+        /   \
+      2      3
+    /  \      \
+   4    5      6
+       / \      \
+      7   8      9
+                   \
+                   10
+Target Node = 8
+Output: 7
+Explanation: If leaf with the value 
+8 is set on fire. 
+After 1 sec: 5 is set on fire.
+After 2 sec: 2, 7 are set to fire.
+After 3 sec: 4, 1 are set to fire.
+After 4 sec: 3 is set to fire.
+After 5 sec: 6 is set to fire.
+After 6 sec: 9 is set to fire.
+After 7 sec: 10 is set to fire.
+It takes 7s to burn the complete tree.
+      
+      */   
+   int fun(Node*target,map<Node*,Node*>&mp){
+       queue<Node*>q;
+       q.push(target);
+       map<Node*,int>m;
+       m[target]=1;
+     
+       int maxi=0;
+       while(!q.empty()){
+           int size=q.size();
+             int fl=0;
+           while(size--){
+               Node*temp=q.front();
+               q.pop();
+               if(temp->left && !m[temp->left]){
+                  fl=1;
+                  m[temp->left]=1;
+                  q.push(temp->left);
+               }
+                if(temp->right && !m[temp->right]){
+                  fl=1;
+                  m[temp->right]=1;
+                  q.push(temp->right);
+               }
+               if(mp[temp] && !m[mp[temp]]){
+                   fl=1;
+                   m[mp[temp]]=1;
+                   q.push(mp[temp]);
+               }
+           }
+           if(fl==1)maxi++;
+       }
+       return maxi;
+   }
+  Node*solve(Node*root,map<Node*,Node*>&mp,int target){
+      queue<Node*>q;
+      q.push(root);
+      Node*res;
+      while(!q.empty()){
+          Node*temp=q.front();
+          q.pop();
+          if(temp->data==target){
+              res=temp;
+          }
+          if(temp->left){
+              mp[temp->left]=temp;
+              q.push(temp->left);
+          }
+           if(temp->right){
+              mp[temp->right]=temp;
+              q.push(temp->right);
+          }
+      }
+      return res;
+  }
+    int minTime(Node* root, int target) 
+    {
+        
+        map<Node*,Node*>mp;
+     Node*targ=solve(root,mp,target); 
+     return fun(targ,mp);
+
+    }            
