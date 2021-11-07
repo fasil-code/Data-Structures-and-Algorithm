@@ -1535,3 +1535,80 @@ will remain same.
                
                */
                
+ /*
+ Find a pair with given target in BST 
+Medium Accuracy: 47.17% Submissions: 30267 Points: 4
+Given a Binary Search Tree and a target sum. Check whether there's a pair of Nodes in the BST with value summing up to the target sum. 
+
+Example 1:
+
+Input:
+        2
+      /   \
+     1     3
+sum = 5
+Output: 1 
+Explanation: 
+Nodes with value 2 and 3 sum up to 5.
+ */             
+  void solve(Node*root,int target,unordered_set<int>&s,int &ans){
+        if(root==NULL){
+            return ;
+        }
+        solve(root->left,target,s,ans);
+        s.insert(root->data);
+        if(s.find(target-root->data)!=s.end()){
+            ans=1;
+            return;
+        }
+        solve(root->right,target,s,ans);
+    
+    }
+    int isPairPresent(struct Node *root, int target)
+    {
+    unordered_set<int>s;
+    int ans=0;
+    solve(root,target,s,ans);
+    return ans;
+    //add code here.
+    }    
+   /*
+   Fixing Two nodes of a BST 
+Hard Accuracy: 50.0% Submissions: 27511 Points: 8
+You are given the root of a binary search tree(BST), where exactly two nodes were swapped by mistake. Fix (or correct) the BST by swapping them back. 
+Do not change the structure of the tree.
+Note: It is guaranteed that the given input will form BST, except for 2 nodes that will be wrong. All changes must be reflected in the original linked list.
+ 
+Example 1:
+Input:
+       10
+     /    \
+    5      8
+   / \
+  2   20
+Output: 1
+   */ 
+   Node*&prev,Node*&first,Node*&last){
+   if(root==NULL)
+   return;
+   compute(root->left,prev,first,last);
+   if(prev!=NULL&&prev->data>root->data){
+       if(first==NULL){
+           first=prev;
+       }
+       last=root;
+   }
+   prev = root;
+   compute(root->right,prev,first,last);
+}
+class Solution {
+ public:
+   void correctBST( struct Node* root )
+   {
+       // add code here.
+       Node *prev=NULL,*first=NULL,*last=NULL;
+       compute(root,prev,first,last);
+       swap(first->data,last->data);
+   }
+};       
+               
