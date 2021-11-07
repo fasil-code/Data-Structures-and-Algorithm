@@ -24,6 +24,7 @@ PRINT ANAGRAMS TOGETHER
 SUBARRAYS WITH SUM K 
 LONGEST CONSECATIVE SUBSEQUENCE
 SAMPLE FRACTION
+TRANSFORM STRING
 
 /*
 Check if a string is Isogram or not 
@@ -938,3 +939,47 @@ recurring.
 	  return ans;  // Code here
 	}
 };
+/*
+Transform String 
+Medium Accuracy: 44.38% Submissions: 2556 Points: 4
+Given two strings A and B. Find the minimum number of steps required to transform string A into string B.
+The only allowed operation for the transformation is selecting a character from string A and inserting it in the beginning of string A.
+
+Example 1:
+
+Input:
+A = "abd"
+B = "bad"
+Output: 1
+Explanation: The conversion can take place in
+1 operation: Pick 'b' and place it at the fron
+*/
+ int transform (string A, string B)
+    {if(A.length()!=B.length()){
+        return -1;
+    }
+    int n=A.size();
+    unordered_map<char,int>mp;
+    for(int i=0;i<A.size();i++){
+        mp[A[i]]++;
+        mp[B[i]]--;
+    }
+    for(auto x:mp){
+        if(x.second!=0){
+            return -1;
+        }
+    }
+    
+int i=n-1;
+int j=n-1;
+int res=0;
+while(i>=0 &&j>=0 ){
+    while(i>=0 && A[i]!=B[j]){
+        res++;
+        i--;
+    }
+    i--;
+    j--;
+}
+     return res;   //code here.
+    }
