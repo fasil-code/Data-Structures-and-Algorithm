@@ -1416,3 +1416,122 @@ its right child
         return ans;
         //code here
     }
+/*
+Given a Binary Search Tree (BST) and a range [min, max], remove all keys which are outside the given range. The modified tree should also be BST.
+
+Example 1:
+
+Input:
+Range = [-10, 13]
+Output:
+-8 6 7 13
+Explanation:
+Nodes with values -13, 14 and 15 are 
+outside the given range and hence are 
+removed from the BST.
+*/
+    Node* removekeys(Node* root, int min, int max) {
+        if(root==NULL){
+            return root;
+        }
+        root->left=removekeys(root->left,min,max);
+        root->right=removekeys(root->right,min,max);
+        if(root->data<min){
+            return root->right;
+        }
+        if(root->data>min){
+            return root->left;
+        }
+        return root;
+    }
+               /*
+               Sum of k smallest elements in BST 
+Easy Accuracy: 64.4% Submissions: 1637 Points: 2
+Given a Binary Search Tree. Find sum of all elements smaller than and equal to Kth smallest element.
+
+Example 1:
+
+Input: 
+          20
+        /    \
+       8     22
+     /    \
+    4     12
+         /    \
+        10    14   , K=3
+
+Output: 22
+Explanation:
+Sum of 3 smallest elements are: 
+4 + 8 + 10 = 22
+               
+               
+               */
+ void inorder(Node*root,int &k,int &sum){
+
+    if(root==NULL)return ;
+    inorder(root->left,k,sum);
+    if(k!=0){
+        sum+=root->data;
+        k--;
+    }
+    inorder(root->right,k,sum);
+}
+int sum(Node* root, int k) 
+{ 
+  int sum=0;
+  inorder(root,k,sum);
+  return sum;
+    // Your code here
+     
+}    
+   /*
+   Insert a node in a BST 
+Easy Accuracy: 32.7% Submissions: 68855 Points: 2
+Given a BST and a key K. If K is not present in the BST, Insert a new Node with a value equal to K into the BST. 
+Note: If K is already present in the BST, don't modify the BST.
+
+
+Example 1:
+
+Input:
+     2
+   /   \
+  1     3
+K = 4
+Output: 1 2 3 4
+Explanation: After inserting the node 4
+Inorder traversal will be 1 2 3 4.
+   */
+    Node* insert(Node* root, int key) {
+       if(root==NULL){
+        return new Node(key);
+    }
+    if(root->data>key){
+       root->left= insert(root->left,key);
+    }
+    else if(key>root->data){
+     root->right=insert(root->right,key);
+    }
+    return root;
+    // Your code here
+}   
+               /*
+               Delete a node from BST 
+Medium Accuracy: 34.76% Submissions: 57365 Points: 4
+Given a Binary Search Tree and a node value X. Delete the node with the given value X from the BST. If no node with value x exists, then do not make any change. 
+
+Example 1:
+
+Input:
+      2
+    /   \
+   1     3
+X = 12
+Output: 1 2 3
+Explanation: In the given input there
+is no node with value 12 , so the tree
+will remain same.
+               
+               */
+               
