@@ -1611,4 +1611,53 @@ class Solution {
        swap(first->data,last->data);
    }
 };       
+  /*
+  Sorted Link List to BST 
+Hard Accuracy: 65.26% Submissions: 3206 Points: 8
+Given a Singly Linked List which has data members sorted in ascending order. Construct a Balanced Binary Search Tree which has same data members as the given Linked List.
+Note: There might be nodes with same value.
+
+Example 1:
+
+Input:
+Linked List: 1->2->3->4->5->6->7
+Output:
+4 2 1 3 6 5 7
+Explanation :
+The BST formed using elements of the 
+linked list is,
+        4
+      /   \
+     2     6
+   /  \   / \
+  1   3  5   7  
+Hence, preorder traversal of this 
+tree is 4 2 1 3 6 5 7
+*/ 
+               // code here
+      TNode* sortedListToBST(LNode *head) {
+        
+        if(!head){
+            return NULL;
+        }
+        if(!head->next){
+            return new TNode(head->data);
+        }
+        LNode*slow=head,*fast=head,*prev=NULL;
+        while(fast && fast->next){
+            fast=fast->next->next;
+            prev=slow;
+            slow =slow->next;
+        }
+        TNode*root=new TNode(slow->data);
+        prev->next=NULL;
+        root->left=sortedListToBST(head);
+        if(slow->next){
+            root->right=sortedListToBST(slow->next);
+        }
+        return root;
+        
+          
+    }
+               
                
