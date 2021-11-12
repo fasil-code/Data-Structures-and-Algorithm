@@ -101,3 +101,26 @@ it 0 and result is 1001 = 9 (decimal).
    
     //code here.
     }
+/*
+Sum of two numbers without using arithmetic operators 
+Easy Accuracy: 75.23% Submissions: 10313 Points: 2
+Given two integers a and b. Find the sum of two numbers without using arithmetic operators.
+
+Example 1:
+
+Input:
+a = 5, b = 3
+Output: 8
+Explanation :
+5 + 3 = 8
+*/
+int sum(int a , int b)
+    {
+           while(b!=0){
+           int sum=a^b;
+           int carry = (a&b)<<1;
+           a=sum;
+           b=carry;
+       }
+       return a;
+   }
