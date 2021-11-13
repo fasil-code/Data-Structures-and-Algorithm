@@ -193,3 +193,109 @@ int josephus(int n, int k)
     }
    //Your code here
 }
+/*
+Generate Grey Code Sequences 
+Easy Accuracy: 50.62% Submissions: 5512 Points: 2
+Given a number N, your task is to complete the function which generates all n-bit grey code sequences, a grey code sequence is a sequence 
+such that successive patterns in it differ by one bit.
+
+Example 1:
+
+Input:
+N = 2
+Output: 00 01 11 10
+Explanation: All 2-bit gray codes are
+00, 01, 11, 10 such that successive
+patterns in it differ by one bit.
+
+*/
+ vector <string> generateCode(int N)
+    {
+        vector<string>v;
+        queue<pair<string,int>>q;
+        q.push({"0",0});
+        q.push({"1",1});
+        while(N>1){
+            int size=q.size();
+            while(size--){
+       pair<string,int>p=q.front();
+        q.pop();
+        if(p.second==0){
+q.push({p.first+"0",0});
+q.push({p.first+"1",1});
+
+}
+if(p.second==1){
+q.push({p.first+"1",0});
+q.push({p.first+"0",1});
+
+}
+/*
+Even Subsets 
+Easy Accuracy: 46.61% Submissions: 5527 Points: 2
+As we mentioned earlier, bitwise operations can be used to find number of subsets. Here, we will use that.
+
+Given an array arr of N elements. The task is to count all the subsets whose sum is even.
+
+Example:
+
+Input:
+N = 3
+arr[] = 1 2 3
+Output:
+3
+Explanation:
+Three subsets are there whose sum of elements 
+is even. Subsets are (3, 2, 1), (1, 3), (2).
+*/	
+int countt=0;
+void func(int arr[],int cur,int n,int taken,int sum)
+{
+if(cur>n)
+return ;
+func(arr,cur+1,n,0,sum);
+if((sum+arr[cur])%2==0)
+countt++;
+func(arr,cur+1,n,1,sum+arr[cur]);
+}
+int countSumSubsets(int arr[], int N){
+
+// Your code here
+countt=0;
+func(arr,0,N-1,0,0);
+return countt;
+}
+	/*
+	Game of XOR 
+Easy Accuracy: 58.85% Submissions: 1964 Points: 2
+Given an array A[] of size N. The value of an array is denoted by the bit-wise XOR of all elements it contains. Find the bit-wise XOR of the values of all subarrays of A[].
+
+Example 1:
+
+Input: N = 3, A[] = {1,2,3} 
+Output: 2
+Explanation:
+xor[1] = 1, 
+xor[1, 2] = 3
+xor[2, 3] = 1
+xor[1, 2, 3] = 0
+xor[2] = 2
+xor[3] = 3
+Result : 1 ^ 3 ^ 1 ^ 0 ^ 2 ^ 3 = 2
+	*/	    
+		    
+		 int gameOfXor(int N , int A[]) {
+        int res=0;
+        if(N%2==0){
+        return 0;
+        }
+        else{
+            for(int i=0;i<N;i++){
+                if(i%2==0){
+                    res=res^A[i];
+                }
+            }
+            return res;
+        }
+        // code here
+    }		    
