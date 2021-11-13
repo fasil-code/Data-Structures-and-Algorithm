@@ -148,4 +148,48 @@ consecutive set bits of length is 3.
         }
         return c;
     }
+/*
+Kth LSB 
+Easy Accuracy: 69.15% Submissions: 1305 Points: 2
+A number N is given. Find its ‘K’th Least Significant Bit.
 
+Example 1:
+
+Input: N = 10, K = 4
+Output: 1
+Explanation: Binary Representation 
+of 10 is 1010. 4th LSB is 1.
+*/
+int KthLSB(long long int n, int k){
+	 long long res=n>>(k-1);
+	 return res&1;
+	    //complete the function here
+	    
+	}
+/*
+Josephus problem 
+Easy Accuracy: 52.47% Submissions: 52370 Points: 2
+Given the total number of persons n and a number k which indicates that k-1 persons are skipped and kth person is killed in circle in a fixed direction.
+
+The task is to choose the safe place in the circle so that when you perform these operations starting from 1st place in the circle, 
+you are the last one remaining and survive.
+
+Example 1:
+
+Input:
+n = 3 k = 2
+Output: 3
+Explanation: There are 3 persons so 
+skipping 1 person i.e 1st person 2nd 
+person will be killed. Thus the safe 
+position is 3.
+
+*/
+int josephus(int n, int k)
+{
+    if(n==1)return 1;
+    else{
+        return (josephus(n-1,k)+k-1)%n+1;
+    }
+   //Your code here
+}
