@@ -299,3 +299,64 @@ Result : 1 ^ 3 ^ 1 ^ 0 ^ 2 ^ 3 = 2
         }
         // code here
     }		    
+/*
+Reverse Bits 
+Easy Accuracy: 49.14% Submissions: 5106 Points: 2
+Given a 32 bit number X, reverse its binary form and print the answer in decimal.
+
+Example 1:
+
+Input:
+X = 1
+Output:
+2147483648 
+Explanation:
+Binary of 1 in 32 bits representation-
+00000000000000000000000000000001
+Reversing the binary form we get, 
+10000000000000000000000000000000,
+whose decimal value is 2147483648.
+
+*/
+  long long reversedBits(long long X) {
+          long long ans=0;
+   long long n=X;
+   for(int i=0;i<32;i++){
+       ans=(ans<<1)|(n&1);
+       n=n>>1;
+       }
+   return ans;
+           
+    }	
+/*
+Power Set 
+Easy Accuracy: 48.41% Submissions: 14704 Points: 2
+Given a string S find all possible subsequences of the string in lexicographically-sorted order.
+
+Example 1:
+
+Input : str = "abc"
+Output: a ab abc ac b bc c
+Explanation : There are 7 substrings that 
+can be formed from abc.
+
+*/	
+		    	void func(vector<string>&v,int curr,string s,string res){
+	    if(curr==s.size()){
+	           if(res.length()>0)
+	        v.push_back(res);
+	        return;
+	    }
+	    func(v,curr+1,s,res);
+	  
+	    func(v,curr+1,s,res+s[curr]);
+	    
+	}
+		vector<string> AllPossibleStrings(string s){
+		   vector<string>v;
+		   string p="";
+		   func(v,0,s,p);
+		   sort(v.begin(),v.end());
+	return v;
+		}
+		    
