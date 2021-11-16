@@ -360,3 +360,109 @@ can be formed from abc.
 	return v;
 		}
 		    
+/*
+Bit Difference 
+Hard Accuracy: 46.07% Submissions: 11130 Points: 8
+We define f (X, Y) as number of different corresponding bits in binary representation of X and Y. For example, f (2, 7) = 2,
+since binary representation of 2 and 7 are 010 and 111, respectively. The first and the third bit differ, so f (2, 7) = 2.
+
+You are given an array A of N integers, A1, A2 ,…, AN. Find sum of f(Ai, Aj) for all ordered pairs (i, j) such that 1 ≤ i, j ≤ N. Return the answer modulo 109+7.
+
+Example 1:
+
+Input: N = 2
+A = {2, 4}
+Output: 4
+Explaintion: We return 
+f(2, 2) + f(2, 4) + 
+f(4, 2) + f(4, 4) = 
+0 + 2 + 
+2 + 0 = 4.
+*/
+class Solution{
+public:
+const int p = 1000000007;
+#define lli long long int
+    int countBits(int N, long long int arr[])
+    {
+          lli res = 0;
+    
+    for(int i = 0; i < 32; i++){
+        lli counton = 0;
+        for(int j = 0; j < N; j++){
+            if(arr[j] & (1 << i))
+                counton++;
+        }
+        
+        lli countoff = (N - counton);
+        res += (2 * (counton * countoff)) % p;
+    }
+    return res % p;
+       
+    }
+/*
+Minimum X (xor) A 
+Hard Accuracy: 41.04% Submissions: 939 Points: 8
+Given two integers A and B, the task is to find an integer X such that (X XOR A) is minimum possible and the count of set bit in X is equal to the count of set bits in B.
+
+Example 1:
+
+Input: 
+A = 3, B = 5
+Output: 3
+Explanation:
+Binary(A) = Binary(3) = 011
+Binary(B) = Binary(5) = 101
+The XOR will be minimum when x = 3
+i.e. (3 XOR 3) = 0 and the number
+of set bits in 3 is equal
+to the number of set bits in 5.
+
+*/
+	 int getSetBits(int b)
+    {
+        int count=0;
+        while(b)
+        {
+            b = b & (b-1);
+            count++;
+        }
+        return count;
+    }
+    int minVal(int a, int b) {
+        
+    
+        // code here
+        int setBits = getSetBits(b);
+        //cout<<setbits<<"hello\n";<br>
+        int ans = 0;
+        for (int i = 31; i >= 0; i--) {
+            int mask = 1 << i;
+            bool set = a & mask;
+            if (set && setBits > 0) {
+                ans |= (1 << i);
+                setBits--;
+            }
+        }
+
+        //cout<<setbits<<"hi\n";<br>
+        if(setBits>0)
+        {
+            for(int i=0;i<32;i++)
+            {
+                int mask = 1 << i;
+                bool set = ans & mask;
+
+                if(!set && setBits)
+                {
+                    ans|=(1<<i);
+                    setBits--;
+                    }
+            }
+        }
+     
+        return ans;
+    
+        // code here
+    }
+};		    
