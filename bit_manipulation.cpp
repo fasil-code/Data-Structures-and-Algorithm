@@ -230,6 +230,17 @@ q.push({p.first+"1",0});
 q.push({p.first+"0",1});
 
 }
+		    
+            }
+            N--;
+        
+        }
+        while(!q.empty()){
+            v.push_back(q.front().first);
+            q.pop();
+        }
+        return v;
+ }	    
 /*
 Even Subsets 
 Easy Accuracy: 46.61% Submissions: 5527 Points: 2
@@ -466,3 +477,5 @@ to the number of set bits in 5.
         // code here
     }
 };		    
+
+		    
