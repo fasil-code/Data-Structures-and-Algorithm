@@ -839,6 +839,50 @@ int maxEle = INT_MIN;
 
 	}
 /*
+Non Repeating Numbers 
+Easy Accuracy: 49.85% Submissions: 25199 Points: 2
+Given an array A containing 2*N+2 positive numbers, out of which 2*N numbers exist in pairs whereas the other two number occur exactly once and are distinct. Find the other two numbers.
 
+
+Example 1:
+
+Input: 
+N = 2
+arr[] = {1, 2, 3, 2, 1, 4}
+Output:
+3 4 
+Explanation:
+3 and 4 occur exactly once.
 
 */
+ int Xor = arr[0];
+    vector<int> v;
+    int n=arr.size();
+   
+    int set_bit_no;
+    int i;
+    int x = 0;
+    int y = 0;
+ 
+    
+    for (i = 1; i < n; i++)
+        Xor ^= arr[i];
+ 
+   
+    set_bit_no = Xor & ~(Xor - 1);
+ 
+   
+    for (i = 0; i < n; i++) {
+ 
+       
+        if (arr[i] & set_bit_no)
+            x = x ^ arr[i];
+       
+        else {
+            y = y ^ arr[i];
+        }
+    }
+    v.push_back(x);
+    v.push_back(y);
+    return v;
+    }
