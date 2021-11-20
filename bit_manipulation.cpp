@@ -743,3 +743,98 @@ The maximum result is 5 ^ 25 = 28.
  
     return maxx;
     }
+/*
+Sum of XOR of all pairs 
+Medium Accuracy: 48.57% Submissions: 874 Points: 4
+Given an array of N integers, find the sum of xor of all pairs of numbers in the array.
+
+Example 1:
+
+â€‹Input : arr[ ] = {7, 3, 5}
+Output : 12
+Explanation:
+All possible pairs and there Xor
+Value: ( 3 ^ 5 = 6 ) + (7 ^ 3 = 4)
+ + ( 7 ^ 5 = 2 ) =  6 + 4 + 2 = 12
+
+*/
+long long int sumXOR(int arr[], int n)
+    {
+        long long sum=0;
+    for(int i=0;i<32;i++){
+        int c0=0;
+        int c1=0;
+        long long k=0;
+        for(int j=0;j<n;j++){
+            if((arr[j])&(1<<i))c1++;
+            else
+            c0++;
+        }
+        k=(c0*c1*pow(2,i));
+        sum+=k;
+    }
+        
+        
+        return sum;
+    
+    }
+/*
+Maximum XOR subset 
+Medium Accuracy: 36.47% Submissions: 225 Points: 4
+Given an array arr[ ] of positive integers, the task is to find the maximum XOR value of the elements from all the possible subsets.
+
+Example 1:
+
+Input: N = 3, arr[] = {2, 4, 5}
+Output: 7
+Explanation: Subset {2, 5} has maximum xor
+Example 2:
+
+Input: N = 1, arr[] = {1}
+Output: 1
+Explanation: Subset {1} has maximum xor
+
+
+*/
+int maxXor(int arr[], int n)
+	{
+int maxEle = INT_MIN;
+  for(int i = 0; i < n; ++i)
+    maxEle = max(maxEle, arr[i]);
+        
+  int MSB = 0;
+  for(int i = 31; i >= 0; --i)
+    if((1 << i) & maxEle) { 
+      MSB = i; break; 
+    }
+        
+  int index = 0;
+  for(int i = MSB; i >= 0; --i) {
+    int maxIndex = index, maxElement = INT_MIN;
+    for(int j = index; j < n; ++j)
+      if(arr[j] & (1 << i) && arr[j] > maxElement)
+        maxIndex = j, maxElement = arr[j];
+            
+    if(maxElement == INT_MIN) continue; // if there's no maxElement, there's no use going ahead.
+            
+    swap(arr[index], arr[maxIndex]); // since we don't want to affect the number in 'index' position
+    maxIndex = index; // since now the position of maxElement is changed to 'index' in arr[]
+            
+    for(int j = 0; j < n; ++j)
+      if(j != maxIndex && arr[j] & (1 << i))
+        arr[j] ^= arr[maxIndex];
+            
+    ++index;
+  }
+        
+  int res = 0;
+  for(int i = 0; i < n; ++i)
+    res ^= arr[i];
+  
+  // This is where we individualize the subsets, as we can have subsets of 1 element each.
+  // And XOR of such subsets is the element itself, and so, the max element out of all those
+  // elements will be the max XOR value iff XOR of some other subset is greater, thereby, the following line of code:        
+  return max(res, maxEle);
+		// Your code goes here
+
+	}
