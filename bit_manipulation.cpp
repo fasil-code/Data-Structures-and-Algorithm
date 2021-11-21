@@ -1,7 +1,11 @@
+
+
+
 /*
 Set kth bit 
 Basic Accuracy: 65.04% Submissions: 9664 Points: 1
-Given a number N and a value K. From the right, set the Kth bit in the binary representation of N. The position of Least Significant Bit(or last bit) is 0, the second last bit is 1 and so on. 
+Given a number N and a value K. From the right, set the Kth bit in the binary representation of N. The position of Least Significant Bit(or last bit) is 0,
+the second last bit is 1 and so on. 
 
 Example 1:
 
@@ -279,7 +283,8 @@ return countt;
 	/*
 	Game of XOR 
 Easy Accuracy: 58.85% Submissions: 1964 Points: 2
-Given an array A[] of size N. The value of an array is denoted by the bit-wise XOR of all elements it contains. Find the bit-wise XOR of the values of all subarrays of A[].
+Given an array A[] of size N. The value of an array is denoted by the bit-wise XOR of all elements it contains. 
+Find the bit-wise XOR of the values of all subarrays of A[].
 
 Example 1:
 
@@ -841,7 +846,8 @@ int maxEle = INT_MIN;
 /*
 Non Repeating Numbers 
 Easy Accuracy: 49.85% Submissions: 25199 Points: 2
-Given an array A containing 2*N+2 positive numbers, out of which 2*N numbers exist in pairs whereas the other two number occur exactly once and are distinct. Find the other two numbers.
+Given an array A containing 2*N+2 positive numbers, out of which 2*N numbers exist in pairs whereas the other two number occur exactly once and are distinct.
+Find the other two numbers.
 
 
 Example 1:
